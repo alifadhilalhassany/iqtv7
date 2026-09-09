@@ -1,705 +1,2418 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>IQ TV | منصة البث الرقمي المتقدمة</title>
-    
-    <!-- خطوط جوجل -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- مكتبة الأيقونات -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+      maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 
-    <style>
-        /* ==========================================
-           1. المتغيرات والتهيئة الأساسية (Variables & Reset)
-           ========================================== */
-        :root {
-            --primary: #FF0033;
-            --primary-glow: rgba(255, 0, 51, 0.35);
-            --bg-deep: #050608;
-            --bg-surface: #0c0e14;
-            --bg-card: #131620;
-            --border-glass: rgba(255, 255, 255, 0.06);
-            --text-main: #f8fafc;
-            --text-muted: #8c95af;
-            --radius-lg: 16px;
-            --radius-md: 10px;
-            --transition: all 0.25s ease-in-out;
-        }
+<title>IQ TV</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        /* تخصيص شريط التمرير */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+<style>
 
-        /* ==========================================
-           2. الترويسة الرئيسية (Header)
-           ========================================== */
-        header {
-            background: rgba(5, 6, 8, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 14px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border-glass);
-        }
+:root{
+    --red:#e50914;
+    --red-dark:#b80710;
 
-        .brand-logo {
-            font-size: 22px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            direction: ltr;
-        }
-        .brand-logo .text-white { color: #fff; }
-        .brand-logo .badge-red {
-            background: var(--primary);
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 16px;
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
+    --bg:#08090c;
+    --surface:#101216;
+    --surface-2:#15171d;
+    --surface-3:#1b1e25;
 
-        .status-pill {
-            background: rgba(255, 0, 51, 0.1);
-            border: 1px solid rgba(255, 0, 51, 0.25);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #ff335b;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: pulse-glow 1.8s infinite;
-        }
+    --border:rgba(255,255,255,.075);
 
-        @keyframes pulse-glow {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 51, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 0, 51, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 51, 0); }
-        }
+    --text:#f5f5f7;
+    --muted:#858a96;
+    --muted-2:#5f6470;
 
-        /* ==========================================
-           3. التخطيط العام (App Grid Layout)
-           ========================================== */
-        .main-container {
-            max-width: 1440px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 24px;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 20px;
-            flex: 1;
-        }
+    --green:#31c46c;
+    --yellow:#f5b942;
 
-        /* ==========================================
-           4. قسم المشغل (Video Player Section)
-           ========================================== */
-        .player-section {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            min-width: 0;
-        }
+    --radius:14px;
 
-        .player-wrapper-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
+    --ease:cubic-bezier(.22,.61,.36,1);
+}
 
-        .player-toolbar {
-            padding: 14px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.25);
-            border-bottom: 1px solid var(--border-glass);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo',sans-serif;
+    -webkit-tap-highlight-color:transparent;
+    user-select:none;
+}
 
-        .current-channel-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+html{
+    background:var(--bg);
+}
 
-        .toolbar-actions {
-            display: flex;
-            gap: 8px;
-        }
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(
+            circle at 50% -15%,
+            rgba(229,9,20,.075),
+            transparent 38%
+        ),
+        var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
 
-        .tool-btn {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-glass);
-            color: var(--text-main);
-            width: 36px;
-            height: 36px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 13px;
-        }
-        .tool-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            box-shadow: 0 0 12px var(--primary-glow);
-        }
+button,
+input{
+    font-family:inherit;
+}
 
-        .video-box {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            position: relative;
-        }
-        #player {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
+button{
+    border:0;
+}
 
-        /* ==========================================
-           5. الشريط الجانبي والقنوات (Sidebar & Channels)
-           ========================================== */
-        .sidebar-section {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-lg);
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            height: fit-content;
-            max-height: calc(100vh - 110px);
-            position: sticky;
-            top: 86px;
-        }
+::-webkit-scrollbar{
+    width:4px;
+    height:4px;
+}
 
-        /* التبويبات */
-        .tabs-group {
-            display: flex;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 4px;
-            border-radius: 10px;
-            gap: 4px;
-        }
-        .tab-item {
-            flex: 1;
-            padding: 8px;
-            text-align: center;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .tab-item.active {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 4px 12px var(--primary-glow);
-        }
+::-webkit-scrollbar-track{
+    background:transparent;
+}
 
-        /* صندوق البحث */
-        .search-box {
-            position: relative;
-        }
-        .search-box input {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-md);
-            padding: 10px 12px 10px 38px;
-            color: #fff;
-            font-size: 12px;
-            outline: none;
-            transition: var(--transition);
-        }
-        .search-box input:focus {
-            border-color: var(--primary);
-        }
-        .search-box i {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 12px;
-        }
+::-webkit-scrollbar-thumb{
+    background:#30343c;
+    border-radius:10px;
+}
 
-        /* قائمة القنوات */
-        .channels-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            overflow-y: auto;
-            max-height: 480px;
-            padding-right: 2px;
-        }
+/* =========================================================
+   HEADER
+========================================================= */
 
-        .channel-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            padding: 8px 12px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .channel-card:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-        .channel-card.active {
-            background: rgba(255, 0, 51, 0.08);
-            border-color: var(--primary);
-        }
+.topbar{
+    height:64px;
+    padding:
+        0 max(16px,env(safe-area-inset-right))
+        0 max(16px,env(safe-area-inset-left));
 
-        .channel-info-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            min-width: 0;
-        }
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-        .channel-logo-wrapper {
-            width: 40px;
-            height: 28px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2px;
-            flex-shrink: 0;
-        }
-        .channel-logo-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            opacity: 0.65;
-            transition: var(--transition);
-        }
-        .channel-card:hover img, .channel-card.active img {
-            opacity: 1;
-        }
+    background:rgba(8,9,12,.94);
+    border-bottom:1px solid var(--border);
 
-        .channel-info-group h4 {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-muted);
-            transition: var(--transition);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .channel-card.active h4 {
-            color: #fff;
-        }
+    position:sticky;
+    top:0;
+    z-index:100;
 
-        .favorite-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 14px;
-            cursor: pointer;
-            padding: 6px;
-            transition: var(--transition);
-            flex-shrink: 0;
-        }
-        .favorite-btn:hover, .favorite-btn.is-favorite {
-            color: #fbbf24;
-            transform: scale(1.15);
-        }
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+}
 
-        /* ==========================================
-           6. التذييل (Footer)
-           ========================================== */
-        footer {
-            text-align: center;
-            padding: 20px;
-            border-top: 1px solid var(--border-glass);
-            color: var(--text-muted);
-            font-size: 12px;
-            background: var(--bg-surface);
-            margin-top: auto;
-        }
+.brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    direction:ltr;
+}
 
-        /* ==========================================
-           7. التجاوبية (Responsive Design)
-           ========================================== */
-        @media (max-width: 1024px) {
-            .main-container {
-                grid-template-columns: 1fr;
-                padding: 14px;
-            }
-            .sidebar-section {
-                position: static;
-                max-height: none;
-            }
-            .channels-list {
-                max-height: 340px;
-            }
-        }
-    </style>
+.brand-iq{
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+.brand-tv{
+    background:var(--red);
+    padding:2px 7px;
+    border-radius:5px;
+
+    font-size:15px;
+    line-height:22px;
+    font-weight:800;
+}
+
+.live-state{
+    height:30px;
+    padding:0 10px;
+
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    border:1px solid rgba(229,9,20,.22);
+    background:rgba(229,9,20,.07);
+
+    border-radius:20px;
+
+    color:#f46b72;
+    font-size:10px;
+    font-weight:700;
+}
+
+.live-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--red);
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page{
+    width:min(1450px,100%);
+    margin:auto;
+
+    padding:
+        18px
+        max(18px,env(safe-area-inset-right))
+        40px
+        max(18px,env(safe-area-inset-left));
+}
+
+/* =========================================================
+   PLAYER AREA
+========================================================= */
+
+.player-section{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+}
+
+.player-header{
+    min-height:58px;
+    padding:9px 14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.channel-heading{
+    min-width:0;
+}
+
+.channel-heading-top{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    min-width:0;
+}
+
+.channel-heading-top i{
+    color:var(--red);
+    font-size:12px;
+}
+
+.channel-name{
+    font-size:14px;
+    font-weight:800;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.channel-status{
+    margin-top:1px;
+    font-size:9px;
+    color:var(--muted);
+}
+
+.player-buttons{
+    display:flex;
+    gap:6px;
+    flex-shrink:0;
+}
+
+.player-button{
+    width:34px;
+    height:34px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:8px;
+
+    background:var(--surface-2);
+    border:1px solid var(--border);
+
+    color:#d5d7dc;
+    font-size:12px;
+
+    transition:
+        background .18s var(--ease),
+        border-color .18s var(--ease),
+        transform .18s var(--ease);
+}
+
+.player-button:active{
+    transform:scale(.94);
+}
+
+.player-button:hover{
+    background:var(--surface-3);
+    border-color:rgba(255,255,255,.13);
+}
+
+.player-button.primary:hover{
+    background:var(--red);
+    border-color:var(--red);
+}
+
+.video-frame{
+    width:100%;
+    aspect-ratio:16/9;
+
+    background:#000;
+
+    position:relative;
+    overflow:hidden;
+}
+
+#player{
+    width:100%;
+    height:100%;
+    position:absolute;
+    inset:0;
+}
+
+.player-empty{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.035),
+            transparent 45%
+        );
+
+    color:var(--muted);
+    text-align:center;
+
+    pointer-events:none;
+}
+
+.player-empty-icon{
+    width:54px;
+    height:54px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:50%;
+
+    margin-bottom:10px;
+
+    color:#707580;
+    font-size:17px;
+}
+
+.player-empty strong{
+    color:#d5d7db;
+    font-size:12px;
+    font-weight:700;
+}
+
+.player-empty span{
+    margin-top:2px;
+    font-size:9px;
+    color:var(--muted-2);
+}
+
+/* =========================================================
+   PLAYER FOOTER
+========================================================= */
+
+.player-footer{
+    min-height:44px;
+
+    padding:7px 12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:10px;
+
+    background:#0c0e12;
+    border-top:1px solid var(--border);
+}
+
+.connection{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    color:var(--muted);
+    font-size:9px;
+}
+
+.connection-dot{
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+    background:var(--muted-2);
+}
+
+.connection.online .connection-dot{
+    background:var(--green);
+}
+
+.connection.loading .connection-dot{
+    background:var(--yellow);
+}
+
+.connection.error .connection-dot{
+    background:var(--red);
+}
+
+.stream-quality{
+    display:flex;
+    align-items:center;
+    gap:5px;
+
+    color:var(--muted-2);
+    font-size:8px;
+}
+
+.quality-badge{
+    padding:2px 6px;
+
+    border-radius:4px;
+
+    background:#181b21;
+    color:#9ea3ad;
+
+    font-size:8px;
+    font-weight:700;
+}
+
+/* =========================================================
+   CONTENT GRID
+========================================================= */
+
+.content-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 330px;
+
+    gap:16px;
+
+    margin-top:16px;
+}
+
+/* =========================================================
+   CHANNEL PANEL
+========================================================= */
+
+.channels-panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+
+    overflow:hidden;
+}
+
+.panel-header{
+    min-height:57px;
+
+    padding:9px 13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    border-bottom:1px solid var(--border);
+}
+
+.panel-title{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.panel-title-icon{
+    width:28px;
+    height:28px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:7px;
+
+    background:rgba(229,9,20,.09);
+    color:var(--red);
+
+    font-size:11px;
+}
+
+.panel-title h2{
+    font-size:12px;
+    font-weight:800;
+}
+
+.panel-title span{
+    display:block;
+    margin-top:-1px;
+
+    color:var(--muted-2);
+    font-size:8px;
+}
+
+.channel-count{
+    color:var(--muted-2);
+    font-size:9px;
+}
+
+/* =========================================================
+   TABS
+========================================================= */
+
+.tabs{
+    padding:10px 12px 0;
+
+    display:flex;
+    gap:5px;
+}
+
+.tab{
+    height:32px;
+
+    padding:0 12px;
+
+    border-radius:7px;
+
+    background:transparent;
+    border:1px solid transparent;
+
+    color:var(--muted);
+
+    font-size:9px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.18s var(--ease);
+}
+
+.tab.active{
+    background:var(--surface-3);
+    border-color:var(--border);
+    color:#fff;
+}
+
+.tab.active i{
+    color:var(--red);
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-area{
+    padding:10px 12px;
+}
+
+.search-box{
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    height:38px;
+
+    padding:
+        0 12px
+        0 36px;
+
+    background:#0b0d11;
+
+    border:1px solid var(--border);
+    border-radius:8px;
+
+    outline:none;
+
+    color:#fff;
+    font-size:10px;
+
+    direction:rtl;
+
+    transition:border-color .18s var(--ease);
+}
+
+.search-box input:focus{
+    border-color:rgba(229,9,20,.55);
+}
+
+.search-box i{
+    position:absolute;
+    left:12px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:var(--muted-2);
+    font-size:11px;
+}
+
+/* =========================================================
+   CHANNEL LIST
+========================================================= */
+
+.channels-list{
+    padding:0 12px 12px;
+
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    gap:7px;
+
+    max-height:480px;
+    overflow-y:auto;
+}
+
+.channel-card{
+    min-width:0;
+    min-height:59px;
+
+    padding:8px;
+
+    display:flex;
+    align-items:center;
+
+    gap:8px;
+
+    background:#0d0f13;
+
+    border:1px solid var(--border);
+    border-radius:9px;
+
+    cursor:pointer;
+
+    transition:
+        background .18s var(--ease),
+        border-color .18s var(--ease),
+        transform .18s var(--ease);
+}
+
+.channel-card:hover{
+    background:#13161b;
+    border-color:rgba(255,255,255,.12);
+}
+
+.channel-card:active{
+    transform:scale(.985);
+}
+
+.channel-card.active{
+    background:
+        linear-gradient(
+            90deg,
+            rgba(229,9,20,.11),
+            rgba(229,9,20,.025)
+        );
+
+    border-color:rgba(229,9,20,.65);
+}
+
+.channel-logo{
+    width:42px;
+    height:31px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#15171c;
+    border-radius:6px;
+
+    padding:4px;
+}
+
+.channel-logo img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    opacity:.75;
+
+    transition:opacity .18s var(--ease);
+}
+
+.channel-card.active .channel-logo img,
+.channel-card:hover .channel-logo img{
+    opacity:1;
+}
+
+.channel-info{
+    min-width:0;
+    flex:1;
+}
+
+.channel-info h3{
+    color:#cfd2d8;
+
+    font-size:9px;
+    font-weight:700;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.channel-card.active .channel-info h3{
+    color:#fff;
+}
+
+.channel-info small{
+    display:flex;
+    align-items:center;
+    gap:4px;
+
+    margin-top:1px;
+
+    color:var(--muted-2);
+
+    font-size:7px;
+}
+
+.channel-card.active .channel-info small{
+    color:#a5a8b0;
+}
+
+.mini-live{
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+
+    background:var(--green);
+}
+
+.favorite{
+    width:26px;
+    height:26px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:transparent;
+
+    color:#555a64;
+
+    font-size:10px;
+
+    cursor:pointer;
+}
+
+.favorite.active{
+    color:var(--yellow);
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-results{
+    grid-column:1/-1;
+
+    padding:35px 10px;
+
+    text-align:center;
+
+    color:var(--muted-2);
+    font-size:10px;
+}
+
+.empty-results i{
+    display:block;
+    margin-bottom:8px;
+    font-size:20px;
+}
+
+/* =========================================================
+   INFO SIDE
+========================================================= */
+
+.info-panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+
+    padding:14px;
+
+    align-self:start;
+}
+
+.info-label{
+    color:var(--muted-2);
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:.3px;
+}
+
+.info-main{
+    margin-top:9px;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.info-icon{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#17191f;
+    border-radius:9px;
+
+    color:var(--red);
+    font-size:14px;
+}
+
+.info-main h3{
+    font-size:12px;
+    font-weight:800;
+}
+
+.info-main p{
+    margin-top:1px;
+
+    color:var(--muted);
+    font-size:8px;
+}
+
+.info-divider{
+    height:1px;
+    background:var(--border);
+    margin:14px 0;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:5px 0;
+
+    color:var(--muted);
+
+    font-size:8px;
+}
+
+.info-row strong{
+    color:#c9ccd2;
+    font-weight:600;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    padding:24px 0 10px;
+
+    text-align:center;
+
+    color:#444952;
+
+    font-size:8px;
+}
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media(min-width:1050px){
+
+    .page{
+        padding-top:22px;
+    }
+
+    .player-section{
+        border-radius:16px;
+    }
+
+    .content-grid{
+        grid-template-columns:minmax(0,1fr) 350px;
+    }
+
+    .channels-list{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:1049px){
+
+    .content-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-panel{
+        display:none;
+    }
+
+    .channels-list{
+        max-height:420px;
+    }
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .topbar{
+        height:58px;
+    }
+
+    .brand-iq{
+        font-size:20px;
+    }
+
+    .brand-tv{
+        font-size:13px;
+        line-height:19px;
+        padding:2px 6px;
+    }
+
+    .live-state{
+        height:28px;
+        font-size:8px;
+    }
+
+    .page{
+        padding:
+            10px
+            max(10px,env(safe-area-inset-right))
+            28px
+            max(10px,env(safe-area-inset-left));
+    }
+
+    .player-section{
+        border-radius:11px;
+    }
+
+    .player-header{
+        min-height:53px;
+        padding:8px 10px;
+    }
+
+    .channel-name{
+        font-size:12px;
+    }
+
+    .player-button{
+        width:31px;
+        height:31px;
+    }
+
+    .content-grid{
+        margin-top:10px;
+    }
+
+    .channels-panel{
+        border-radius:11px;
+    }
+
+    .channels-list{
+        grid-template-columns:1fr;
+        max-height:none;
+    }
+
+    .channel-card{
+        min-height:57px;
+    }
+
+    .channel-logo{
+        width:43px;
+        height:31px;
+    }
+
+}
+
+/* =========================================================
+   VERY SMALL
+========================================================= */
+
+@media(max-width:360px){
+
+    .live-state{
+        display:none;
+    }
+
+    .player-header{
+        gap:5px;
+    }
+
+    .channel-name{
+        max-width:155px;
+    }
+
+}
+
+/* =========================================================
+   CLAPPR CLEANUP
+========================================================= */
+
+.media-control{
+    font-family:'Cairo',sans-serif !important;
+}
+
+.clappr-player{
+    background:#000 !important;
+}
+
+.clappr-watermark{
+    display:none !important;
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- الهيدر -->
-    <header>
-        <div class="brand-logo">
-            <span class="text-white">IQ</span>
-            <span class="badge-red">TV</span>
-        </div>
-        <div class="status-pill">
-            <div class="status-dot"></div> بث فائق السرعة
-        </div>
-    </header>
+<header class="topbar">
 
-    <!-- المحتوى الرئيسي -->
-    <main class="main-container">
-        
-        <!-- قسم المشغل -->
-        <section class="player-section">
-            <div class="player-wrapper-card">
-                <div class="player-toolbar">
-                    <div class="current-channel-title" id="current-channel-text">
-                        <i class="fa-solid fa-satellite-dish" style="color:var(--primary)"></i> 
-                        <span>اختر قناة لبدء العرض</span>
+    <div class="brand">
+        <span class="brand-iq">IQ</span>
+        <span class="brand-tv">TV</span>
+    </div>
+
+    <div class="live-state">
+        <span class="live-dot"></span>
+        <span>بث مباشر</span>
+    </div>
+
+</header>
+
+
+<main class="page">
+
+    <!-- =====================================================
+         PLAYER
+    ====================================================== -->
+
+    <section class="player-section">
+
+        <div class="player-header">
+
+            <div class="channel-heading">
+
+                <div class="channel-heading-top">
+
+                    <i class="fa-solid fa-tower-broadcast"></i>
+
+                    <div class="channel-name"
+                         id="currentChannel">
+                        اختر قناة
                     </div>
-                    <div class="toolbar-actions">
-                        <button class="tool-btn" onclick="reloadActiveStream()" title="إعادة تشغيل البث"><i class="fa-solid fa-rotate-right"></i></button>
-                        <button class="tool-btn" onclick="toggleFullScreen()" title="ملء الشاشة"><i class="fa-solid fa-expand"></i></button>
-                    </div>
+
                 </div>
 
-                <div class="video-box" id="video-container">
-                    <div id="player"></div>
+                <div class="channel-status"
+                     id="channelStatus">
+                    جاهز لتشغيل البث
                 </div>
+
             </div>
+
+
+            <div class="player-buttons">
+
+                <button
+                    class="player-button"
+                    onclick="reloadActiveStream()"
+                    aria-label="إعادة تحميل">
+
+                    <i class="fa-solid fa-rotate-right"></i>
+
+                </button>
+
+                <button
+                    class="player-button primary"
+                    onclick="toggleFullScreen()"
+                    aria-label="ملء الشاشة">
+
+                    <i class="fa-solid fa-expand"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="video-frame"
+             id="videoContainer">
+
+            <div id="player"></div>
+
+            <div class="player-empty"
+                 id="playerEmpty">
+
+                <div class="player-empty-icon">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+
+                <strong>اختر قناة لبدء المشاهدة</strong>
+
+                <span>البث المباشر بجودة مستقرة</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="player-footer">
+
+            <div class="connection"
+                 id="connectionState">
+
+                <span class="connection-dot"></span>
+
+                <span id="connectionText">
+                    غير متصل
+                </span>
+
+            </div>
+
+            <div class="stream-quality">
+
+                <span>LIVE</span>
+
+                <span class="quality-badge">
+                    HD
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
+
+    <div class="content-grid">
+
+
+        <!-- CHANNELS -->
+
+        <section class="channels-panel">
+
+            <div class="panel-header">
+
+                <div class="panel-title">
+
+                    <div class="panel-title-icon">
+                        <i class="fa-solid fa-tv"></i>
+                    </div>
+
+                    <div>
+                        <h2>القنوات</h2>
+                        <span>البث التلفزيوني المباشر</span>
+                    </div>
+
+                </div>
+
+                <div class="channel-count"
+                     id="channelCount">
+                    0 قناة
+                </div>
+
+            </div>
+
+
+            <div class="tabs">
+
+                <button
+                    class="tab active"
+                    onclick="switchTab('all',this)">
+
+                    <i class="fa-solid fa-grid-2"></i>
+                    كل القنوات
+
+                </button>
+
+                <button
+                    class="tab"
+                    onclick="switchTab('fav',this)">
+
+                    <i class="fa-regular fa-star"></i>
+                    المفضلة
+
+                </button>
+
+            </div>
+
+
+            <div class="search-area">
+
+                <div class="search-box">
+
+                    <input
+                        id="searchInput"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="ابحث عن قناة..."
+                        oninput="filterChannels()">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="channels-list"
+                id="channelsContainer">
+
+
+                <!-- =================================================
+                     CHANNEL 1
+                ================================================== -->
+
+                <div
+                    class="channel-card"
+                    data-id="1424"
+                    data-name="bein sports 1 hd"
+                    data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1424"
+                    data-title="beIN SPORTS 1 HD"
+                    onclick="selectChannelCard(this)">
+
+                    <div class="channel-logo">
+
+                        <img
+                            loading="lazy"
+                            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS1_DIGITAL_Mono.png"
+                            alt="beIN SPORTS 1">
+
+                    </div>
+
+                    <div class="channel-info">
+
+                        <h3>beIN SPORTS 1 HD</h3>
+
+                        <small>
+                            <span class="mini-live"></span>
+                            مباشر
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,'1424')">
+
+                        <i class="fa-regular fa-star"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- CHANNEL 2 -->
+
+                <div
+                    class="channel-card"
+                    data-id="1425"
+                    data-name="bein sports 2 hd"
+                    data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1425"
+                    data-title="beIN SPORTS 2 HD"
+                    onclick="selectChannelCard(this)">
+
+                    <div class="channel-logo">
+
+                        <img
+                            loading="lazy"
+                            src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS2_DIGITAL_Mono.png"
+                            alt="beIN SPORTS 2">
+
+                    </div>
+
+                    <div class="channel-info">
+
+                        <h3>beIN SPORTS 2 HD</h3>
+
+                        <small>
+                            <span class="mini-live"></span>
+                            مباشر
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,'1425')">
+
+                        <i class="fa-regular fa-star"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- CHANNEL 3 -->
+
+                <div
+                    class="channel-card"
+                    data-id="1426"
+                    data-name="bein sports 3 hd"
+                    data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1426"
+                    data-title="beIN SPORTS 3 HD"
+                    onclick="selectChannelCard(this)">
+
+                    <div class="channel-logo">
+
+                        <img
+                            loading="lazy"
+                            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS3_DIGITAL_Mono.png"
+                            alt="beIN SPORTS 3">
+
+                    </div>
+
+                    <div class="channel-info">
+
+                        <h3>beIN SPORTS 3 HD</h3>
+
+                        <small>
+                            <span class="mini-live"></span>
+                            مباشر
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,'1426')">
+
+                        <i class="fa-regular fa-star"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- CHANNEL 4 -->
+
+                <div
+                    class="channel-card"
+                    data-id="1427"
+                    data-name="bein sports 4 hd"
+                    data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1427"
+                    data-title="beIN SPORTS 4 HD"
+                    onclick="selectChannelCard(this)">
+
+                    <div class="channel-logo">
+
+                        <img
+                            loading="lazy"
+                            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS4_DIGITAL_Mono.png"
+                            alt="beIN SPORTS 4">
+
+                    </div>
+
+                    <div class="channel-info">
+
+                        <h3>beIN SPORTS 4 HD</h3>
+
+                        <small>
+                            <span class="mini-live"></span>
+                            مباشر
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,'1427')">
+
+                        <i class="fa-regular fa-star"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- CHANNEL 5 -->
+
+                <div
+                    class="channel-card"
+                    data-id="1428"
+                    data-name="bein sports 5 hd"
+                    data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1428"
+                    data-title="beIN SPORTS 5 HD"
+                    onclick="selectChannelCard(this)">
+
+                    <div class="channel-logo">
+
+                        <img
+                            loading="lazy"
+                            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS5_DIGITAL_Mono.png"
+                            alt="beIN SPORTS 5">
+
+                    </div>
+
+                    <div class="channel-info">
+
+                        <h3>beIN SPORTS 5 HD</h3>
+
+                        <small>
+                            <span class="mini-live"></span>
+                            مباشر
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,'1428')">
+
+                        <i class="fa-regular fa-star"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- CHANNEL 6 -->
+
+                <div
+                    class="channel-card"
+                    data-id="1429"
+                    data-name="bein sports 6 hd"
+                    data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1429"
+                    data-title="beIN SPORTS 6 HD"
+                    onclick="selectChannelCard(this)">
+
+                    <div class="channel-logo">
+
+                        <img
+                            loading="lazy"
+                            src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS6_DIGITAL_Mono.png"
+                            alt="beIN SPORTS 6">
+
+                    </div>
+
+                    <div class="channel-info">
+
+                        <h3>beIN SPORTS 6 HD</h3>
+
+                        <small>
+                            <span class="mini-live"></span>
+                            مباشر
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,'1429')">
+
+                        <i class="fa-regular fa-star"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- CHANNEL 7 -->
+
+                <div
+                    class="channel-card"
+                    data-id="1430"
+                    data-name="bein sports 7 hd"
+                    data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1430"
+                    data-title="beIN SPORTS 7 HD"
+                    onclick="selectChannelCard(this)">
+
+                    <div class="channel-logo">
+
+                        <img
+                            loading="lazy"
+                            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS7_DIGITAL_Mono.png"
+                            alt="beIN SPORTS 7">
+
+                    </div>
+
+                    <div class="channel-info">
+
+                        <h3>beIN SPORTS 7 HD</h3>
+
+                        <small>
+                            <span class="mini-live"></span>
+                            مباشر
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,'1430')">
+
+                        <i class="fa-regular fa-star"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- CHANNEL 8 -->
+
+                <div
+                    class="channel-card"
+                    data-id="1431"
+                    data-name="bein sports 8 hd"
+                    data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1431"
+                    data-title="beIN SPORTS 8 HD"
+                    onclick="selectChannelCard(this)">
+
+                    <div class="channel-logo">
+
+                        <img
+                            loading="lazy"
+                            src="https://assets.bein.com/mena/sites/4/2023/09/logos-_beINSPORTS8.png"
+                            alt="beIN SPORTS 8">
+
+                    </div>
+
+                    <div class="channel-info">
+
+                        <h3>beIN SPORTS 8 HD</h3>
+
+                        <small>
+                            <span class="mini-live"></span>
+                            مباشر
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(event,'1431')">
+
+                        <i class="fa-regular fa-star"></i>
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
         </section>
 
-        <!-- الشريط الجانبي -->
-        <aside class="sidebar-section">
-            <div class="tabs-group">
-                <button class="tab-item active" onclick="switchTab('all', this)">جميع القنوات</button>
-                <button class="tab-item" onclick="switchTab('fav', this)">المفضلة ⭐</button>
+
+        <!-- INFO -->
+
+        <aside class="info-panel">
+
+            <span class="info-label">
+                القناة الحالية
+            </span>
+
+            <div class="info-main">
+
+                <div class="info-icon">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                </div>
+
+                <div>
+
+                    <h3 id="infoChannel">
+                        لم يتم اختيار قناة
+                    </h3>
+
+                    <p id="infoStatus">
+                        بانتظار التشغيل
+                    </p>
+
+                </div>
+
             </div>
 
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="ابحث عن قناتك المفضلة..." onkeyup="filterChannels()">
-                <i class="fa-solid fa-magnifying-glass"></i>
+
+            <div class="info-divider"></div>
+
+
+            <div class="info-row">
+
+                <span>الحالة</span>
+
+                <strong id="infoConnection">
+                    غير متصل
+                </strong>
+
             </div>
 
-            <div class="channels-list" id="channelsContainer">
-                <!-- قنوات beIN Sports -->
-                <div class="channel-card" data-id="1424" data-name="bein sports 1 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1424" data-title="beIN SPORTS 1 HD">
-                    <div class="channel-info-group" onclick="selectChannel(this)">
-                        <div class="channel-logo-wrapper"><img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS1_DIGITAL_Mono.png" alt="1"></div>
-                        <h4>beIN SPORTS 1 HD</h4>
-                    </div>
-                    <button class="favorite-btn" onclick="toggleFavorite(event, '1424')"><i class="fa-regular fa-star"></i></button>
-                </div>
 
-                <div class="channel-card" data-id="1425" data-name="bein sports 2 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1425" data-title="beIN SPORTS 2 HD">
-                    <div class="channel-info-group" onclick="selectChannel(this)">
-                        <div class="channel-logo-wrapper"><img src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS2_DIGITAL_Mono.png" alt="2"></div>
-                        <h4>beIN SPORTS 2 HD</h4>
-                    </div>
-                    <button class="favorite-btn" onclick="toggleFavorite(event, '1425')"><i class="fa-regular fa-star"></i></button>
-                </div>
+            <div class="info-row">
 
-                <div class="channel-card" data-id="1426" data-name="bein sports 3 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1426" data-title="beIN SPORTS 3 HD">
-                    <div class="channel-info-group" onclick="selectChannel(this)">
-                        <div class="channel-logo-wrapper"><img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS3_DIGITAL_Mono.png" alt="3"></div>
-                        <h4>beIN SPORTS 3 HD</h4>
-                    </div>
-                    <button class="favorite-btn" onclick="toggleFavorite(event, '1426')"><i class="fa-regular fa-star"></i></button>
-                </div>
+                <span>الجودة</span>
 
-                <div class="channel-card" data-id="1427" data-name="bein sports 4 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1427" data-title="beIN SPORTS 4 HD">
-                    <div class="channel-info-group" onclick="selectChannel(this)">
-                        <div class="channel-logo-wrapper"><img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS4_DIGITAL_Mono.png" alt="4"></div>
-                        <h4>beIN SPORTS 4 HD</h4>
-                    </div>
-                    <button class="favorite-btn" onclick="toggleFavorite(event, '1427')"><i class="fa-regular fa-star"></i></button>
-                </div>
+                <strong>
+                    HD
+                </strong>
 
-                <div class="channel-card" data-id="1428" data-name="bein sports 5 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1428" data-title="beIN SPORTS 5 HD">
-                    <div class="channel-info-group" onclick="selectChannel(this)">
-                        <div class="channel-logo-wrapper"><img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS5_DIGITAL_Mono.png" alt="5"></div>
-                        <h4>beIN SPORTS 5 HD</h4>
-                    </div>
-                    <button class="favorite-btn" onclick="toggleFavorite(event, '1428')"><i class="fa-regular fa-star"></i></button>
-                </div>
-
-                <div class="channel-card" data-id="1429" data-name="bein sports 6 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1429" data-title="beIN SPORTS 6 HD">
-                    <div class="channel-info-group" onclick="selectChannel(this)">
-                        <div class="channel-logo-wrapper"><img src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS6_DIGITAL_Mono.png" alt="6"></div>
-                        <h4>beIN SPORTS 6 HD</h4>
-                    </div>
-                    <button class="favorite-btn" onclick="toggleFavorite(event, '1429')"><i class="fa-regular fa-star"></i></button>
-                </div>
-
-                <div class="channel-card" data-id="1430" data-name="bein sports 7 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1430" data-title="beIN SPORTS 7 HD">
-                    <div class="channel-info-group" onclick="selectChannel(this)">
-                        <div class="channel-logo-wrapper"><img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS7_DIGITAL_Mono.png" alt="7"></div>
-                        <h4>beIN SPORTS 7 HD</h4>
-                    </div>
-                    <button class="favorite-btn" onclick="toggleFavorite(event, '1430')"><i class="fa-regular fa-star"></i></button>
-                </div>
-
-                <div class="channel-card" data-id="1431" data-name="bein sports 8 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1431" data-title="beIN SPORTS 8 HD">
-                    <div class="channel-info-group" onclick="selectChannel(this)">
-                        <div class="channel-logo-wrapper"><img src="https://assets.bein.com/mena/sites/4/2023/09/logos-_beINSPORTS8.png" alt="8"></div>
-                        <h4>beIN SPORTS 8 HD</h4>
-                    </div>
-                    <button class="favorite-btn" onclick="toggleFavorite(event, '1431')"><i class="fa-regular fa-star"></i></button>
-                </div>
             </div>
+
+
+            <div class="info-row">
+
+                <span>نوع البث</span>
+
+                <strong>
+                    Live HLS
+                </strong>
+
+            </div>
+
         </aside>
 
-    </main>
 
-    <!-- التذييل -->
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 منصة IQ TV الرقمية</p>
+    </div>
+
+
+    <footer class="footer">
+        IQ TV © 2026 — منصة البث التلفزيوني
     </footer>
 
-    <!-- مكتبة مشغل البث Clappr -->
-    <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+</main>
 
-    <script>
-        /* ==========================================
-           الحماية وأمن الأكواد (Security Protections)
-           ========================================== */
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', e => {
-            if (
-                e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) || 
-                (e.ctrlKey && e.key.toUpperCase() === 'U')
-            ) {
-                e.preventDefault();
-                return false;
+
+<script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+
+
+<script>
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let player = null;
+
+let activeApiUrl = "";
+let activeTitle = "";
+let activeId = "";
+
+let currentTab = "all";
+
+let favorites =
+    JSON.parse(localStorage.getItem("iq_tv_favs") || "[]");
+
+let loadingRequest = null;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const currentChannel =
+    document.getElementById("currentChannel");
+
+const channelStatus =
+    document.getElementById("channelStatus");
+
+const playerEmpty =
+    document.getElementById("playerEmpty");
+
+const connectionState =
+    document.getElementById("connectionState");
+
+const connectionText =
+    document.getElementById("connectionText");
+
+const infoChannel =
+    document.getElementById("infoChannel");
+
+const infoStatus =
+    document.getElementById("infoStatus");
+
+const infoConnection =
+    document.getElementById("infoConnection");
+
+const channelCount =
+    document.getElementById("channelCount");
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    updateFavoritesUI();
+
+    updateChannelCount();
+
+    const savedChannel =
+        localStorage.getItem("iq_tv_last_channel");
+
+    let firstCard = null;
+
+    if(savedChannel){
+
+        firstCard =
+            document.querySelector(
+                `.channel-card[data-id="${savedChannel}"]`
+            );
+    }
+
+    if(!firstCard){
+
+        firstCard =
+            document.querySelector(".channel-card");
+    }
+
+    if(firstCard){
+
+        setTimeout(() => {
+            selectChannelCard(firstCard);
+        },120);
+
+    }
+
+});
+
+
+/* =========================================================
+   CONNECTION UI
+========================================================= */
+
+function setConnection(type,text){
+
+    connectionState.className =
+        "connection " + type;
+
+    connectionText.textContent = text;
+
+    infoConnection.textContent = text;
+
+}
+
+
+/* =========================================================
+   SELECT CHANNEL
+========================================================= */
+
+async function selectChannelCard(card){
+
+    if(!card) return;
+
+    const apiUrl =
+        card.dataset.url;
+
+    const title =
+        card.dataset.title;
+
+    const id =
+        card.dataset.id;
+
+    activeApiUrl = apiUrl;
+    activeTitle = title;
+    activeId = id;
+
+    localStorage.setItem(
+        "iq_tv_last_channel",
+        id
+    );
+
+
+    document
+        .querySelectorAll(".channel-card")
+        .forEach(item =>
+            item.classList.remove("active")
+        );
+
+    card.classList.add("active");
+
+
+    currentChannel.textContent = title;
+
+    channelStatus.textContent =
+        "جاري الاتصال بمصدر البث...";
+
+    infoChannel.textContent = title;
+
+    infoStatus.textContent =
+        "جاري الاتصال بمصدر البث";
+
+    setConnection(
+        "loading",
+        "جاري الاتصال"
+    );
+
+    playerEmpty.style.display = "none";
+
+
+    if(loadingRequest){
+
+        try{
+            loadingRequest.abort();
+        }catch(e){}
+
+    }
+
+
+    loadingRequest =
+        new AbortController();
+
+
+    try{
+
+        const response =
+            await fetch(
+                apiUrl,
+                {
+                    method:"GET",
+                    cache:"no-store",
+                    signal:loadingRequest.signal
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "API HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !data ||
+            !Array.isArray(data.data) ||
+            !data.data.length ||
+            !data.data[0].url
+        ){
+
+            throw new Error(
+                "No stream URL"
+            );
+
+        }
+
+
+        const rawUrl =
+            data.data[0].url;
+
+
+        const proxyUrl =
+            "https://iqtv-proxy.aaa317198.workers.dev?stream="
+            + encodeURIComponent(rawUrl);
+
+
+        await createPlayer(proxyUrl);
+
+
+        currentChannel.textContent =
+            title;
+
+        channelStatus.textContent =
+            "البث متصل";
+
+        infoStatus.textContent =
+            "البث يعمل الآن";
+
+        setConnection(
+            "online",
+            "متصل"
+        );
+
+
+    }catch(error){
+
+        if(
+            error.name === "AbortError"
+        ){
+
+            return;
+
+        }
+
+
+        console.error(
+            "IQ TV:",
+            error
+        );
+
+
+        playerEmpty.style.display =
+            "flex";
+
+
+        channelStatus.textContent =
+            "تعذر تشغيل البث";
+
+        infoStatus.textContent =
+            "تعذر الاتصال بمصدر البث";
+
+
+        setConnection(
+            "error",
+            "فشل الاتصال"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CREATE PLAYER
+========================================================= */
+
+function createPlayer(source){
+
+    return new Promise((resolve,reject)=>{
+
+        try{
+
+            if(player){
+
+                try{
+                    player.stop();
+                }catch(e){}
+
+                try{
+                    player.destroy();
+                }catch(e){}
+
+                player = null;
+
             }
+
+
+            document.getElementById(
+                "player"
+            ).innerHTML = "";
+
+
+            player = new Clappr.Player({
+
+                source:source,
+
+                mimeType:
+                    "application/x-mpegURL",
+
+                parentId:"#player",
+
+                width:"100%",
+                height:"100%",
+
+                autoPlay:true,
+
+                mute:false,
+
+                playback:{
+
+                    playInline:true,
+
+                    hlsjsConfig:{
+
+                        enableWorker:true,
+
+                        maxBufferLength:18,
+
+                        maxMaxBufferLength:30,
+
+                        fragLoadingTimeOut:30000,
+
+                        manifestLoadingTimeOut:30000,
+
+                        levelLoadingTimeOut:30000,
+
+                        fragLoadingMaxRetry:6,
+
+                        manifestLoadingMaxRetry:5,
+
+                        levelLoadingMaxRetry:5
+
+                    }
+
+                }
+
+            });
+
+
+            player.on(
+                Clappr.Events.PLAYER_READY,
+                () => {
+
+                    playerEmpty.style.display =
+                        "none";
+
+                    resolve();
+
+                }
+            );
+
+
+            player.on(
+                Clappr.Events.PLAY,
+                () => {
+
+                    setConnection(
+                        "online",
+                        "متصل"
+                    );
+
+                }
+            );
+
+
+            player.on(
+                Clappr.Events.ERROR,
+                error => {
+
+                    console.warn(
+                        "Player error:",
+                        error
+                    );
+
+                    setConnection(
+                        "error",
+                        "خطأ في البث"
+                    );
+
+                }
+            );
+
+
+            /*
+             * إذا لم يطلق READY خلال فترة معقولة
+             * لا نبقي Promise معلقة للأبد.
+             */
+
+            setTimeout(
+                resolve,
+                2500
+            );
+
+
+        }catch(error){
+
+            reject(error);
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   RELOAD
+========================================================= */
+
+function reloadActiveStream(){
+
+    if(!activeId) return;
+
+    const card =
+        document.querySelector(
+            `.channel-card[data-id="${activeId}"]`
+        );
+
+    if(card){
+
+        selectChannelCard(card);
+
+    }
+
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function toggleFavorite(event,id){
+
+    event.stopPropagation();
+
+    const index =
+        favorites.indexOf(id);
+
+
+    if(index !== -1){
+
+        favorites.splice(
+            index,
+            1
+        );
+
+    }else{
+
+        favorites.push(id);
+
+    }
+
+
+    localStorage.setItem(
+        "iq_tv_favs",
+        JSON.stringify(favorites)
+    );
+
+
+    updateFavoritesUI();
+
+    renderChannels();
+
+}
+
+
+/* =========================================================
+   FAVORITE UI
+========================================================= */
+
+function updateFavoritesUI(){
+
+    document
+        .querySelectorAll(".channel-card")
+        .forEach(card => {
+
+            const id =
+                card.dataset.id;
+
+            const button =
+                card.querySelector(".favorite");
+
+            const icon =
+                button.querySelector("i");
+
+
+            if(favorites.includes(id)){
+
+                button.classList.add("active");
+
+                icon.className =
+                    "fa-solid fa-star";
+
+            }else{
+
+                button.classList.remove("active");
+
+                icon.className =
+                    "fa-regular fa-star";
+
+            }
+
         });
 
-        /* ==========================================
-           إدارة حالة التطبيق والبث (App State & Logic)
-           ========================================== */
-        let mediaViewer = null;
-        let activeEndpoint = '';
-        let activeChannelTitle = '';
-        let currentActiveTab = 'all';
-        let userFavorites = JSON.parse(localStorage.getItem('iq_tv_favorites')) || [];
+}
 
-        // تهيئة التطبيق عند التحميل
-        window.addEventListener('DOMContentLoaded', () => {
-            syncFavoritesState();
-            const defaultChannel = document.querySelector('.channel-card');
-            if (defaultChannel) {
-                selectChannel(defaultChannel.querySelector('.channel-info-group'));
+
+/* =========================================================
+   TABS
+========================================================= */
+
+function switchTab(tab,button){
+
+    currentTab = tab;
+
+    document
+        .querySelectorAll(".tab")
+        .forEach(item =>
+            item.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    renderChannels();
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function filterChannels(){
+
+    renderChannels();
+
+}
+
+
+/* =========================================================
+   RENDER CHANNELS
+========================================================= */
+
+function renderChannels(){
+
+    const query =
+        document
+            .getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    let visible = 0;
+
+
+    document
+        .querySelectorAll(".channel-card")
+        .forEach(card => {
+
+            const name =
+                (card.dataset.name || "")
+                .toLowerCase();
+
+            const id =
+                card.dataset.id;
+
+
+            const matchesSearch =
+                !query ||
+                name.includes(query);
+
+
+            const matchesTab =
+                currentTab === "all" ||
+                favorites.includes(id);
+
+
+            if(
+                matchesSearch &&
+                matchesTab
+            ){
+
+                card.style.display =
+                    "flex";
+
+                visible++;
+
+            }else{
+
+                card.style.display =
+                    "none";
+
             }
+
         });
 
-        // اختيار قناة وتشغيلها
-        async function selectChannel(infoElement) {
-            const card = infoElement.closest('.channel-card');
-            const endpointUrl = card.getAttribute('data-url');
-            const channelName = card.getAttribute('data-title');
 
-            activeEndpoint = endpointUrl;
-            activeChannelTitle = channelName;
+    const container =
+        document.getElementById(
+            "channelsContainer"
+        );
 
-            // تحديث الواجهة وتحديد العنصر النشط
-            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
 
-            const titleContainer = document.getElementById('current-channel-text');
-            titleContainer.innerHTML = `<i class="fa-solid fa-satellite-dish" style="color:var(--primary)"></i> <span>${channelName} (جاري الاتصال بالسيرفر...)</span>`;
+    let empty =
+        container.querySelector(
+            ".empty-results"
+        );
 
-            try {
-                const response = await fetch(endpointUrl);
-                const payload = await response.json();
 
-                if (payload && payload.data && payload.data.length > 0 && payload.data[0].url) {
-                    const rawStreamUrl = payload.data[0].url;
-                    const proxyStreamUrl = "https://iqtv-proxy.aaa317198.workers.dev?stream=" + encodeURIComponent(rawStreamUrl);
+    if(visible === 0){
 
-                    titleContainer.innerHTML = `<i class="fa-solid fa-satellite-dish" style="color:var(--primary)"></i> <span>${channelName}</span>`;
+        if(!empty){
 
-                    if (mediaViewer) mediaViewer.destroy();
+            empty =
+                document.createElement("div");
 
-                    mediaViewer = new Clappr.Player({
-                        source: proxyStreamUrl,
-                        mimeType: 'application/x-mpegURL',
-                        parentId: "#player",
-                        width: '100%',
-                        height: '100%',
-                        autoPlay: true,
-                        playback: {
-                            playInline: true,
-                            hlsjsConfig: {
-                                maxMaxBufferLength: 20,
-                                fragLoadingTimeOut: 40000,
-                                manifestLoadingTimeOut: 40000,
-                                fragLoadingMaxRetry: 6
-                            }
-                        }
-                    });
+            empty.className =
+                "empty-results";
 
-                } else {
-                    titleContainer.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:var(--primary)"></i> <span>${channelName} (البث غير متوفر حالياً)</span>`;
-                }
-            } catch (error) {
-                console.error("Stream Fetch Error:", error);
-                titleContainer.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:var(--primary)"></i> <span>${channelName} (تعذر الاتصال بقناة البث)</span>`;
+            empty.innerHTML =
+                `
+                <i class="fa-regular fa-folder-open"></i>
+                لا توجد قنوات مطابقة
+                `;
+
+            container.appendChild(empty);
+
+        }
+
+        empty.style.display =
+            "block";
+
+    }else{
+
+        if(empty){
+
+            empty.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    updateChannelCount(visible);
+
+}
+
+
+/* =========================================================
+   CHANNEL COUNT
+========================================================= */
+
+function updateChannelCount(customCount){
+
+    const count =
+        customCount !== undefined
+            ? customCount
+            : document
+                .querySelectorAll(".channel-card")
+                .length;
+
+    channelCount.textContent =
+        count + " قناة";
+
+}
+
+
+/* =========================================================
+   FULLSCREEN
+========================================================= */
+
+async function toggleFullScreen(){
+
+    const container =
+        document.getElementById(
+            "videoContainer"
+        );
+
+
+    try{
+
+        if(!document.fullscreenElement){
+
+            if(
+                container.requestFullscreen
+            ){
+
+                await container.requestFullscreen();
+
             }
+
+        }else{
+
+            await document.exitFullscreen();
+
         }
 
-        // إدارة المفضلة
-        function toggleFavorite(event, channelId) {
-            event.stopPropagation();
-            const index = userFavorites.indexOf(channelId);
-            
-            if (index > -1) {
-                userFavorites.splice(index, 1);
-            } else {
-                userFavorites.push(channelId);
-            }
-            
-            localStorage.setItem('iq_tv_favorites', JSON.stringify(userFavorites));
-            syncFavoritesState();
-            
-            if (currentActiveTab === 'fav') renderFilteredChannels();
+    }catch(error){
+
+        console.warn(
+            "Fullscreen:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   VISIBILITY / RETURN TO APP
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        if(
+            !document.hidden &&
+            player &&
+            activeId
+        ){
+
+            /*
+             * لا نعيد تشغيل البث تلقائياً.
+             * فقط نحافظ على حالة المشغل.
+             */
+
         }
 
-        // مزامنة أيقونات المفضلة مع التخزين المحلي
-        function syncFavoritesState() {
-            document.querySelectorAll('.channel-card').forEach(card => {
-                const id = card.getAttribute('data-id');
-                const starIcon = card.querySelector('.favorite-btn i');
-                const starButton = card.querySelector('.favorite-btn');
-                
-                if (userFavorites.includes(id)) {
-                    starIcon.className = "fa-solid fa-star";
-                    starButton.classList.add('is-favorite');
-                } else {
-                    starIcon.className = "fa-regular fa-star";
-                    starButton.classList.remove('is-favorite');
-                }
-            });
-        }
+    }
+);
 
-        // التبديل بين علامات التبويب (الكل / المفضلة)
-        function switchTab(tabKey, buttonElement) {
-            currentActiveTab = tabKey;
-            document.querySelectorAll('.tab-item').forEach(btn => btn.classList.remove('active'));
-            buttonElement.classList.add('active');
-            renderFilteredChannels();
-        }
 
-        // تصفية وعرض القنوات بناءً على التبويب والبحث
-        function renderFilteredChannels() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.channel-card');
+/* =========================================================
+   RESIZE
+========================================================= */
 
-            cards.forEach(card => {
-                const channelName = card.getAttribute('data-name');
-                const channelId = card.getAttribute('data-id');
-                const matchesSearch = channelName.includes(query);
-                const matchesTab = (currentActiveTab === 'all') || (currentActiveTab === 'fav' && userFavorites.includes(channelId));
+window.addEventListener(
+    "resize",
+    () => {
 
-                if (matchesSearch && matchesTab) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        }
+        /*
+         * Clappr يتعامل مع تغيير الحجم
+         * تلقائياً، لذلك لا توجد عمليات
+         * DOM إضافية هنا.
+         */
 
-        // وظيفة البحث المباشر
-        function filterChannels() {
-            renderFilteredChannels();
-        }
+    },
+    {passive:true}
+);
 
-        // إعادة تحميل البث النشط
-        function reloadActiveStream() {
-            if (activeEndpoint) {
-                const activeCard = document.querySelector(`.channel-card[data-url="${activeEndpoint}"]`);
-                if (activeCard) {
-                    selectChannel(activeCard.querySelector('.channel-info-group'));
-                }
-            }
-        }
 
-        // تفعيل وضع ملء الشاشة
-        function toggleFullScreen() {
-            const playerBox = document.getElementById('video-container');
-            if (!document.fullscreenElement) {
-                playerBox.requestFullscreen().catch(() => {
-                    alert("عذراً، متصفحك لا يدعم وضع ملء الشاشة التلقائي.");
-                });
-            } else {
-                document.exitFullscreen();
-            }
-        }
-    </script>
+/* =========================================================
+   OPTIONAL: DISABLE LONG PRESS MENU
+========================================================= */
+
+document.addEventListener(
+    "contextmenu",
+    event => event.preventDefault()
+);
+
+
+</script>
+
 </body>
 </html>
-
