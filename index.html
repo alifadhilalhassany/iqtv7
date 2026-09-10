@@ -467,6 +467,7 @@
 
         window.onload = () => {
             updateFavoritesUI();
+            setupFullscreenOrientation();
         };
 
         const channelCards = Array.from(document.querySelectorAll('.channel-card'));
@@ -523,12 +524,42 @@
             }
         }
 
+        /* دالة قفل الشاشة أفقيًا عند تكبير المشغل */
+        function setupFullscreenOrientation() {
+            const handleFullscreenChange = async () => {
+                const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+                
+                if (isFullscreen) {
+                    // تحويل اتجاه الشاشة إلى الوضع الأفقي
+                    if (screen.orientation && screen.orientation.lock) {
+                        try {
+                            await screen.orientation.lock('landscape');
+                        } catch (err) {
+                            console.log("تعذر قفل الاتجاه الأفقي تلقائياً:", err);
+                        }
+                    }
+                } else {
+                    // إلغاء قفل الاتجاه عند الخروج من التكبير
+                    if (screen.orientation && screen.orientation.unlock) {
+                        screen.orientation.unlock();
+                    }
+                }
+            };
+
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+        }
+
         function closePlayer() {
             const modal = document.getElementById('playerModal');
             modal.classList.remove('open');
             if (player) {
                 player.destroy();
                 player = null;
+            }
+            if (screen.orientation && screen.orientation.unlock) {
+                screen.orientation.unlock();
             }
         }
 
