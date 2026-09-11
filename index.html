@@ -1,29 +1,53 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    >
 
     <title>IQ TV</title>
 
-    <link rel="icon" type="image/png" sizes="32x32"
-          href="https://i.ibb.co/4nnjf7tz/IQTV-Unified-Black.png">
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="https://i.ibb.co/4nnjf7tz/IQTV-Unified-Black.png"
+    >
 
-    <link rel="apple-touch-icon" sizes="180x180"
-          href="https://i.ibb.co/4nnjf7tz/IQTV-Unified-Black.png">
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="https://i.ibb.co/4nnjf7tz/IQTV-Unified-Black.png"
+    >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
-          rel="stylesheet">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
 
     <style>
 
         :root {
+
             --primary: #FF0033;
             --primary-glow: rgba(255, 0, 51, 0.35);
 
@@ -44,12 +68,15 @@
             --radius-md: 8px;
 
             --transition: all 0.25s ease;
+
         }
 
 
         * {
+
             margin: 0;
             padding: 0;
+
             box-sizing: border-box;
 
             font-family: 'Cairo', sans-serif;
@@ -57,10 +84,12 @@
             user-select: none;
 
             -webkit-tap-highlight-color: transparent;
+
         }
 
 
         body {
+
             background-color: var(--bg-dark);
 
             color: var(--text-main);
@@ -77,20 +106,30 @@
                     rgba(255, 0, 51, 0.08) 0%,
                     transparent 60%
                 );
+
         }
 
 
         ::-webkit-scrollbar {
+
             width: 5px;
+
         }
+
 
         ::-webkit-scrollbar-track {
+
             background: var(--bg-dark);
+
         }
 
+
         ::-webkit-scrollbar-thumb {
+
             background: rgba(255, 255, 255, 0.2);
+
             border-radius: 10px;
+
         }
 
 
@@ -99,9 +138,11 @@
         ===================================================== */
 
         header {
+
             background: rgba(7, 8, 11, 0.9);
 
             backdrop-filter: blur(16px);
+
             -webkit-backdrop-filter: blur(16px);
 
             padding: 10px 5%;
@@ -121,10 +162,12 @@
             border-bottom: 1px solid var(--border-glass);
 
             height: 60px;
+
         }
 
 
         .brand-logo {
+
             display: flex;
 
             align-items: center;
@@ -132,10 +175,12 @@
             text-decoration: none;
 
             height: 100%;
+
         }
 
 
         .brand-logo img {
+
             height: 32px;
 
             width: auto;
@@ -143,15 +188,18 @@
             max-width: 140px;
 
             object-fit: contain;
+
         }
 
 
         .header-actions {
+
             display: flex;
 
             align-items: center;
 
             gap: 12px;
+
         }
 
 
@@ -160,6 +208,7 @@
         ===================================================== */
 
         .online-counter {
+
             background: rgba(255,255,255,0.06);
 
             border: 1px solid var(--border-glass);
@@ -181,17 +230,21 @@
             gap: 6px;
 
             white-space: nowrap;
+
         }
 
 
         .online-counter i {
+
             color: #9ca3af;
 
             font-size: 11px;
+
         }
 
 
         #onlineCount {
+
             color: #fff;
 
             min-width: 10px;
@@ -199,6 +252,7 @@
             text-align: center;
 
             transition: transform 0.15s ease;
+
         }
 
 
@@ -207,6 +261,7 @@
         ===================================================== */
 
         .download-btn-header {
+
             background:
                 linear-gradient(
                     135deg,
@@ -237,13 +292,16 @@
             transition: var(--transition);
 
             border: 1px solid rgba(255, 255, 255, 0.2);
+
         }
 
 
         .download-btn-header:hover {
+
             transform: translateY(-2px);
 
             box-shadow: 0 0 18px var(--primary-glow);
+
         }
 
 
@@ -252,6 +310,7 @@
         ===================================================== */
 
         .status-pill {
+
             background: rgba(255, 0, 51, 0.1);
 
             border: 1px solid rgba(255, 0, 51, 0.25);
@@ -273,10 +332,12 @@
             gap: 6px;
 
             white-space: nowrap;
+
         }
 
 
         .pulse-dot {
+
             width: 7px;
 
             height: 7px;
@@ -286,27 +347,34 @@
             border-radius: 50%;
 
             animation: pulse 1.5s infinite;
+
         }
 
 
         @keyframes pulse {
 
             0% {
+
                 box-shadow:
                     0 0 0 0
                     rgba(255,0,51,0.7);
+
             }
 
             70% {
+
                 box-shadow:
                     0 0 0 6px
                     rgba(255,0,51,0);
+
             }
 
             100% {
+
                 box-shadow:
                     0 0 0 0
                     rgba(255,0,51,0);
+
             }
 
         }
@@ -317,11 +385,13 @@
         ===================================================== */
 
         .container {
+
             max-width: 1200px;
 
             margin: 0 auto;
 
             padding: 20px 15px;
+
         }
 
 
@@ -330,6 +400,7 @@
         ===================================================== */
 
         .toolbar {
+
             display: flex;
 
             justify-content: space-between;
@@ -349,10 +420,12 @@
             border-radius: var(--radius-xl);
 
             flex-wrap: wrap;
+
         }
 
 
         .tabs-group {
+
             display: flex;
 
             gap: 4px;
@@ -364,10 +437,12 @@
             border-radius: var(--radius-lg);
 
             width: fit-content;
+
         }
 
 
         .tab-btn {
+
             background: transparent;
 
             border: none;
@@ -393,10 +468,12 @@
             gap: 6px;
 
             white-space: nowrap;
+
         }
 
 
         .tab-btn.active {
+
             background: var(--primary);
 
             color: #fff;
@@ -404,19 +481,23 @@
             box-shadow:
                 0 2px 10px
                 var(--primary-glow);
+
         }
 
 
         .search-box {
+
             position: relative;
 
             flex: 1;
 
             min-width: 200px;
+
         }
 
 
         .search-box input {
+
             width: 100%;
 
             background: rgba(0, 0, 0, 0.35);
@@ -434,15 +515,19 @@
             outline: none;
 
             transition: var(--transition);
+
         }
 
 
         .search-box input:focus {
+
             border-color: var(--primary);
+
         }
 
 
         .search-box i {
+
             position: absolute;
 
             left: 12px;
@@ -454,6 +539,72 @@
             color: var(--text-sub);
 
             font-size: 12px;
+
+        }
+
+
+        /* =====================================================
+           SEARCH MESSAGE
+        ===================================================== */
+
+        .search-message {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 45px 20px;
+
+            margin-top: 10px;
+
+            background: var(--bg-card);
+
+            border: 1px solid var(--border-glass);
+
+            border-radius: var(--radius-xl);
+
+            color: var(--text-sub);
+
+        }
+
+
+        .search-message.show {
+
+            display: block;
+
+        }
+
+
+        .search-message i {
+
+            display: block;
+
+            font-size: 35px;
+
+            margin-bottom: 12px;
+
+            color: var(--primary);
+
+        }
+
+
+        .search-message strong {
+
+            display: block;
+
+            color: #fff;
+
+            font-size: 15px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .search-message span {
+
+            font-size: 12px;
+
         }
 
 
@@ -462,6 +613,7 @@
         ===================================================== */
 
         .channels-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -471,10 +623,12 @@
                 );
 
             gap: 15px;
+
         }
 
 
         .channel-card {
+
             background: var(--bg-card);
 
             border: 1px solid var(--border-glass);
@@ -498,20 +652,24 @@
             position: relative;
 
             height: 140px;
+
         }
 
 
         .channel-card:hover {
+
             background: var(--bg-card-hover);
 
             border-color:
                 var(--border-glass-bright);
 
             transform: translateY(-3px);
+
         }
 
 
         .fav-btn {
+
             position: absolute;
 
             top: 8px;
@@ -543,18 +701,22 @@
             z-index: 2;
 
             font-size: 11px;
+
         }
 
 
         .fav-btn:hover,
         .fav-btn.active {
+
             color: #ffc107;
 
             background: rgba(0,0,0,0.7);
+
         }
 
 
         .logo-container {
+
             width: 100%;
 
             flex: 1;
@@ -566,10 +728,12 @@
             justify-content: center;
 
             padding: 5px 0;
+
         }
 
 
         .logo-container img {
+
             max-width: 90px;
 
             max-height: 45px;
@@ -581,10 +745,12 @@
                     0 2px 5px
                     rgba(0,0,0,0.5)
                 );
+
         }
 
 
         .channel-title {
+
             width: 100%;
 
             text-align: center;
@@ -605,6 +771,7 @@
             overflow: hidden;
 
             text-overflow: ellipsis;
+
         }
 
 
@@ -613,6 +780,7 @@
         ===================================================== */
 
         .player-modal {
+
             position: fixed;
 
             inset: 0;
@@ -634,17 +802,21 @@
 
             transition:
                 opacity 0.25s ease;
+
         }
 
 
         .player-modal.open {
+
             display: flex;
 
             opacity: 1;
+
         }
 
 
         .modal-header {
+
             padding: 12px 4%;
 
             display: flex;
@@ -661,28 +833,34 @@
                 var(--border-glass);
 
             height: 56px;
+
         }
 
 
         .channel-meta {
+
             display: flex;
 
             align-items: center;
 
             gap: 8px;
+
         }
 
 
         .channel-meta h3 {
+
             font-size: 14px;
 
             font-weight: 700;
 
             color: #fff;
+
         }
 
 
         .close-player-btn {
+
             background:
                 rgba(255, 255, 255, 0.08);
 
@@ -709,18 +887,22 @@
             transition: var(--transition);
 
             font-size: 14px;
+
         }
 
 
         .close-player-btn:hover {
+
             background: var(--primary);
 
             border-color:
                 var(--primary);
+
         }
 
 
         .modal-body {
+
             flex: 1;
 
             display: flex;
@@ -730,10 +912,12 @@
             justify-content: center;
 
             padding: 10px;
+
         }
 
 
         .video-box {
+
             width: 100%;
 
             max-width: 1000px;
@@ -750,17 +934,21 @@
             border:
                 1px solid
                 var(--border-glass);
+
         }
 
 
         #player {
+
             width: 100%;
 
             height: 100%;
+
         }
 
 
         .floating-controls {
+
             padding: 10px;
 
             display: flex;
@@ -775,10 +963,12 @@
             border-top:
                 1px solid
                 var(--border-glass);
+
         }
 
 
         .control-btn {
+
             background:
                 rgba(255, 255, 255, 0.08);
 
@@ -805,14 +995,17 @@
             gap: 6px;
 
             transition: var(--transition);
+
         }
 
 
         .control-btn:hover {
+
             background: var(--primary);
 
             border-color:
                 var(--primary);
+
         }
 
 
@@ -821,6 +1014,7 @@
         ===================================================== */
 
         footer {
+
             text-align: center;
 
             padding: 20px;
@@ -834,6 +1028,7 @@
             color: var(--text-sub);
 
             font-size: 12px;
+
         }
 
 
@@ -844,37 +1039,48 @@
         @media (max-width: 600px) {
 
             header {
+
                 padding: 8px 12px;
 
                 height: 52px;
+
             }
 
 
             .brand-logo img {
+
                 height: 24px;
+
             }
 
 
             .status-pill {
+
                 display: none;
+
             }
 
 
             .online-counter {
+
                 padding: 3px 8px;
 
                 font-size: 10px;
+
             }
 
 
             .download-btn-header {
+
                 padding: 5px 10px;
 
                 font-size: 11px;
+
             }
 
 
             .toolbar {
+
                 flex-direction: column;
 
                 align-items: stretch;
@@ -886,71 +1092,97 @@
                 border: none;
 
                 padding: 0;
+
             }
 
 
             .tabs-group {
+
                 width: 100%;
+
             }
 
 
             .tab-btn {
+
                 flex: 1;
 
                 justify-content: center;
 
                 padding: 8px;
+
             }
 
 
             .search-box {
+
                 width: 100%;
+
             }
 
 
             .channels-grid {
+
                 grid-template-columns:
                     repeat(2, 1fr);
 
                 gap: 10px;
+
             }
 
 
             .channel-card {
+
                 height: 120px;
 
                 padding: 10px;
 
                 border-radius:
                     var(--radius-lg);
+
             }
 
 
             .logo-container img {
+
                 max-width: 70px;
 
                 max-height: 35px;
+
             }
 
 
             .channel-title {
+
                 font-size: 11px;
 
                 padding-top: 5px;
+
             }
 
 
             .video-box {
+
                 border-radius: 0;
 
                 border: none;
+
             }
 
 
             .control-btn {
+
                 padding: 6px 10px;
 
                 font-size: 11px;
+
+            }
+
+
+            .search-message {
+
+                padding: 35px 15px;
+
             }
 
         }
@@ -982,7 +1214,6 @@
     <div class="header-actions">
 
 
-        <!-- عداد المتواجدين -->
         <div
             class="online-counter"
             title="عدد المتواجدين حالياً"
@@ -1007,6 +1238,7 @@
         <a
             href="https://t.me/ManasaIq"
             target="_blank"
+            rel="noopener noreferrer"
             class="download-btn-header"
         >
 
@@ -1069,7 +1301,8 @@
                 type="text"
                 id="searchInput"
                 placeholder="ابحث عن قناة..."
-                onkeyup="filterChannelsQuery()"
+                autocomplete="off"
+                oninput="filterChannelsQuery()"
             >
 
         </div>
@@ -1099,6 +1332,7 @@
             <button
                 class="fav-btn"
                 onclick="toggleFavorite(event, '1424')"
+                aria-label="إضافة للمفضلة"
             >
 
                 <i class="fa-regular fa-star"></i>
@@ -1143,6 +1377,7 @@
             <button
                 class="fav-btn"
                 onclick="toggleFavorite(event, '1425')"
+                aria-label="إضافة للمفضلة"
             >
 
                 <i class="fa-regular fa-star"></i>
@@ -1187,6 +1422,7 @@
             <button
                 class="fav-btn"
                 onclick="toggleFavorite(event, '1426')"
+                aria-label="إضافة للمفضلة"
             >
 
                 <i class="fa-regular fa-star"></i>
@@ -1231,6 +1467,7 @@
             <button
                 class="fav-btn"
                 onclick="toggleFavorite(event, '1427')"
+                aria-label="إضافة للمفضلة"
             >
 
                 <i class="fa-regular fa-star"></i>
@@ -1275,6 +1512,7 @@
             <button
                 class="fav-btn"
                 onclick="toggleFavorite(event, '1428')"
+                aria-label="إضافة للمفضلة"
             >
 
                 <i class="fa-regular fa-star"></i>
@@ -1319,6 +1557,7 @@
             <button
                 class="fav-btn"
                 onclick="toggleFavorite(event, '1429')"
+                aria-label="إضافة للمفضلة"
             >
 
                 <i class="fa-regular fa-star"></i>
@@ -1363,6 +1602,7 @@
             <button
                 class="fav-btn"
                 onclick="toggleFavorite(event, '1430')"
+                aria-label="إضافة للمفضلة"
             >
 
                 <i class="fa-regular fa-star"></i>
@@ -1407,6 +1647,7 @@
             <button
                 class="fav-btn"
                 onclick="toggleFavorite(event, '1431')"
+                aria-label="إضافة للمفضلة"
             >
 
                 <i class="fa-regular fa-star"></i>
@@ -1440,6 +1681,29 @@
 
 
     </div>
+
+
+    <!-- =====================================================
+         SEARCH / EMPTY MESSAGE
+    ===================================================== -->
+
+    <div
+        class="search-message"
+        id="searchMessage"
+    >
+
+        <i class="fa-solid fa-tv"></i>
+
+        <strong id="searchMessageTitle">
+            القناة غير موجودة
+        </strong>
+
+        <span id="searchMessageText">
+            لم يتم العثور على قناة مطابقة لبحثك.
+        </span>
+
+    </div>
+
 
 </main>
 
@@ -1549,7 +1813,9 @@
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"
+></script>
 
 
 
@@ -1570,9 +1836,8 @@ import {
     getDatabase,
     ref,
     set,
-    onDisconnect,
-    onChildAdded,
-    onChildRemoved
+    onValue,
+    onDisconnect
 }
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
@@ -1592,7 +1857,7 @@ from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyBwYHvkx-z6IY8IWsnUHixnief4jDrXBXw",
+        "AIzaSyBwYHvkx-z6IY8IWsnUHixnief4jDrXBXk",
 
     authDomain:
         "iq-tv7.firebaseapp.com",
@@ -1633,111 +1898,94 @@ const auth =
 
 
 /* =========================================================
-   PRESENCE
+   ONLINE COUNTER
 ========================================================= */
 
-
 const onlineUsersRef =
-    ref(db, "onlineUsers");
+    ref(
+        db,
+        "onlineUsers"
+    );
 
 
 const onlineCountElement =
-    document.getElementById("onlineCount");
-
-
-/*
-   هذا الرقم محلي للصفحة.
-   Firebase سيرسل لنا:
-   onChildAdded  = شخص دخل
-   onChildRemoved = شخص خرج
-*/
-
-let onlineCount = 0;
+    document.getElementById(
+        "onlineCount"
+    );
 
 
 
 /* =========================================================
-   تحديث الرقم
+   العدد الحقيقي من Firebase
 ========================================================= */
 
-function updateOnlineCounter() {
+onValue(
+    onlineUsersRef,
+    (snapshot) => {
 
-    if (!onlineCountElement) {
-        return;
-    }
-
-
-    onlineCountElement.textContent =
-        onlineCount.toString();
+        const data =
+            snapshot.val();
 
 
-    /*
-       حركة بسيطة عند تغير العدد
-    */
-
-    onlineCountElement.style.transform =
-        "scale(1.15)";
+        let count = 0;
 
 
-    setTimeout(() => {
+        if (
+            data &&
+            typeof data === "object"
+        ) {
 
-        if (onlineCountElement) {
+            count =
+                Object.keys(data).length;
+
+        }
+
+
+        if (
+            onlineCountElement
+        ) {
+
+            onlineCountElement.textContent =
+                count.toString();
+
 
             onlineCountElement.style.transform =
-                "scale(1)";
+                "scale(1.15)";
+
+
+            setTimeout(() => {
+
+                if (
+                    onlineCountElement
+                ) {
+
+                    onlineCountElement.style.transform =
+                        "scale(1)";
+
+                }
+
+            }, 150);
 
         }
 
-    }, 150);
-
-}
+    },
 
 
+    (error) => {
 
-/* =========================================================
-   مستخدم دخل
-========================================================= */
-
-onChildAdded(
-    onlineUsersRef,
-    () => {
-
-        onlineCount++;
-
-        updateOnlineCounter();
+        console.error(
+            "Online Counter Error:",
+            error
+        );
 
     }
+
 );
 
 
 
 /* =========================================================
-   مستخدم خرج
-========================================================= */
-
-onChildRemoved(
-    onlineUsersRef,
-    () => {
-
-        onlineCount--;
-
-
-        if (onlineCount < 0) {
-
-            onlineCount = 0;
-
-        }
-
-
-        updateOnlineCounter();
-
-    }
-);
-
-
-
-/* =========================================================
-   بدء Presence
+   PRESENCE
 ========================================================= */
 
 async function startPresence() {
@@ -1746,11 +1994,13 @@ async function startPresence() {
 
 
         /*
-           تسجيل دخول مجهول
-        */
+         * تسجيل دخول مجهول
+         */
 
         const userCredential =
-            await signInAnonymously(auth);
+            await signInAnonymously(
+                auth
+            );
 
 
         const uid =
@@ -1759,8 +2009,8 @@ async function startPresence() {
 
 
         /*
-           مكان المستخدم الحالي
-        */
+         * مسار هذا المستخدم
+         */
 
         const myPresenceRef =
             ref(
@@ -1771,12 +2021,9 @@ async function startPresence() {
 
 
         /*
-           أهم خطوة:
-
-           إذا انقطع الإنترنت
-           أو أغلق المستخدم الصفحة
-           Firebase يحذف المستخدم.
-        */
+         * إذا انقطع الاتصال
+         * Firebase يحذف السجل تلقائياً
+         */
 
         await onDisconnect(
             myPresenceRef
@@ -1785,13 +2032,18 @@ async function startPresence() {
 
 
         /*
-           تسجيل المستخدم مباشرة
-        */
+         * إضافة المستخدم
+         */
 
         await set(
             myPresenceRef,
             {
-                connectedAt: Date.now()
+
+                uid: uid,
+
+                connectedAt:
+                    Date.now()
+
             }
         );
 
@@ -1811,7 +2063,9 @@ async function startPresence() {
         );
 
 
-        if (onlineCountElement) {
+        if (
+            onlineCountElement
+        ) {
 
             onlineCountElement.textContent =
                 "0";
@@ -1824,16 +2078,12 @@ async function startPresence() {
 
 
 
-/* =========================================================
-   تشغيل Presence فوراً
-========================================================= */
-
 startPresence();
 
 
 
 /* =========================================================
-   حماية بسيطة
+   PROTECTION
 ========================================================= */
 
 document.addEventListener(
@@ -1848,6 +2098,7 @@ document.addEventListener(
 
 
         if (
+
             event.key === "F12" ||
 
             (
@@ -1864,6 +2115,7 @@ document.addEventListener(
                 event.ctrlKey &&
                 event.key === "U"
             )
+
         ) {
 
             event.preventDefault();
@@ -1873,7 +2125,9 @@ document.addEventListener(
         }
 
 
-        if (event.key === "Escape") {
+        if (
+            event.key === "Escape"
+        ) {
 
             closePlayer();
 
@@ -1897,7 +2151,9 @@ let currentTab = "all";
 
 let favorites =
     JSON.parse(
-        localStorage.getItem("iq_tv_favs")
+        localStorage.getItem(
+            "iq_tv_favs"
+        )
     ) || [];
 
 
@@ -1911,6 +2167,8 @@ window.onload = () => {
     updateFavoritesUI();
 
     setupFullscreenOrientation();
+
+    filterChannelsQuery();
 
 };
 
@@ -1933,7 +2191,9 @@ const channelCards =
    OPEN PLAYER
 ========================================================= */
 
-async function openPlayer(channelId) {
+async function openPlayer(
+    channelId
+) {
 
 
     currentChannelId =
@@ -1947,7 +2207,9 @@ async function openPlayer(channelId) {
 
 
     if (!card) {
+
         return;
+
     }
 
 
@@ -1975,7 +2237,6 @@ async function openPlayer(channelId) {
         );
 
 
-
     modalTitle.innerText =
         `${title} (جاري الاتصال...)`;
 
@@ -1990,7 +2251,21 @@ async function openPlayer(channelId) {
 
 
         const response =
-            await fetch(apiUrl);
+            await fetch(
+                apiUrl,
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+
+        }
 
 
         const data =
@@ -1999,10 +2274,19 @@ async function openPlayer(channelId) {
 
 
         if (
+
             data &&
+
             data.data &&
+
+            Array.isArray(data.data) &&
+
             data.data.length > 0 &&
+
+            data.data[0] &&
+
             data.data[0].url
+
         ) {
 
 
@@ -2013,7 +2297,9 @@ async function openPlayer(channelId) {
 
             const proxyUrl =
                 "https://iqtv-proxy.aaa317198.workers.dev?stream=" +
-                encodeURIComponent(rawUrl);
+                encodeURIComponent(
+                    rawUrl
+                );
 
 
 
@@ -2091,7 +2377,10 @@ async function openPlayer(channelId) {
     } catch (err) {
 
 
-        console.error(err);
+        console.error(
+            "Stream Error:",
+            err
+        );
 
 
         modalTitle.innerText =
@@ -2125,21 +2414,21 @@ function setupFullscreenOrientation() {
 
 
                 if (
+
                     screen.orientation &&
+
                     screen.orientation.lock
+
                 ) {
 
 
                     try {
 
-
                         await screen.orientation.lock(
                             "landscape"
                         );
 
-
                     } catch (err) {
-
 
                         console.log(
                             "تعذر قفل الاتجاه الأفقي:",
@@ -2155,8 +2444,11 @@ function setupFullscreenOrientation() {
 
 
                 if (
+
                     screen.orientation &&
+
                     screen.orientation.unlock
+
                 ) {
 
                     screen.orientation.unlock();
@@ -2220,8 +2512,11 @@ function closePlayer() {
 
 
     if (
+
         screen.orientation &&
+
         screen.orientation.unlock
+
     ) {
 
         screen.orientation.unlock();
@@ -2236,34 +2531,46 @@ function closePlayer() {
    NAVIGATE CHANNEL
 ========================================================= */
 
-function navigateChannel(direction) {
+function navigateChannel(
+    direction
+) {
 
 
     const visibleCards =
         channelCards.filter(
-            c =>
-                c.style.display !== "none"
+            card =>
+                card.style.display !== "none"
         );
 
 
 
-    if (!visibleCards.length) {
+    if (
+        !visibleCards.length
+    ) {
+
         return;
+
     }
 
 
 
     const currentIndex =
         visibleCards.findIndex(
-            c =>
-                c.getAttribute("data-id") ===
+            card =>
+                card.getAttribute(
+                    "data-id"
+                ) ===
                 currentChannelId
         );
 
 
 
-    if (currentIndex === -1) {
+    if (
+        currentIndex === -1
+    ) {
+
         return;
+
     }
 
 
@@ -2272,7 +2579,9 @@ function navigateChannel(direction) {
 
 
 
-    if (direction === "next") {
+    if (
+        direction === "next"
+    ) {
 
         nextIndex =
             (
@@ -2295,7 +2604,9 @@ function navigateChannel(direction) {
 
     openPlayer(
         visibleCards[nextIndex]
-            .getAttribute("data-id")
+            .getAttribute(
+                "data-id"
+            )
     );
 
 }
@@ -2309,7 +2620,9 @@ function navigateChannel(direction) {
 function reloadActiveStream() {
 
 
-    if (currentChannelId) {
+    if (
+        currentChannelId
+    ) {
 
         openPlayer(
             currentChannelId
@@ -2342,7 +2655,9 @@ function toggleFavorite(
 
 
 
-    if (index > -1) {
+    if (
+        index > -1
+    ) {
 
         favorites.splice(
             index,
@@ -2361,7 +2676,9 @@ function toggleFavorite(
 
     localStorage.setItem(
         "iq_tv_favs",
-        JSON.stringify(favorites)
+        JSON.stringify(
+            favorites
+        )
     );
 
 
@@ -2369,12 +2686,7 @@ function toggleFavorite(
     updateFavoritesUI();
 
 
-
-    if (currentTab === "fav") {
-
-        renderTabsContent();
-
-    }
+    filterChannelsQuery();
 
 }
 
@@ -2391,56 +2703,58 @@ function updateFavoritesUI() {
         .querySelectorAll(
             ".channel-card"
         )
-        .forEach(card => {
+        .forEach(
+            card => {
 
 
-            const id =
-                card.getAttribute(
-                    "data-id"
-                );
+                const id =
+                    card.getAttribute(
+                        "data-id"
+                    );
 
 
-            const btn =
-                card.querySelector(
-                    ".fav-btn"
-                );
+                const btn =
+                    card.querySelector(
+                        ".fav-btn"
+                    );
 
 
-            const icon =
-                btn.querySelector(
-                    "i"
-                );
+                const icon =
+                    btn.querySelector(
+                        "i"
+                    );
 
 
 
-            if (
-                favorites.includes(id)
-            ) {
+                if (
+                    favorites.includes(id)
+                ) {
 
 
-                icon.className =
-                    "fa-solid fa-star";
+                    icon.className =
+                        "fa-solid fa-star";
 
 
-                btn.classList.add(
-                    "active"
-                );
+                    btn.classList.add(
+                        "active"
+                    );
 
 
-            } else {
+                } else {
 
 
-                icon.className =
-                    "fa-regular fa-star";
+                    icon.className =
+                        "fa-regular fa-star";
 
 
-                btn.classList.remove(
-                    "active"
-                );
+                    btn.classList.remove(
+                        "active"
+                    );
+
+                }
 
             }
-
-        });
+        );
 
 }
 
@@ -2466,8 +2780,8 @@ function switchTab(
             ".tab-btn"
         )
         .forEach(
-            b =>
-                b.classList.remove(
+            button =>
+                button.classList.remove(
                     "active"
                 )
         );
@@ -2480,57 +2794,6 @@ function switchTab(
 
 
 
-    renderTabsContent();
-
-}
-
-
-
-/* =========================================================
-   RENDER TABS
-========================================================= */
-
-function renderTabsContent() {
-
-
-    channelCards.forEach(
-        card => {
-
-
-            const id =
-                card.getAttribute(
-                    "data-id"
-                );
-
-
-
-            if (currentTab === "fav") {
-
-
-                card.style.display =
-                    favorites.includes(id)
-                        ? "flex"
-                        : "none";
-
-
-            } else {
-
-
-                card.style.display =
-                    "flex";
-
-            }
-
-        }
-    );
-
-
-
-    /*
-       إذا كان هناك بحث،
-       نعيد تطبيق البحث بعد التبديل.
-    */
-
     filterChannelsQuery();
 
 }
@@ -2539,6 +2802,38 @@ function renderTabsContent() {
 
 /* =========================================================
    SEARCH
+========================================================= */
+
+function normalizeSearchText(
+    text
+) {
+
+    return String(text || "")
+        .toLowerCase()
+        .trim()
+        .replace(
+            /[\u064B-\u065F\u0670]/g,
+            ""
+        )
+        .replace(
+            /[أإآ]/g,
+            "ا"
+        )
+        .replace(
+            /ة/g,
+            "ه"
+        )
+        .replace(
+            /ى/g,
+            "ي"
+        );
+
+}
+
+
+
+/* =========================================================
+   FILTER CHANNELS
 ========================================================= */
 
 function filterChannelsQuery() {
@@ -2550,11 +2845,31 @@ function filterChannelsQuery() {
         );
 
 
-    const query =
-        input.value
-            .toLowerCase()
-            .trim();
+    const message =
+        document.getElementById(
+            "searchMessage"
+        );
 
+
+    const messageTitle =
+        document.getElementById(
+            "searchMessageTitle"
+        );
+
+
+    const messageText =
+        document.getElementById(
+            "searchMessageText"
+        );
+
+
+    const query =
+        normalizeSearchText(
+            input.value
+        );
+
+
+    let visibleCount = 0;
 
 
     channelCards.forEach(
@@ -2562,23 +2877,45 @@ function filterChannelsQuery() {
 
 
             const name =
-                (
+                normalizeSearchText(
                     card.getAttribute(
                         "data-name"
-                    ) || ""
-                ).toLowerCase();
+                    )
+                );
 
+
+            const title =
+                normalizeSearchText(
+                    card.getAttribute(
+                        "data-title"
+                    )
+                );
+
+
+            const id =
+                normalizeSearchText(
+                    card.getAttribute(
+                        "data-id"
+                    )
+                );
 
 
             const matchesSearch =
-                name.includes(
-                    query
-                );
+
+                !query ||
+
+                name.includes(query) ||
+
+                title.includes(query) ||
+
+                id === query;
 
 
 
             const matchesTab =
+
                 currentTab === "all" ||
+
                 favorites.includes(
                     card.getAttribute(
                         "data-id"
@@ -2587,16 +2924,90 @@ function filterChannelsQuery() {
 
 
 
+            const shouldShow =
+
+                matchesSearch &&
+                matchesTab;
+
+
+
             card.style.display =
-                (
-                    matchesSearch &&
-                    matchesTab
-                )
+                shouldShow
                     ? "flex"
                     : "none";
 
+
+
+            if (
+                shouldShow
+            ) {
+
+                visibleCount++;
+
+            }
+
         }
     );
+
+
+
+    /*
+     * لا يوجد أي تطابق
+     */
+
+    if (
+        visibleCount === 0
+    ) {
+
+
+        message.classList.add(
+            "show"
+        );
+
+
+        if (
+            currentTab === "fav" &&
+            !query
+        ) {
+
+
+            messageTitle.textContent =
+                "لا توجد قنوات مفضلة";
+
+
+            messageText.textContent =
+                "أضف القنوات إلى المفضلة وستظهر هنا.";
+
+        } else {
+
+
+            messageTitle.textContent =
+                "القناة غير موجودة";
+
+
+            if (query) {
+
+                messageText.textContent =
+                    `لم يتم العثور على قناة مطابقة لـ "${input.value.trim()}"`;
+
+            } else {
+
+                messageText.textContent =
+                    "لم يتم العثور على أي قناة.";
+
+            }
+
+        }
+
+
+    } else {
+
+
+        message.classList.remove(
+            "show"
+        );
+
+    }
 
 }
 
@@ -2638,4 +3049,5 @@ window.filterChannelsQuery =
 
 
 </body>
+
 </html>
