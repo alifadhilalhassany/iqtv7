@@ -609,48 +609,139 @@
 
 
         /* =====================================================
-           SEARCH NOT FOUND
+           NO RESULTS CARD
         ===================================================== */
 
-        .search-not-found {
+        .no-results-card {
+            grid-column: 1 / -1;
+
             display: none;
 
-            width: 100%;
+            flex-direction: column;
 
-            text-align: center;
+            align-items: center;
+
+            justify-content: center;
 
             padding: 50px 20px;
 
-            color: var(--text-sub);
+            background: var(--surface-glass);
 
-            grid-column: 1 / -1;
+            border: 1px dashed var(--border-glass-bright);
+
+            border-radius: var(--radius-xl);
+
+            text-align: center;
+
+            backdrop-filter: blur(10px);
+
+            animation: fadeIn 0.3s ease-in-out;
+
+            margin: 20px 0;
         }
 
 
-        .search-not-found i {
-            display: block;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
 
-            font-size: 40px;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+
+        .no-results-icon-wrapper {
+            position: relative;
+
+            width: 70px;
+
+            height: 70px;
+
+            background: rgba(255, 0, 51, 0.08);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 16px;
+
+            border: 1px solid rgba(255, 0, 51, 0.2);
+        }
+
+
+        .no-results-icon-wrapper i {
+            font-size: 30px;
 
             color: var(--primary);
-
-            margin-bottom: 15px;
         }
 
 
-        .search-not-found h3 {
-            color: #fff;
+        .no-results-title {
+            font-size: 16px;
 
-            font-size: 18px;
+            font-weight: 800;
+
+            color: #fff;
 
             margin-bottom: 6px;
         }
 
 
-        .search-not-found p {
-            font-size: 12px;
+        .no-results-desc {
+            font-size: 13px;
 
             color: var(--text-sub);
+
+            max-width: 360px;
+
+            line-height: 1.5;
+
+            margin-bottom: 18px;
+        }
+
+
+        .reset-search-btn {
+            background: rgba(255, 255, 255, 0.06);
+
+            border: 1px solid var(--border-glass-bright);
+
+            color: #fff;
+
+            padding: 8px 18px;
+
+            border-radius: var(--radius-lg);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            transition: var(--transition);
+        }
+
+
+        .reset-search-btn:hover {
+            background: var(--primary);
+
+            border-color: var(--primary);
+
+            box-shadow: 0 0 12px var(--primary-glow);
         }
 
 
@@ -1134,24 +1225,6 @@
     >
 
 
-        <!-- رسالة عدم وجود القناة -->
-        <div
-            class="search-not-found"
-            id="searchNotFound"
-        >
-
-            <i class="fa-solid fa-circle-exclamation"></i>
-
-            <h3>القناة غير موجودة</h3>
-
-            <p>
-                لم يتم العثور على قناة مطابقة لبحثك.
-            </p>
-
-        </div>
-
-
-
         <div
             class="channel-card"
             data-id="1424"
@@ -1503,6 +1576,32 @@
         </div>
 
 
+        <!-- بطاقة الرسالة عند عدم وجود قنوات مطابقة -->
+        <div class="no-results-card" id="noResultsMsg">
+
+            <div class="no-results-icon-wrapper">
+
+                <i class="fa-solid fa-tv"></i>
+
+            </div>
+
+            <div class="no-results-title">القناة غير موجودة</div>
+
+            <div class="no-results-desc">
+                لم نتمكن من العثور على أي قناة تطابق كلمة البحث الحالية، تأكد من كتابة الاسم بأسلوب صحيح.
+            </div>
+
+            <button class="reset-search-btn" onclick="clearSearchQuery()">
+
+                <i class="fa-solid fa-rotate-left"></i>
+
+                عرض جميع القنوات
+
+            </button>
+
+        </div>
+
+
     </div>
 
 </main>
@@ -1656,7 +1755,7 @@ from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyBwYHvkx-z6IY8IWsnUHixnief4jDrXBXk",
+        "AIzaSyBwYHvkx-z6IY8IWsnUHixnief4jDrXBXw",
 
     authDomain:
         "iq-tv7.firebaseapp.com",
@@ -1709,6 +1808,13 @@ const onlineCountElement =
     document.getElementById("onlineCount");
 
 
+/*
+   هذا الرقم محلي للصفحة.
+   Firebase سيرسل لنا:
+   onChildAdded  = شخص دخل
+   onChildRemoved = شخص خرج
+*/
+
 let onlineCount = 0;
 
 
@@ -1727,6 +1833,10 @@ function updateOnlineCounter() {
     onlineCountElement.textContent =
         onlineCount.toString();
 
+
+    /*
+       حركة بسيطة عند تغير العدد
+    */
 
     onlineCountElement.style.transform =
         "scale(1.15)";
@@ -1798,6 +1908,10 @@ async function startPresence() {
     try {
 
 
+        /*
+           تسجيل دخول مجهول
+        */
+
         const userCredential =
             await signInAnonymously(auth);
 
@@ -1806,6 +1920,11 @@ async function startPresence() {
             userCredential.user.uid;
 
 
+
+        /*
+           مكان المستخدم الحالي
+        */
+
         const myPresenceRef =
             ref(
                 db,
@@ -1813,10 +1932,24 @@ async function startPresence() {
             );
 
 
+
+        /*
+           أهم خطوة:
+
+           إذا انقطع الإنترنت
+           أو أغلق المستخدم الصفحة
+           Firebase يحذف المستخدم.
+        */
+
         await onDisconnect(
             myPresenceRef
         ).remove();
 
+
+
+        /*
+           تسجيل المستخدم مباشرة
+        */
 
         await set(
             myPresenceRef,
@@ -1852,6 +1985,11 @@ async function startPresence() {
 
 }
 
+
+
+/* =========================================================
+   تشغيل Presence فوراً
+========================================================= */
 
 startPresence();
 
@@ -2551,6 +2689,11 @@ function renderTabsContent() {
 
 
 
+    /*
+       إذا كان هناك بحث،
+       نعيد تطبيق البحث بعد التبديل.
+    */
+
     filterChannelsQuery();
 
 }
@@ -2558,7 +2701,7 @@ function renderTabsContent() {
 
 
 /* =========================================================
-   SEARCH
+   SEARCH & FILTER
 ========================================================= */
 
 function filterChannelsQuery() {
@@ -2576,14 +2719,7 @@ function filterChannelsQuery() {
             .trim();
 
 
-    const searchNotFound =
-        document.getElementById(
-            "searchNotFound"
-        );
-
-
-    let found = 0;
-
+    let visibleCount = 0;
 
 
     channelCards.forEach(
@@ -2598,27 +2734,11 @@ function filterChannelsQuery() {
                 ).toLowerCase();
 
 
-            const title =
-                (
-                    card.getAttribute(
-                        "data-title"
-                    ) || ""
-                ).toLowerCase();
-
-
-            const id =
-                (
-                    card.getAttribute(
-                        "data-id"
-                    ) || ""
-                ).toLowerCase();
-
-
 
             const matchesSearch =
-                name.includes(query) ||
-                title.includes(query) ||
-                id.includes(query);
+                name.includes(
+                    query
+                );
 
 
 
@@ -2631,23 +2751,18 @@ function filterChannelsQuery() {
                 );
 
 
-
-            const shouldShow =
-                matchesSearch &&
-                matchesTab;
-
+            const isVisible = matchesSearch && matchesTab;
 
 
             card.style.display =
-                shouldShow
+                isVisible
                     ? "flex"
                     : "none";
 
 
+            if (isVisible) {
 
-            if (shouldShow) {
-
-                found++;
+                visibleCount++;
 
             }
 
@@ -2655,30 +2770,45 @@ function filterChannelsQuery() {
     );
 
 
-
     /*
-       إذا المستخدم كتب بحث
-       وماكو أي قناة مطابقة
-       تظهر الرسالة.
+       التحكم بظهور بطاقة "القناة غير موجودة"
     */
 
-    if (searchNotFound) {
+    const noResultsMsg =
+        document.getElementById(
+            "noResultsMsg"
+        );
 
 
-        if (
-            query !== "" &&
-            found === 0
-        ) {
+    if (noResultsMsg) {
 
-            searchNotFound.style.display =
-                "block";
+        noResultsMsg.style.display =
+            visibleCount === 0
+                ? "flex"
+                : "none";
 
-        } else {
+    }
 
-            searchNotFound.style.display =
-                "none";
+}
 
-        }
+
+
+/* =========================================================
+   CLEAR SEARCH QUERY
+========================================================= */
+
+function clearSearchQuery() {
+
+    const input =
+        document.getElementById("searchInput");
+
+    if (input) {
+
+        input.value = "";
+
+        filterChannelsQuery();
+
+        input.focus();
 
     }
 
@@ -2716,6 +2846,10 @@ window.switchTab =
 
 window.filterChannelsQuery =
     filterChannelsQuery;
+
+
+window.clearSearchQuery =
+    clearSearchQuery;
 
 
 </script>
