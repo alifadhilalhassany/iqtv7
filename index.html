@@ -1,1173 +1,4743 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-
-    <title>IQ TV</title>
-
-    <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/4nnjf7tz/IQTV-Unified-Black.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co/4nnjf7tz/IQTV-Unified-Black.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <style>
-        :root {
-            --primary: #FF0033;
-            --primary-glow: rgba(255, 0, 51, 0.35);
-
-            --bg-dark: #07080b;
-            --bg-card: #10121a;
-            --bg-card-hover: #161924;
-
-            --surface-glass: rgba(18, 21, 31, 0.6);
-
-            --border-glass: rgba(255, 255, 255, 0.08);
-            --border-glass-bright: rgba(255, 255, 255, 0.18);
-
-            --text-main: #ffffff;
-            --text-sub: #9ca3af;
-
-            --radius-xl: 18px;
-            --radius-lg: 12px;
-            --radius-md: 8px;
-
-            --transition: all 0.25s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.4;
-            min-height: 100vh;
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, rgba(255, 0, 51, 0.08) 0%, transparent 60%);
-        }
-
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
-
-        /* HEADER */
-        header {
-            background: rgba(7, 8, 11, 0.9);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 10px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border-glass);
-            height: 60px;
-        }
-
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            height: 100%;
-        }
-
-        .brand-logo img {
-            height: 32px;
-            width: auto;
-            max-width: 140px;
-            object-fit: contain;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        /* ONLINE COUNTER */
-        .online-counter {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid var(--border-glass);
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-        }
-
-        .online-counter i {
-            color: #9ca3af;
-            font-size: 11px;
-        }
-
-        #onlineCount {
-            color: #fff;
-            min-width: 10px;
-            text-align: center;
-            transition: transform 0.15s ease;
-        }
-
-        /* DOWNLOAD */
-        .download-btn-header {
-            background: linear-gradient(135deg, var(--primary), #e6002e);
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: var(--radius-lg);
-            font-size: 12px;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 0 12px var(--primary-glow);
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .download-btn-header:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 18px var(--primary-glow);
-        }
-
-        /* STATUS */
-        .status-pill {
-            background: rgba(255, 0, 51, 0.1);
-            border: 1px solid rgba(255, 0, 51, 0.25);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #ff4d6d;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-        }
-
-        .pulse-dot {
-            width: 7px;
-            height: 7px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255,0,51,0.7); }
-            70% { box-shadow: 0 0 0 6px rgba(255,0,51,0); }
-            100% { box-shadow: 0 0 0 0 rgba(255,0,51,0); }
-        }
-
-        /* CONTAINER */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 15px;
-        }
-
-        /* TOOLBAR */
-        .toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-            background: var(--surface-glass);
-            border: 1px solid var(--border-glass);
-            padding: 8px;
-            border-radius: var(--radius-xl);
-            flex-wrap: wrap;
-        }
-
-        .tabs-group {
-            display: flex;
-            gap: 4px;
-            background: rgba(0,0,0,0.3);
-            padding: 4px;
-            border-radius: var(--radius-lg);
-            width: fit-content;
-        }
-
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-sub);
-            padding: 8px 16px;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-        }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 2px 10px var(--primary-glow);
-        }
-
-        .search-box {
-            position: relative;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .search-box input {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-lg);
-            padding: 8px 12px 8px 36px;
-            color: #fff;
-            font-size: 12px;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-sub);
-            font-size: 12px;
-        }
-
-        /* CHANNELS */
-        .channels-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-        }
-
-        .channel-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-xl);
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            height: 140px;
-        }
-
-        .channel-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-glass-bright);
-            transform: translateY(-3px);
-        }
-
-        .fav-btn {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--border-glass);
-            color: var(--text-sub);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 2;
-            font-size: 11px;
-        }
-
-        .fav-btn:hover,
-        .fav-btn.active {
-            color: #ffc107;
-            background: rgba(0,0,0,0.7);
-        }
-
-        .logo-container {
-            width: 100%;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5px 0;
-        }
-
-        .logo-container img {
-            max-width: 90px;
-            max-height: 45px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
-        }
-
-        .channel-title {
-            width: 100%;
-            text-align: center;
-            border-top: 1px solid var(--border-glass);
-            padding-top: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            color: #fff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* NO RESULTS CARD */
-        .no-results-card {
-            grid-column: 1 / -1;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 50px 20px;
-            background: var(--surface-glass);
-            border: 1px dashed var(--border-glass-bright);
-            border-radius: var(--radius-xl);
-            text-align: center;
-            backdrop-filter: blur(10px);
-            animation: fadeIn 0.3s ease-in-out;
-            margin: 20px 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .no-results-icon-wrapper {
-            position: relative;
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 0, 51, 0.08);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            border: 1px solid rgba(255, 0, 51, 0.2);
-        }
-
-        .no-results-icon-wrapper i {
-            font-size: 30px;
-            color: var(--primary);
-        }
-
-        .no-results-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-
-        .no-results-desc {
-            font-size: 13px;
-            color: var(--text-sub);
-            max-width: 360px;
-            line-height: 1.5;
-            margin-bottom: 18px;
-        }
-
-        .reset-search-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border-glass-bright);
-            color: #fff;
-            padding: 8px 18px;
-            border-radius: var(--radius-lg);
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .reset-search-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            box-shadow: 0 0 12px var(--primary-glow);
-        }
-
-        /* PLAYER MODAL */
-        .player-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(3, 4, 6, 0.96);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 2000;
-            display: none;
-            flex-direction: column;
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-
-        .player-modal.open {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal-header {
-            padding: 12px 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.4);
-            border-bottom: 1px solid var(--border-glass);
-            height: 56px;
-        }
-
-        .channel-meta {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .channel-meta h3 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .close-player-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border-glass);
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 14px;
-        }
-
-        .close-player-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .modal-body {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-        }
-
-        .video-box {
-            width: 100%;
-            max-width: 1000px;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            border: 1px solid var(--border-glass);
-        }
-
-        #player {
-            width: 100%;
-            height: 100%;
-        }
-
-        .floating-controls {
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            background: rgba(0,0,0,0.5);
-            border-top: 1px solid var(--border-glass);
-        }
-
-        .control-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border-glass);
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: var(--transition);
-        }
-
-        .control-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 20px;
-            border-top: 1px solid var(--border-glass);
-            margin-top: 40px;
-            color: var(--text-sub);
-            font-size: 12px;
-        }
-
-        /* MOBILE RESPONSIVE */
-        @media (max-width: 600px) {
-            header {
-                padding: 8px 12px;
-                height: 52px;
-            }
-
-            .brand-logo img {
-                height: 24px;
-            }
-
-            .status-pill {
-                display: none;
-            }
-
-            .online-counter {
-                padding: 3px 8px;
-                font-size: 10px;
-            }
-
-            .download-btn-header {
-                padding: 5px 10px;
-                font-size: 11px;
-            }
-
-            .toolbar {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 10px;
-                background: transparent;
-                border: none;
-                padding: 0;
-            }
-
-            .tabs-group {
-                width: 100%;
-            }
-
-            .tab-btn {
-                flex: 1;
-                justify-content: center;
-                padding: 8px;
-            }
-
-            .search-box {
-                width: 100%;
-            }
-
-            .channels-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .channel-card {
-                height: 120px;
-                padding: 10px;
-                border-radius: var(--radius-lg);
-            }
-
-            .logo-container img {
-                max-width: 70px;
-                max-height: 35px;
-            }
-
-            .channel-title {
-                font-size: 11px;
-                padding-top: 5px;
-            }
-
-            .video-box {
-                border-radius: 0;
-                border: none;
-            }
-
-            .control-btn {
-                padding: 6px 10px;
-                font-size: 11px;
-            }
-        }
-    </style>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no,
+               viewport-fit=cover">
+
+<title>IQ TV</title>
+
+<link rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://i.ibb.co/4nnjf7tz/IQTV-Unified-Black.png">
+
+<link rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://i.ibb.co/4nnjf7tz/IQTV-Unified-Black.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+:root{
+    --primary:#ff0033;
+    --primary-soft:rgba(255,0,51,.14);
+    --primary-glow:rgba(255,0,51,.35);
+
+    --bg:#07080b;
+    --card:#10121a;
+    --card-hover:#161924;
+
+    --glass:rgba(18,21,31,.68);
+    --border:rgba(255,255,255,.08);
+    --border-light:rgba(255,255,255,.16);
+
+    --text:#fff;
+    --muted:#9ca3af;
+
+    --radius-xl:18px;
+    --radius-lg:13px;
+    --radius-md:9px;
+
+    --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo',sans-serif;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+    background:var(--bg);
+    color:var(--text);
+}
+
+body{
+    overflow-x:hidden;
+    background-image:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,0,51,.075),
+            transparent 55%
+        );
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    outline:none;
+}
+
+::-webkit-scrollbar{
+    width:5px;
+}
+
+::-webkit-scrollbar-track{
+    background:var(--bg);
+}
+
+::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.18);
+    border-radius:20px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    height:60px;
+    padding:9px 5%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(7,8,11,.88);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-bottom:1px solid var(--border);
+}
+
+.brand-logo{
+    height:100%;
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+}
+
+.brand-logo img{
+    width:auto;
+    height:32px;
+    max-width:145px;
+    object-fit:contain;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.online-counter,
+.status-pill{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    border-radius:20px;
+    white-space:nowrap;
+    font-weight:700;
+}
+
+.online-counter{
+    padding:5px 10px;
+    font-size:11px;
+    background:rgba(255,255,255,.055);
+    border:1px solid var(--border);
+}
+
+.online-counter i{
+    color:#aaa;
+    font-size:10px;
+}
+
+#onlineCount{
+    min-width:12px;
+    text-align:center;
+    transition:transform .15s ease;
+}
+
+.status-pill{
+    padding:5px 11px;
+    font-size:10px;
+
+    color:#ff5570;
+    background:rgba(255,0,51,.09);
+    border:1px solid rgba(255,0,51,.2);
+}
+
+.pulse-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--primary);
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        box-shadow:0 0 0 0 rgba(255,0,51,.65);
+    }
+    70%{
+        box-shadow:0 0 0 6px rgba(255,0,51,0);
+    }
+    100%{
+        box-shadow:0 0 0 0 rgba(255,0,51,0);
+    }
+}
+
+.download-btn-header{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    padding:7px 13px;
+
+    color:#fff;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:700;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        #e6002e
+    );
+
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:var(--radius-lg);
+
+    box-shadow:0 0 14px var(--primary-glow);
+
+    transition:transform .2s ease,
+                box-shadow .2s ease;
+}
+
+.download-btn-header:hover{
+    transform:translateY(-1px);
+    box-shadow:0 0 20px var(--primary-glow);
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:20px 15px;
+}
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    margin-bottom:22px;
+    padding:8px;
+
+    background:var(--glass);
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+}
+
+.tabs-group{
+    display:flex;
+    gap:4px;
+    padding:4px;
+
+    background:rgba(0,0,0,.3);
+    border-radius:var(--radius-lg);
+}
+
+.tab-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    padding:8px 16px;
+
+    color:var(--muted);
+    background:transparent;
+    border:0;
+    border-radius:var(--radius-md);
+
+    font-size:12px;
+    font-weight:700;
+
+    cursor:pointer;
+    transition:all .2s ease;
+}
+
+.tab-btn.active{
+    color:#fff;
+    background:var(--primary);
+    box-shadow:0 3px 12px var(--primary-glow);
+}
+
+.search-box{
+    position:relative;
+    flex:1;
+    min-width:200px;
+}
+
+.search-box input{
+    width:100%;
+    padding:9px 12px 9px 38px;
+
+    color:#fff;
+    background:rgba(0,0,0,.35);
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+
+    outline:none;
+    font-size:12px;
+
+    transition:border .2s ease;
+}
+
+.search-box input:focus{
+    border-color:rgba(255,0,51,.55);
+}
+
+.search-box i{
+    position:absolute;
+    left:13px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#8c929d;
+    font-size:12px;
+}
+
+/* =========================================================
+   CHANNEL GRID
+========================================================= */
+
+.channels-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fill,minmax(180px,1fr));
+    gap:15px;
+}
+
+.channel-card{
+    position:relative;
+
+    height:140px;
+    padding:12px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+
+    cursor:pointer;
+
+    transition:
+        transform .2s var(--ease),
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.channel-card:hover{
+    transform:translateY(-3px);
+    background:var(--card-hover);
+    border-color:var(--border-light);
+}
+
+.channel-card:active{
+    transform:scale(.98);
+}
+
+.fav-btn{
+    position:absolute;
+    left:8px;
+    top:8px;
+    z-index:5;
+
+    width:28px;
+    height:28px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--muted);
+    background:rgba(0,0,0,.42);
+
+    border:1px solid var(--border);
+    border-radius:50%;
+
+    cursor:pointer;
+
+    transition:all .2s ease;
+}
+
+.fav-btn.active,
+.fav-btn:hover{
+    color:#ffc107;
+    background:rgba(0,0,0,.75);
+}
+
+.logo-container{
+    width:100%;
+    flex:1;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:5px;
+}
+
+.logo-container img{
+    max-width:90px;
+    max-height:45px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(
+            0 2px 6px rgba(0,0,0,.55)
+        );
+}
+
+.channel-title{
+    width:100%;
+
+    padding-top:8px;
+
+    text-align:center;
+
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+    border-top:1px solid var(--border);
+}
+
+.engine-badge{
+    position:absolute;
+    right:8px;
+    top:8px;
+
+    padding:3px 6px;
+
+    color:#ff5570;
+    background:rgba(255,0,51,.1);
+
+    border:1px solid rgba(255,0,51,.18);
+    border-radius:10px;
+
+    font-size:8px;
+    font-weight:800;
+}
+
+/* =========================================================
+   NO RESULTS
+========================================================= */
+
+.no-results-card{
+    grid-column:1/-1;
+
+    display:none;
+
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    background:var(--glass);
+    border:1px dashed var(--border-light);
+    border-radius:var(--radius-xl);
+}
+
+.no-results-icon-wrapper{
+    width:70px;
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:15px;
+
+    background:rgba(255,0,51,.08);
+    border:1px solid rgba(255,0,51,.2);
+    border-radius:50%;
+}
+
+.no-results-icon-wrapper i{
+    color:var(--primary);
+    font-size:28px;
+}
+
+.no-results-title{
+    margin-bottom:5px;
+    color:#fff;
+    font-size:16px;
+    font-weight:800;
+}
+
+.no-results-desc{
+    max-width:360px;
+    margin-bottom:17px;
+
+    color:var(--muted);
+    font-size:12px;
+}
+
+.reset-search-btn{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    padding:8px 17px;
+
+    color:#fff;
+    background:rgba(255,255,255,.06);
+
+    border:1px solid var(--border-light);
+    border-radius:var(--radius-lg);
+
+    font-size:11px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.reset-search-btn:hover{
+    background:var(--primary);
+}
+
+/* =========================================================
+   PLAYER MODAL
+========================================================= */
+
+.player-modal{
+    position:fixed;
+    inset:0;
+    z-index:2000;
+
+    display:none;
+    flex-direction:column;
+
+    background:rgba(3,4,6,.97);
+
+    opacity:0;
+    transition:opacity .2s ease;
+}
+
+.player-modal.open{
+    display:flex;
+    opacity:1;
+}
+
+.modal-header{
+    height:56px;
+    flex-shrink:0;
+
+    padding:10px 4%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(0,0,0,.45);
+    border-bottom:1px solid var(--border);
+}
+
+.channel-meta{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    min-width:0;
+}
+
+.channel-meta i{
+    color:var(--primary);
+}
+
+.channel-meta h3{
+    max-width:70vw;
+
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.close-player-btn{
+    width:36px;
+    height:36px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+
+    color:#fff;
+    background:rgba(255,255,255,.07);
+
+    border:1px solid var(--border);
+    border-radius:50%;
+
+    cursor:pointer;
+
+    transition:all .2s ease;
+}
+
+.close-player-btn:hover{
+    background:var(--primary);
+    border-color:var(--primary);
+}
+
+.modal-body{
+    flex:1;
+    min-height:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:10px;
+}
+
+.video-box{
+    position:relative;
+
+    width:100%;
+    max-width:1100px;
+
+    aspect-ratio:16/9;
+
+    overflow:hidden;
+
+    background:#000;
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+
+    box-shadow:0 15px 60px rgba(0,0,0,.4);
+}
+
+#player{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+}
+
+/* =========================================================
+   SHAKA STAGE
+========================================================= */
+
+.shaka-stage{
+    position:absolute;
+    inset:0;
+
+    display:none;
+
+    overflow:hidden;
+
+    background:#000;
+    touch-action:manipulation;
+}
+
+.shaka-stage.active{
+    display:block;
+}
+
+#shakaVideo{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    background:#000;
+
+    object-fit:contain;
+
+    outline:none;
+
+    touch-action:manipulation;
+}
+
+/* =========================================================
+   SHAKA LOADING
+========================================================= */
+
+.shaka-loading{
+    position:absolute;
+    inset:0;
+    z-index:80;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,.18);
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity .18s ease,
+        visibility .18s ease;
+
+    pointer-events:none;
+}
+
+.shaka-loading.hidden{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:58px;
+    height:58px;
+
+    background:rgba(0,0,0,.48);
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:50%;
+
+    backdrop-filter:blur(8px);
+}
+
+.loader-ring{
+    width:35px;
+    height:35px;
+
+    border:3px solid rgba(255,255,255,.18);
+    border-top-color:#fff;
+
+    border-radius:50%;
+
+    animation:spin .7s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* =========================================================
+   SHAKA ERROR
+========================================================= */
+
+.shaka-error{
+    position:absolute;
+    inset:0;
+    z-index:100;
+
+    display:none;
+
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    padding:25px;
+
+    text-align:center;
+
+    background:rgba(0,0,0,.84);
+}
+
+.shaka-error.show{
+    display:flex;
+}
+
+.shaka-error i{
+    color:var(--primary);
+    font-size:30px;
+}
+
+.shaka-error span{
+    max-width:350px;
+
+    color:#fff;
+    font-size:12px;
+    line-height:1.7;
+}
+
+/* =========================================================
+   SHAKA CUSTOM CONTROLS
+========================================================= */
+
+.custom-controls{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+
+    z-index:70;
+
+    padding:
+        0
+        14px
+        calc(12px + env(safe-area-inset-bottom));
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.92) 0%,
+            rgba(0,0,0,.68) 42%,
+            rgba(0,0,0,0) 100%
+        );
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    transition:
+        opacity .22s ease,
+        transform .22s ease;
+
+    pointer-events:auto;
+}
+
+.shaka-stage.controls-hidden .custom-controls{
+    opacity:0;
+    transform:translateY(10px);
+    pointer-events:none;
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-row{
+    width:100%;
+    height:22px;
+
+    display:flex;
+    align-items:center;
+
+    cursor:pointer;
+
+    touch-action:none;
+}
+
+.progress-track{
+    position:relative;
+
+    width:100%;
+    height:4px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.25);
+    border-radius:10px;
+}
+
+.progress-buffer,
+.progress-value{
+    position:absolute;
+    top:0;
+    right:0;
+
+    height:100%;
+
+    border-radius:10px;
+
+    transition:width .1s linear;
+}
+
+.progress-buffer{
+    width:0;
+    background:rgba(255,255,255,.35);
+}
+
+.progress-value{
+    width:0;
+    background:#fff;
+}
+
+/* =========================================================
+   CONTROLS LINE
+========================================================= */
+
+.controls-line{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:8px;
+
+    direction:ltr;
+}
+
+.controls-left,
+.controls-right{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.custom-btn{
+    width:36px;
+    height:36px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+
+    color:#fff;
+
+    background:rgba(255,255,255,.085);
+
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:50%;
+
+    font-size:13px;
+
+    cursor:pointer;
+
+    transition:
+        background .15s ease,
+        transform .1s ease;
+}
+
+.custom-btn:hover{
+    background:rgba(255,255,255,.18);
+}
+
+.custom-btn:active{
+    transform:scale(.9);
+}
+
+.live-label{
+    padding:4px 8px;
+
+    color:#fff;
+    background:var(--primary);
+
+    border-radius:5px;
+
+    font-size:9px;
+    font-weight:800;
+
+    direction:rtl;
+}
+
+.time-label{
+    min-width:75px;
+
+    color:#ddd;
+
+    text-align:center;
+
+    direction:ltr;
+
+    font-size:9px;
+}
+
+/* =========================================================
+   QUALITY
+========================================================= */
+
+.quality-wrapper{
+    position:relative;
+}
+
+.quality-menu{
+    position:absolute;
+
+    right:0;
+    bottom:43px;
+
+    width:130px;
+    max-height:260px;
+
+    overflow-y:auto;
+
+    display:none;
+
+    padding:6px;
+
+    background:rgba(11,13,18,.98);
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.6);
+
+    backdrop-filter:blur(18px);
+
+    direction:rtl;
+}
+
+.quality-menu.open{
+    display:block;
+}
+
+.quality-title{
+    padding:6px 8px;
+
+    color:#888;
+
+    border-bottom:1px solid rgba(255,255,255,.07);
+
+    font-size:10px;
+}
+
+.quality-option{
+    width:100%;
+
+    padding:8px;
+
+    color:#fff;
+    background:transparent;
+
+    border:0;
+    border-radius:7px;
+
+    text-align:right;
+
+    font-size:11px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.quality-option:hover,
+.quality-option.active{
+    color:#ff5570;
+    background:rgba(255,0,51,.14);
+}
+
+/* =========================================================
+   FLOATING CONTROLS
+========================================================= */
+
+.floating-controls{
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:9px;
+
+    padding:9px;
+
+    background:rgba(0,0,0,.52);
+
+    border-top:1px solid var(--border);
+}
+
+.control-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    padding:6px 13px;
+
+    color:#fff;
+    background:rgba(255,255,255,.07);
+
+    border:1px solid var(--border);
+    border-radius:20px;
+
+    font-size:11px;
+    font-weight:700;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    transition:all .2s ease;
+}
+
+.control-btn:hover{
+    background:var(--primary);
+    border-color:var(--primary);
+}
+
+.star-download{
+    display:none;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    margin-top:40px;
+    padding:20px;
+
+    color:var(--muted);
+
+    border-top:1px solid var(--border);
+
+    text-align:center;
+    font-size:11px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    header{
+        height:52px;
+        padding:8px 12px;
+    }
+
+    .brand-logo img{
+        height:24px;
+        max-width:115px;
+    }
+
+    .status-pill{
+        display:none;
+    }
+
+    .online-counter{
+        padding:4px 8px;
+        font-size:9px;
+    }
+
+    .download-btn-header{
+        padding:5px 9px;
+        font-size:10px;
+    }
+
+    .container{
+        padding:15px 10px;
+    }
+
+    .toolbar{
+        flex-direction:column;
+        align-items:stretch;
+
+        padding:0;
+
+        background:transparent;
+        border:0;
+    }
+
+    .tabs-group{
+        width:100%;
+    }
+
+    .tab-btn{
+        flex:1;
+        padding:8px;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    .channels-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:9px;
+    }
+
+    .channel-card{
+        height:120px;
+        padding:9px;
+        border-radius:13px;
+    }
+
+    .logo-container img{
+        max-width:70px;
+        max-height:34px;
+    }
+
+    .channel-title{
+        padding-top:5px;
+        font-size:10px;
+    }
+
+    .video-box{
+        width:100%;
+        max-width:none;
+
+        border:0;
+        border-radius:0;
+
+        box-shadow:none;
+    }
+
+    .modal-body{
+        padding:0;
+    }
+
+    .modal-header{
+        padding:8px 12px;
+    }
+
+    .custom-controls{
+        padding-left:8px;
+        padding-right:8px;
+        padding-bottom:
+            calc(8px + env(safe-area-inset-bottom));
+    }
+
+    .custom-btn{
+        width:34px;
+        height:34px;
+        font-size:12px;
+    }
+
+    .time-label{
+        min-width:61px;
+        font-size:8px;
+    }
+
+    .live-label{
+        padding:3px 7px;
+        font-size:8px;
+    }
+
+    .quality-menu{
+        width:120px;
+        bottom:41px;
+    }
+
+    .floating-controls{
+        padding:7px;
+    }
+
+    .control-btn{
+        padding:6px 9px;
+        font-size:10px;
+    }
+}
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media(max-height:600px) and (orientation:landscape){
+
+    .player-modal{
+        background:#000;
+    }
+
+    .modal-header{
+        height:42px;
+        padding:5px 12px;
+    }
+
+    .modal-header .channel-meta h3{
+        font-size:10px;
+    }
+
+    .close-player-btn{
+        width:30px;
+        height:30px;
+    }
+
+    .modal-body{
+        padding:0;
+    }
+
+    .video-box{
+        width:100vw;
+        height:calc(100vh - 42px);
+
+        max-width:none;
+
+        aspect-ratio:auto;
+
+        border:0;
+        border-radius:0;
+    }
+
+    .floating-controls{
+        display:none;
+    }
+}
+
+/* =========================================================
+   TRUE FULLSCREEN
+========================================================= */
+
+.player-modal.fullscreen-mode{
+    position:fixed;
+    inset:0;
+
+    background:#000;
+}
+
+.player-modal.fullscreen-mode .modal-header{
+    display:none;
+}
+
+.player-modal.fullscreen-mode .modal-body{
+    padding:0;
+}
+
+.player-modal.fullscreen-mode .video-box{
+    width:100vw;
+    height:100vh;
+
+    max-width:none;
+
+    aspect-ratio:auto;
+
+    border:0;
+    border-radius:0;
+}
+
+.player-modal.fullscreen-mode .floating-controls{
+    display:none;
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
-    <a href="#" class="brand-logo">
-        <img src="https://i.ibb.co/NcBY709/iqtv-unified-white.png" alt="IQ TV Logo">
+
+<a href="#" class="brand-logo">
+    <img
+        src="https://i.ibb.co/NcBY709/iqtv-unified-white.png"
+        alt="IQ TV">
+</a>
+
+<div class="header-actions">
+
+    <div class="online-counter">
+        <i class="fa-solid fa-eye"></i>
+        <span id="onlineCount">0</span>
+    </div>
+
+    <div class="status-pill">
+        <span class="pulse-dot"></span>
+        بث مباشر
+    </div>
+
+    <a
+        href="https://t.me/ManasaIq"
+        target="_blank"
+        class="download-btn-header">
+
+        <i class="fa-solid fa-download"></i>
+        تحميل التطبيق
+
     </a>
 
-    <div class="header-actions">
-        <!-- عداد المتواجدين -->
-        <div class="online-counter" title="عدد المتواجدين حالياً">
-            <i class="fa-solid fa-eye"></i>
-            <span id="onlineCount">0</span>
-        </div>
+</div>
 
-        <div class="status-pill">
-            <div class="pulse-dot"></div>
-            بث مباشر
-        </div>
-
-        <a href="https://t.me/ManasaIq" target="_blank" class="download-btn-header">
-            <i class="fa-solid fa-download"></i>
-            تحميل التطبيق
-        </a>
-    </div>
 </header>
 
-<!-- MAIN -->
+
 <main class="container">
-    <div class="toolbar">
-        <div class="tabs-group">
-            <button class="tab-btn active" onclick="switchTab('all', this)">
-                <i class="fa-solid fa-border-all"></i>
-                الكل
-            </button>
-            <button class="tab-btn" onclick="switchTab('fav', this)">
-                <i class="fa-solid fa-star"></i>
-                المفضلة
-            </button>
-        </div>
 
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="ابحث عن قناة..." onkeyup="filterChannelsQuery()">
-        </div>
-    </div>
+<div class="toolbar">
 
-    <!-- CHANNELS -->
-    <div class="channels-grid" id="channelsContainer">
+    <div class="tabs-group">
 
-        <div class="channel-card" data-id="1424" data-name="bein sports 1 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1424" data-title="beIN SPORTS 1 HD">
-            <button class="fav-btn" onclick="toggleFavorite(event, '1424')">
-                <i class="fa-regular fa-star"></i>
-            </button>
-            <div class="logo-container" onclick="openPlayer('1424')">
-                <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS1_DIGITAL_Mono.png" alt="beIN 1">
-            </div>
-            <div class="channel-title" onclick="openPlayer('1424')">
-                beIN SPORTS 1 HD
-            </div>
-        </div>
+        <button
+            class="tab-btn active"
+            onclick="switchTab('all',this)">
 
-        <div class="channel-card" data-id="1425" data-name="bein sports 2 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1425" data-title="beIN SPORTS 2 HD">
-            <button class="fav-btn" onclick="toggleFavorite(event, '1425')">
-                <i class="fa-regular fa-star"></i>
-            </button>
-            <div class="logo-container" onclick="openPlayer('1425')">
-                <img src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS2_DIGITAL_Mono.png" alt="beIN 2">
-            </div>
-            <div class="channel-title" onclick="openPlayer('1425')">
-                beIN SPORTS 2 HD
-            </div>
-        </div>
+            <i class="fa-solid fa-border-all"></i>
+            الكل
 
-        <div class="channel-card" data-id="1426" data-name="bein sports 3 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1426" data-title="beIN SPORTS 3 HD">
-            <button class="fav-btn" onclick="toggleFavorite(event, '1426')">
-                <i class="fa-regular fa-star"></i>
-            </button>
-            <div class="logo-container" onclick="openPlayer('1426')">
-                <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS3_DIGITAL_Mono.png" alt="beIN 3">
-            </div>
-            <div class="channel-title" onclick="openPlayer('1426')">
-                beIN SPORTS 3 HD
-            </div>
-        </div>
+        </button>
 
-        <div class="channel-card" data-id="1427" data-name="bein sports 4 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1427" data-title="beIN SPORTS 4 HD">
-            <button class="fav-btn" onclick="toggleFavorite(event, '1427')">
-                <i class="fa-regular fa-star"></i>
-            </button>
-            <div class="logo-container" onclick="openPlayer('1427')">
-                <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS4_DIGITAL_Mono.png" alt="beIN 4">
-            </div>
-            <div class="channel-title" onclick="openPlayer('1427')">
-                beIN SPORTS 4 HD
-            </div>
-        </div>
+        <button
+            class="tab-btn"
+            onclick="switchTab('fav',this)">
 
-        <div class="channel-card" data-id="1428" data-name="bein sports 5 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1428" data-title="beIN SPORTS 5 HD">
-            <button class="fav-btn" onclick="toggleFavorite(event, '1428')">
-                <i class="fa-regular fa-star"></i>
-            </button>
-            <div class="logo-container" onclick="openPlayer('1428')">
-                <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS5_DIGITAL_Mono.png" alt="beIN 5">
-            </div>
-            <div class="channel-title" onclick="openPlayer('1428')">
-                beIN SPORTS 5 HD
-            </div>
-        </div>
+            <i class="fa-solid fa-star"></i>
+            المفضلة
 
-        <div class="channel-card" data-id="1429" data-name="bein sports 6 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1429" data-title="beIN SPORTS 6 HD">
-            <button class="fav-btn" onclick="toggleFavorite(event, '1429')">
-                <i class="fa-regular fa-star"></i>
-            </button>
-            <div class="logo-container" onclick="openPlayer('1429')">
-                <img src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS6_DIGITAL_Mono.png" alt="beIN 6">
-            </div>
-            <div class="channel-title" onclick="openPlayer('1429')">
-                beIN SPORTS 6 HD
-            </div>
-        </div>
-
-        <div class="channel-card" data-id="1430" data-name="bein sports 7 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1430" data-title="beIN SPORTS 7 HD">
-            <button class="fav-btn" onclick="toggleFavorite(event, '1430')">
-                <i class="fa-regular fa-star"></i>
-            </button>
-            <div class="logo-container" onclick="openPlayer('1430')">
-                <img src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS7_DIGITAL_Mono.png" alt="beIN 7">
-            </div>
-            <div class="channel-title" onclick="openPlayer('1430')">
-                beIN SPORTS 7 HD
-            </div>
-        </div>
-
-        <div class="channel-card" data-id="1431" data-name="bein sports 8 hd" data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1431" data-title="beIN SPORTS 8 HD">
-            <button class="fav-btn" onclick="toggleFavorite(event, '1431')">
-                <i class="fa-regular fa-star"></i>
-            </button>
-            <div class="logo-container" onclick="openPlayer('1431')">
-                <img src="https://assets.bein.com/mena/sites/4/2023/09/logos-_beINSPORTS8.png" alt="beIN 8">
-            </div>
-            <div class="channel-title" onclick="openPlayer('1431')">
-                beIN SPORTS 8 HD
-            </div>
-        </div>
-
-        <!-- بطاقة الرسالة عند عدم وجود قنوات مطابقة -->
-        <div class="no-results-card" id="noResultsMsg">
-            <div class="no-results-icon-wrapper">
-                <i class="fa-solid fa-tv"></i>
-            </div>
-            <div class="no-results-title">القناة غير موجودة</div>
-            <div class="no-results-desc">
-                لم نتمكن من العثور على أي قناة تطابق كلمة البحث الحالية، تأكد من كتابة الاسم بأسلوب صحيح.
-            </div>
-            <button class="reset-search-btn" onclick="clearSearchQuery()">
-                <i class="fa-solid fa-rotate-left"></i>
-                عرض جميع القنوات
-            </button>
-        </div>
+        </button>
 
     </div>
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="ابحث عن قناة..."
+            autocomplete="off"
+            oninput="filterChannelsQuery()">
+
+    </div>
+
+</div>
+
+
+<div class="channels-grid" id="channelsContainer">
+
+<!-- =====================================================
+     BEIN
+===================================================== -->
+
+<div class="channel-card"
+     data-id="1424"
+     data-name="bein sports 1 hd"
+     data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1424"
+     data-title="beIN SPORTS 1 HD"
+     data-engine="clappr">
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'1424')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('1424')">
+
+        <img
+            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS1_DIGITAL_Mono.png"
+            alt="beIN 1">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('1424')">
+
+        beIN SPORTS 1 HD
+
+    </div>
+
+</div>
+
+
+<div class="channel-card"
+     data-id="1425"
+     data-name="bein sports 2 hd"
+     data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1425"
+     data-title="beIN SPORTS 2 HD"
+     data-engine="clappr">
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'1425')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('1425')">
+
+        <img
+            src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS2_DIGITAL_Mono.png"
+            alt="beIN 2">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('1425')">
+
+        beIN SPORTS 2 HD
+
+    </div>
+
+</div>
+
+
+<div class="channel-card"
+     data-id="1426"
+     data-name="bein sports 3 hd"
+     data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1426"
+     data-title="beIN SPORTS 3 HD"
+     data-engine="clappr">
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'1426')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('1426')">
+
+        <img
+            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS3_DIGITAL_Mono.png"
+            alt="beIN 3">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('1426')">
+
+        beIN SPORTS 3 HD
+
+    </div>
+
+</div>
+
+
+<div class="channel-card"
+     data-id="1427"
+     data-name="bein sports 4 hd"
+     data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1427"
+     data-title="beIN SPORTS 4 HD"
+     data-engine="clappr">
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'1427')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('1427')">
+
+        <img
+            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS4_DIGITAL_Mono.png"
+            alt="beIN 4">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('1427')">
+
+        beIN SPORTS 4 HD
+
+    </div>
+
+</div>
+
+
+<div class="channel-card"
+     data-id="1428"
+     data-name="bein sports 5 hd"
+     data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1428"
+     data-title="beIN SPORTS 5 HD"
+     data-engine="clappr">
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'1428')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('1428')">
+
+        <img
+            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS5_DIGITAL_Mono.png"
+            alt="beIN 5">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('1428')">
+
+        beIN SPORTS 5 HD
+
+    </div>
+
+</div>
+
+
+<div class="channel-card"
+     data-id="1429"
+     data-name="bein sports 6 hd"
+     data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1429"
+     data-title="beIN SPORTS 6 HD"
+     data-engine="clappr">
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'1429')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('1429')">
+
+        <img
+            src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS6_DIGITAL_Mono.png"
+            alt="beIN 6">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('1429')">
+
+        beIN SPORTS 6 HD
+
+    </div>
+
+</div>
+
+
+<div class="channel-card"
+     data-id="1430"
+     data-name="bein sports 7 hd"
+     data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1430"
+     data-title="beIN SPORTS 7 HD"
+     data-engine="clappr">
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'1430')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('1430')">
+
+        <img
+            src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS7_DIGITAL_Mono.png"
+            alt="beIN 7">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('1430')">
+
+        beIN SPORTS 7 HD
+
+    </div>
+
+</div>
+
+
+<div class="channel-card"
+     data-id="1431"
+     data-name="bein sports 8 hd"
+     data-url="https://iqtv-proxy.aaa317198.workers.dev/api/channel/1431"
+     data-title="beIN SPORTS 8 HD"
+     data-engine="clappr">
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'1431')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('1431')">
+
+        <img
+            src="https://assets.bein.com/mena/sites/4/2023/09/logos-_beINSPORTS8.png"
+            alt="beIN 8">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('1431')">
+
+        beIN SPORTS 8 HD
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     STARZPLAY
+===================================================== -->
+
+<div class="channel-card"
+     data-id="starzplay1"
+     data-name="starzplay 1 starz play 1"
+     data-title="STARZPLAY 1"
+     data-engine="shaka">
+
+    <span class="engine-badge">AUTO</span>
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'starzplay1')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('starzplay1')">
+
+        <img
+            src="https://i.ibb.co/hJvj0w4W/STARZPLAYSPORTS01-Y2025-M-title-logo-en.png"
+            alt="STARZPLAY 1">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('starzplay1')">
+
+        STARZPLAY 1
+
+    </div>
+
+</div>
+
+
+<div class="channel-card"
+     data-id="starzplay2"
+     data-name="starzplay 2 starz play 2"
+     data-title="STARZPLAY 2"
+     data-engine="shaka">
+
+    <span class="engine-badge">AUTO</span>
+
+    <button class="fav-btn"
+            onclick="toggleFavorite(event,'starzplay2')">
+
+        <i class="fa-regular fa-star"></i>
+
+    </button>
+
+    <div class="logo-container"
+         onclick="openPlayer('starzplay2')">
+
+        <img
+            src="https://i.ibb.co/JwfbhDFr/STARZPLAYSPORT02-AVODY2025-M-title-logo-en.png"
+            alt="STARZPLAY 2">
+
+    </div>
+
+    <div class="channel-title"
+         onclick="openPlayer('starzplay2')">
+
+        STARZPLAY 2
+
+    </div>
+
+</div>
+
+
+<div class="no-results-card" id="noResultsMsg">
+
+    <div class="no-results-icon-wrapper">
+        <i class="fa-solid fa-tv"></i>
+    </div>
+
+    <div class="no-results-title">
+        القناة غير موجودة
+    </div>
+
+    <div class="no-results-desc">
+        لم نتمكن من العثور على أي قناة تطابق كلمة البحث الحالية.
+    </div>
+
+    <button
+        class="reset-search-btn"
+        onclick="clearSearchQuery()">
+
+        <i class="fa-solid fa-rotate-left"></i>
+        عرض جميع القنوات
+
+    </button>
+
+</div>
+
+</div>
+
 </main>
 
-<!-- PLAYER -->
+
+<!-- =====================================================
+     PLAYER MODAL
+===================================================== -->
+
 <div class="player-modal" id="playerModal">
-    <div class="modal-header">
-        <div class="channel-meta">
-            <i class="fa-solid fa-tv" style="color:var(--primary)"></i>
-            <h3 id="modalChannelTitle">جاري تحميل البث...</h3>
-        </div>
-        <button class="close-player-btn" onclick="closePlayer()">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
+
+<div class="modal-header">
+
+    <div class="channel-meta">
+
+        <i class="fa-solid fa-tv"></i>
+
+        <h3 id="modalChannelTitle">
+            جاري تحميل البث...
+        </h3>
+
     </div>
 
-    <div class="modal-body">
-        <div class="video-box">
-            <div id="player"></div>
-        </div>
-    </div>
+    <button
+        class="close-player-btn"
+        onclick="closePlayer()">
 
-    <div class="floating-controls">
-        <button class="control-btn" onclick="navigateChannel('prev')">
-            <i class="fa-solid fa-chevron-right"></i>
-            السابقة
-        </button>
-        <button class="control-btn" onclick="reloadActiveStream()">
-            <i class="fa-solid fa-rotate-right"></i>
-            تحديث
-        </button>
-        <button class="control-btn" onclick="navigateChannel('next')">
-            التالية
-            <i class="fa-solid fa-chevron-left"></i>
-        </button>
-    </div>
+        <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
 </div>
+
+
+<div class="modal-body">
+
+<div class="video-box">
+
+    <!-- CLAPPR -->
+
+    <div id="player"></div>
+
+
+    <!-- SHAKA -->
+
+    <div
+        class="shaka-stage"
+        id="shakaStage">
+
+        <video
+            id="shakaVideo"
+            playsinline
+            webkit-playsinline
+            preload="auto">
+        </video>
+
+
+        <div
+            class="shaka-loading"
+            id="shakaLoading">
+
+            <div class="loader-container">
+                <div class="loader-ring"></div>
+            </div>
+
+        </div>
+
+
+        <div
+            class="shaka-error"
+            id="shakaError">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            <span id="shakaErrorText">
+                تعذر تشغيل البث
+            </span>
+
+        </div>
+
+
+        <!-- CONTROLS -->
+
+        <div
+            class="custom-controls"
+            id="customControls">
+
+            <div
+                class="progress-row"
+                id="progressRow">
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-buffer"
+                        id="progressBuffer">
+                    </div>
+
+                    <div
+                        class="progress-value"
+                        id="progressValue">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="controls-line">
+
+                <div class="controls-left">
+
+                    <button
+                        class="custom-btn"
+                        id="shakaPlayBtn">
+
+                        <i class="fa-solid fa-play"></i>
+
+                    </button>
+
+
+                    <button
+                        class="custom-btn"
+                        id="shakaMuteBtn">
+
+                        <i class="fa-solid fa-volume-high"></i>
+
+                    </button>
+
+
+                    <span
+                        class="time-label"
+                        id="shakaTime">
+
+                        LIVE
+
+                    </span>
+
+                </div>
+
+
+                <div class="controls-right">
+
+                    <span class="live-label">
+                        LIVE
+                    </span>
+
+
+                    <div class="quality-wrapper">
+
+                        <button
+                            class="custom-btn"
+                            id="qualityBtn">
+
+                            <i class="fa-solid fa-gear"></i>
+
+                        </button>
+
+
+                        <div
+                            class="quality-menu"
+                            id="qualityMenu">
+
+                            <div class="quality-title">
+                                جودة البث
+                            </div>
+
+                            <div id="qualityOptions"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="custom-btn"
+                        id="shakaFullscreenBtn">
+
+                        <i class="fa-solid fa-expand"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="floating-controls">
+
+    <button
+        class="control-btn"
+        onclick="navigateChannel('prev')">
+
+        <i class="fa-solid fa-chevron-right"></i>
+        السابقة
+
+    </button>
+
+
+    <button
+        class="control-btn"
+        onclick="reloadActiveStream()">
+
+        <i class="fa-solid fa-rotate-right"></i>
+        تحديث
+
+    </button>
+
+
+    <a
+        class="control-btn star-download"
+        id="starDownloadBtn"
+        target="_blank"
+        download>
+
+        <i class="fa-solid fa-download"></i>
+        تحميل
+
+    </a>
+
+
+    <button
+        class="control-btn"
+        onclick="navigateChannel('next')">
+
+        التالية
+        <i class="fa-solid fa-chevron-left"></i>
+
+    </button>
+
+</div>
+
+</div>
+
 
 <footer>
     <p>© 2026 IQ TV</p>
 </footer>
 
+
+<!-- PLAYERS -->
+
 <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-import { getDatabase, ref, set, onDisconnect, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
-import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+<script src="https://cdn.jsdelivr.net/npm/shaka-player@latest/dist/shaka-player.compiled.js"></script>
 
-/* FIREBASE CONFIG */
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    set,
+    onDisconnect,
+    onValue
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+import {
+    getAuth,
+    signInAnonymously
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
 const firebaseConfig = {
-    apiKey: "AIzaSyBwYHvkx-z6IY8IWsnUHixnief4jDrXBXw",
-    authDomain: "iq-tv7.firebaseapp.com",
-    databaseURL: "https://iq-tv7-default-rtdb.firebaseio.com",
-    projectId: "iq-tv7",
-    storageBucket: "iq-tv7.firebasestorage.app",
-    messagingSenderId: "5879444615",
-    appId: "1:5879444615:web:572fbeb41b5f39f85bf422",
-    measurementId: "G-82BR15HG15"
+
+    apiKey:
+        "AIzaSyBwYHvkx-z6IY8IWsnUHixnief4jDrXBXw",
+
+    authDomain:
+        "iq-tv7.firebaseapp.com",
+
+    databaseURL:
+        "https://iq-tv7-default-rtdb.firebaseio.com",
+
+    projectId:
+        "iq-tv7",
+
+    storageBucket:
+        "iq-tv7.firebasestorage.app",
+
+    messagingSenderId:
+        "5879444615",
+
+    appId:
+        "1:5879444615:web:572fbeb41b5f39f85bf422",
+
+    measurementId:
+        "G-82BR15HG15"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const auth = getAuth(app);
+const app =
+    initializeApp(firebaseConfig);
 
-/* PRESENCE & ONLINE COUNTER (ACCURATE REALTIME PRESENCE) */
-const onlineUsersRef = ref(db, "onlineUsers");
-const onlineCountElement = document.getElementById("onlineCount");
+const db =
+    getDatabase(app);
 
-function updateOnlineCounter(count) {
-    if (!onlineCountElement) return;
-    const safeCount = Math.max(0, count);
-    onlineCountElement.textContent = safeCount.toString();
-    onlineCountElement.style.transform = "scale(1.15)";
+const auth =
+    getAuth(app);
 
-    setTimeout(() => {
-        if (onlineCountElement) {
-            onlineCountElement.style.transform = "scale(1)";
-        }
-    }, 150);
+const onlineUsersRef =
+    ref(db,"onlineUsers");
+
+const onlineCountElement =
+    document.getElementById("onlineCount");
+
+
+function updateOnlineCounter(count){
+
+    if(!onlineCountElement)
+        return;
+
+    onlineCountElement.textContent =
+        String(Math.max(0,count));
+
+    onlineCountElement.style.transform =
+        "scale(1.15)";
+
+    setTimeout(()=>{
+
+        onlineCountElement.style.transform =
+            "scale(1)";
+
+    },150);
 }
 
-/* الاستماع المباشر والدقيق لعدد المستخدين النشطين مع استبعاد الجلسات القديمة */
-onValue(onlineUsersRef, (snapshot) => {
-    if (snapshot.exists()) {
-        const now = Date.now();
+
+onValue(
+    onlineUsersRef,
+    snapshot=>{
+
+        if(!snapshot.exists()){
+
+            updateOnlineCounter(0);
+            return;
+
+        }
+
+        const now =
+            Date.now();
+
         let activeCount = 0;
 
-        snapshot.forEach((childSnapshot) => {
-            const userData = childSnapshot.val();
-            // احتساب المستخدم فقط إذا أرسل تحديثاً خلال آخر دقيقتين (120,000 مللي ثانية)
-            if (userData && userData.lastSeen && (now - userData.lastSeen < 120000)) {
+        snapshot.forEach(child=>{
+
+            const data =
+                child.val();
+
+            if(
+                data &&
+                data.lastSeen &&
+                now - data.lastSeen < 120000
+            ){
+
                 activeCount++;
+
             }
+
         });
 
         updateOnlineCounter(activeCount);
-    } else {
-        updateOnlineCounter(0);
+
     }
-});
+);
 
-/* بدء PRESENCE مع .info/connected */
-async function startPresence() {
-    try {
-        const userCredential = await signInAnonymously(auth);
-        const uid = userCredential.user.uid;
 
-        const connectedRef = ref(db, ".info/connected");
-        const myPresenceRef = ref(db, `onlineUsers/${uid}`);
+async function startPresence(){
 
-        onValue(connectedRef, (snap) => {
-            if (snap.val() === true) {
-                // عند الانقطاع أو إغلاق المتصفح: حذف العقدة فوراً من الخادم
-                onDisconnect(myPresenceRef).remove();
+    try{
 
-                // تسجيل وقت الدخول والنشاط الحالي
-                set(myPresenceRef, {
-                    connectedAt: Date.now(),
-                    lastSeen: Date.now()
-                });
+        const credential =
+            await signInAnonymously(auth);
 
-                // إرسال "نبضة" تحديث كل دقيقة لضمان احتساب الجلسة كمشاهد نشط
-                setInterval(() => {
-                    set(myPresenceRef, {
-                        connectedAt: Date.now(),
-                        lastSeen: Date.now()
-                    });
-                }, 60000);
+        const uid =
+            credential.user.uid;
+
+        const connectedRef =
+            ref(db,".info/connected");
+
+        const myPresenceRef =
+            ref(db,`onlineUsers/${uid}`);
+
+        onValue(
+            connectedRef,
+            snap=>{
+
+                if(snap.val() !== true)
+                    return;
+
+                onDisconnect(
+                    myPresenceRef
+                ).remove();
+
+                set(
+                    myPresenceRef,
+                    {
+                        connectedAt:Date.now(),
+                        lastSeen:Date.now()
+                    }
+                );
+
             }
-        });
+        );
 
-        console.log("IQ TV Accurate Presence Started for:", uid);
-    } catch (error) {
-        console.error("Firebase Presence Error:", error);
-        if (onlineCountElement) {
-            onlineCountElement.textContent = "1";
-        }
+        setInterval(()=>{
+
+            set(
+                myPresenceRef,
+                {
+                    connectedAt:Date.now(),
+                    lastSeen:Date.now()
+                }
+            );
+
+        },60000);
+
+    }catch(error){
+
+        console.error(
+            "Firebase Presence:",
+            error
+        );
+
+        if(onlineCountElement)
+            onlineCountElement.textContent="1";
+
     }
+
 }
 
 startPresence();
 
-/* حماية بسيطة */
-document.addEventListener("contextmenu", event => event.preventDefault());
 
-document.addEventListener("keydown", event => {
-    if (
-        event.key === "F12" ||
-        (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) ||
-        (event.ctrlKey && event.key === "U")
-    ) {
-        event.preventDefault();
-        return false;
+/* =========================================================
+   PROTECTION
+========================================================= */
+
+document.addEventListener(
+    "contextmenu",
+    e=>e.preventDefault()
+);
+
+document.addEventListener(
+    "keydown",
+    e=>{
+
+        if(
+            e.key==="F12" ||
+            (
+                e.ctrlKey &&
+                e.shiftKey &&
+                ["I","J","C"].includes(
+                    e.key.toUpperCase()
+                )
+            ) ||
+            (
+                e.ctrlKey &&
+                e.key.toUpperCase()==="U"
+            )
+        ){
+
+            e.preventDefault();
+            return false;
+
+        }
+
+        if(e.key==="Escape"){
+
+            const modal =
+                document.getElementById(
+                    "playerModal"
+                );
+
+            if(
+                modal &&
+                modal.classList.contains("open")
+            ){
+
+                closePlayer();
+
+            }
+
+        }
+
     }
+);
 
-    if (event.key === "Escape") {
-        closePlayer();
-    }
-});
 
-/* PLAYER & LOGIC */
-let player = null;
+/* =========================================================
+   PLAYER STATE
+========================================================= */
+
+let clapprPlayer = null;
+
+let shakaPlayer = null;
+
+let shakaReady = false;
+
 let currentChannelId = null;
-let currentTab = "all";
-let favorites = JSON.parse(localStorage.getItem("iq_tv_favs")) || [];
 
-window.onload = () => {
-    updateFavoritesUI();
-    setupFullscreenOrientation();
+let currentTab = "all";
+
+let controlTimer = null;
+
+let controlTouchTimer = null;
+
+let isOpening = false;
+
+let touchStartTime = 0;
+
+let touchMoved = false;
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem(
+            "iq_tv_favs"
+        ) || "[]"
+    );
+
+
+/* =========================================================
+   STARZPLAY CONFIG
+========================================================= */
+
+const STARZPLAY_CONFIG = {
+
+    starzplay1:{
+
+        mpd:
+        "https://sps1.starzplayarabia.com/out/v1/eee188845e9543699fd24e5a9890c6e2/index.mpd",
+
+        kid:
+        "b253c726c24c7c94a3ddf9b1907e2c76",
+
+        key:
+        "097963d6ad73c3d712a104981de0ed42",
+
+        download:
+        "ضع_رابط_التحميل_هنا"
+
+    },
+
+    starzplay2:{
+
+        mpd:
+        "https://sps2.starzplayarabia.com/out/v1/15e7d1ffb99746dda03f71dbbbc3c08b/index.mpd",
+
+        kid:
+      "ee861edcd99093153a763a94b14c2c5a",
+
+        key:
+   "ab3991f6a7729ba1ea4bcdba0c1ae6c0" ,
+
+        download:
+        "ضع_رابط_التحميل_هنا"
+
+    }
+
 };
 
-const channelCards = Array.from(document.querySelectorAll(".channel-card"));
 
-async function openPlayer(channelId) {
-    currentChannelId = channelId;
-    const card = document.querySelector(`.channel-card[data-id="${channelId}"]`);
-    if (!card) return;
+/* =========================================================
+   DOM
+========================================================= */
 
-    const apiUrl = card.getAttribute("data-url");
-    const title = card.getAttribute("data-title");
-    const modal = document.getElementById("playerModal");
-    const modalTitle = document.getElementById("modalChannelTitle");
+const channelCards =
+    Array.from(
+        document.querySelectorAll(
+            ".channel-card"
+        )
+    );
 
-    modalTitle.innerText = `${title} (جاري الاتصال...)`;
+
+const modal =
+    document.getElementById(
+        "playerModal"
+    );
+
+const modalTitle =
+    document.getElementById(
+        "modalChannelTitle"
+    );
+
+const shakaStage =
+    document.getElementById(
+        "shakaStage"
+    );
+
+const shakaVideo =
+    document.getElementById(
+        "shakaVideo"
+    );
+
+const shakaLoading =
+    document.getElementById(
+        "shakaLoading"
+    );
+
+const shakaError =
+    document.getElementById(
+        "shakaError"
+    );
+
+const shakaErrorText =
+    document.getElementById(
+        "shakaErrorText"
+    );
+
+
+/* =========================================================
+   OPEN PLAYER
+========================================================= */
+
+async function openPlayer(channelId){
+
+    const card =
+        document.querySelector(
+            `.channel-card[data-id="${channelId}"]`
+        );
+
+    if(!card)
+        return;
+
+    const title =
+        card.dataset.title || "";
+
+    const engine =
+        card.dataset.engine || "";
+
+    currentChannelId =
+        channelId;
+
+    isOpening = true;
+
+    modalTitle.textContent =
+        `${title} (جاري الاتصال...)`;
+
     modal.classList.add("open");
 
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
+    closeQualityMenu();
 
-        if (data && data.data && data.data.length > 0 && data.data[0].url) {
-            const rawUrl = data.data[0].url;
-            const proxyUrl = "https://iqtv-proxy.aaa317198.workers.dev?stream=" + encodeURIComponent(rawUrl);
+    clearTimeout(controlTimer);
+    clearTimeout(controlTouchTimer);
 
-            modalTitle.innerText = title;
 
-            if (player) {
-                player.destroy();
-                player = null;
-            }
+    /* CLEAN */
 
-            player = new Clappr.Player({
-                source: proxyUrl,
-                mimeType: "application/x-mpegURL",
-                parentId: "#player",
-                width: "100%",
-                height: "100%",
-                autoPlay: true,
-                playback: {
-                    playInline: true,
-                    hlsjsConfig: {
-                        maxMaxBufferLength: 25,
-                        fragLoadingTimeOut: 45000,
-                        manifestLoadingTimeOut: 45000,
-                        fragLoadingMaxRetry: 10
+    destroyClappr();
+
+    await destroyShaka();
+
+    hideShaka();
+
+    const download =
+        document.getElementById(
+            "starDownloadBtn"
+        );
+
+    download.style.display="none";
+
+
+    /* ENGINE */
+
+    if(engine==="clappr"){
+
+        await openClappr(card);
+
+    }else if(engine==="shaka"){
+
+        await openShaka(
+            channelId,
+            title
+        );
+
+    }
+
+    isOpening = false;
+
+}
+
+
+/* =========================================================
+   CLAPPR
+========================================================= */
+
+async function openClappr(card){
+
+    const apiUrl =
+        card.dataset.url;
+
+    const title =
+        card.dataset.title;
+
+    try{
+
+        const response =
+            await fetch(
+                apiUrl,
+                {
+                    cache:"no-store"
+                }
+            );
+
+        if(!response.ok)
+            throw new Error(
+                "API HTTP "+response.status
+            );
+
+        const data =
+            await response.json();
+
+        if(
+            !data ||
+            !data.data ||
+            !data.data.length ||
+            !data.data[0].url
+        ){
+
+            modalTitle.textContent =
+                `${title} (البث غير متوفر حالياً)`;
+
+            return;
+
+        }
+
+        const rawUrl =
+            data.data[0].url;
+
+        const proxyUrl =
+            "https://iqtv-proxy.aaa317198.workers.dev?stream="+
+            encodeURIComponent(rawUrl);
+
+
+        clapprPlayer =
+            new Clappr.Player({
+
+                source:proxyUrl,
+
+                mimeType:
+                    "application/x-mpegURL",
+
+                parentId:"#player",
+
+                width:"100%",
+
+                height:"100%",
+
+                autoPlay:true,
+
+                mute:false,
+
+                playback:{
+
+                    playInline:true,
+
+                    hlsjsConfig:{
+
+                        lowLatencyMode:false,
+
+                        backBufferLength:30,
+
+                        maxBufferLength:20,
+
+                        maxMaxBufferLength:30,
+
+                        fragLoadingTimeOut:30000,
+
+                        manifestLoadingTimeOut:30000,
+
+                        fragLoadingMaxRetry:5,
+
+                        manifestLoadingMaxRetry:5
+
                     }
+
                 }
+
             });
-        } else {
-            modalTitle.innerText = `${title} (البث غير متوفر حالياً)`;
-        }
-    } catch (err) {
-        console.error(err);
-        modalTitle.innerText = `${title} (خطأ في الاتصال)`;
+
+        modalTitle.textContent =
+            title;
+
+    }catch(error){
+
+        console.error(
+            "Clappr:",
+            error
+        );
+
+        modalTitle.textContent =
+            `${title} (خطأ في الاتصال)`;
+
     }
+
 }
 
-function setupFullscreenOrientation() {
-    const handleFullscreenChange = async () => {
-        const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
-        if (isFullscreen) {
-            if (screen.orientation && screen.orientation.lock) {
-                try {
-                    await screen.orientation.lock("landscape");
-                } catch (err) {
-                    console.log("تعذر قفل الاتجاه الأفقي:", err);
+
+/* =========================================================
+   DESTROY CLAPPR
+========================================================= */
+
+function destroyClappr(){
+
+    if(clapprPlayer){
+
+        try{
+
+            clapprPlayer.stop();
+
+        }catch(e){}
+
+        try{
+
+            clapprPlayer.destroy();
+
+        }catch(e){}
+
+        clapprPlayer=null;
+
+    }
+
+    const container =
+        document.getElementById(
+            "player"
+        );
+
+    if(container)
+        container.innerHTML="";
+
+}
+
+
+/* =========================================================
+   SHAKA INITIALIZATION
+========================================================= */
+
+async function createShaka(){
+
+    if(shakaPlayer)
+        return shakaPlayer;
+
+    shaka.polyfill.installAll();
+
+    if(
+        !shaka.Player.isBrowserSupported()
+    ){
+
+        throw new Error(
+            "المتصفح لا يدعم Shaka Player"
+        );
+
+    }
+
+
+    shakaPlayer =
+        new shaka.Player(
+            shakaVideo
+        );
+
+
+    shakaPlayer.addEventListener(
+        "error",
+        onShakaError
+    );
+
+
+    shakaPlayer.addEventListener(
+        "buffering",
+        event=>{
+
+            if(event.buffering){
+
+                showLoader();
+
+            }else{
+
+                hideLoader();
+
+            }
+
+        }
+    );
+
+
+    shakaPlayer.configure({
+
+        streaming:{
+
+            bufferingGoal:18,
+
+            rebufferingGoal:2,
+
+            bufferBehind:30,
+
+            lowLatencyMode:false,
+
+            stallEnabled:true,
+
+            stallThreshold:1.5,
+
+            retryParameters:{
+
+                timeout:15000,
+
+                maxAttempts:4,
+
+                baseDelay:400,
+
+                backoffFactor:1.4,
+
+                fuzzFactor:.4
+
+            }
+
+        },
+
+        abr:{
+
+            enabled:true,
+
+            defaultBandwidthEstimate:
+                2500000,
+
+            switchInterval:4,
+
+            bandwidthUpgradeTarget:.85,
+
+            bandwidthDowngradeTarget:.95
+
+        },
+
+        manifest:{
+
+            retryParameters:{
+
+                timeout:15000,
+
+                maxAttempts:4,
+
+                baseDelay:400,
+
+                backoffFactor:1.4,
+
+                fuzzFactor:.4
+
+            }
+
+        },
+
+        drm:{
+
+            retryParameters:{
+
+                timeout:10000,
+
+                maxAttempts:3,
+
+                baseDelay:500,
+
+                backoffFactor:1.5,
+
+                fuzzFactor:.4
+
+            }
+
+        }
+
+    });
+
+
+    shakaReady=true;
+
+    return shakaPlayer;
+
+}
+
+
+/* =========================================================
+   OPEN SHAKA
+========================================================= */
+
+async function openShaka(
+    channelId,
+    title
+){
+
+    shakaStage.classList.add(
+        "active"
+    );
+
+    hideError();
+    showLoader();
+
+    modalTitle.textContent =
+        `${title} (جاري تشغيل البث...)`;
+
+
+    const config =
+        STARZPLAY_CONFIG[channelId];
+
+    const download =
+        document.getElementById(
+            "starDownloadBtn"
+        );
+
+
+    if(
+        config &&
+        config.download &&
+        !config.download.includes("ضع_")
+    ){
+
+        download.href =
+            config.download;
+
+        download.style.display =
+            "flex";
+
+    }else{
+
+        download.style.display =
+            "none";
+
+    }
+
+
+    if(
+        !config ||
+        !config.mpd ||
+        config.mpd.includes("ضع_") ||
+        !config.kid ||
+        config.kid.includes("ضع_") ||
+        !config.key ||
+        config.key.includes("ضع_")
+    ){
+
+        hideLoader();
+
+        showError(
+            "أضف رابط MPD و KID و KEY للقناة أولاً"
+        );
+
+        modalTitle.textContent =
+            `${title} (البيانات غير مكتملة)`;
+
+        return;
+
+    }
+
+
+    try{
+
+        const player =
+            await createShaka();
+
+
+        const kid =
+            normalizeHex(
+                config.kid
+            );
+
+        const key =
+            normalizeHex(
+                config.key
+            );
+
+
+        if(
+            kid.length!==32 ||
+            key.length!==32
+        ){
+
+            throw new Error(
+                "صيغة KID أو KEY غير صحيحة"
+            );
+
+        }
+
+
+        /*
+         * مهم:
+         * مسح إعداد ClearKey القديم
+         * ثم وضع إعداد القناة الحالية.
+         */
+
+        player.configure({
+
+            drm:{
+
+                clearKeys:{
+
+                    [kid]:key
+
                 }
+
             }
-        } else {
-            if (screen.orientation && screen.orientation.unlock) {
-                screen.orientation.unlock();
-            }
+
+        });
+
+
+        /*
+         * إعادة ضبط الفيديو
+         */
+
+        shakaVideo.pause();
+
+        shakaVideo.removeAttribute(
+            "src"
+        );
+
+
+        /*
+         * تحميل MPD
+         */
+
+        await player.load(
+            config.mpd
+        );
+
+
+        if(
+            currentChannelId !== channelId
+        ){
+
+            return;
+
         }
-    };
 
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
-}
 
-function closePlayer() {
-    const modal = document.getElementById("playerModal");
-    modal.classList.remove("open");
+        modalTitle.textContent =
+            title;
 
-    if (player) {
-        player.destroy();
-        player = null;
+
+        buildQualityMenu();
+
+
+        /*
+         * إعداد الصوت
+         */
+
+        shakaVideo.muted=false;
+
+        if(
+            shakaVideo.volume<=0
+        ){
+
+            shakaVideo.volume=.9;
+
+        }
+
+
+        /*
+         * التشغيل
+         */
+
+        try{
+
+            await shakaVideo.play();
+
+        }catch(playError){
+
+            /*
+             * بعض الهواتف تمنع autoplay
+             * لذلك لا نعتبره خطأ في البث.
+             */
+
+            console.log(
+                "Autoplay blocked:",
+                playError
+            );
+
+            updatePlayIcon();
+
+        }
+
+
+        hideLoader();
+
+        setupShakaControls();
+
+        showShakaControls();
+
+    }catch(error){
+
+        console.error(
+            "Shaka:",
+            error
+        );
+
+        hideLoader();
+
+        showError(
+            getShakaErrorText(error)
+        );
+
+        modalTitle.textContent =
+            `${title} (تعذر تشغيل البث)`;
+
     }
 
-    if (screen.orientation && screen.orientation.unlock) {
-        screen.orientation.unlock();
-    }
 }
 
-function navigateChannel(direction) {
-    const visibleCards = channelCards.filter(c => c.style.display !== "none");
-    if (!visibleCards.length) return;
 
-    const currentIndex = visibleCards.findIndex(c => c.getAttribute("data-id") === currentChannelId);
-    if (currentIndex === -1) return;
+/* =========================================================
+   SHAKA ERROR
+========================================================= */
+
+function onShakaError(event){
+
+    console.error(
+        "Shaka error:",
+        event.detail
+    );
+
+    if(
+        currentChannelId
+    ){
+
+        showError(
+            getShakaErrorText(
+                event.detail
+            )
+        );
+
+    }
+
+}
+
+
+function getShakaErrorText(error){
+
+    if(!error)
+        return "تعذر تشغيل البث";
+
+    const code =
+        error.code;
+
+    switch(code){
+
+        case 6001:
+            return "المتصفح لا يدعم نظام DRM المطلوب";
+
+        case 6007:
+            return "مشكلة في مفتاح التشفير KID / KEY";
+
+        case 7002:
+            return "تعذر تحميل ملف البث MPD";
+
+        case 1001:
+            return "تعذر تحميل ملف البث";
+
+        case 3016:
+            return "تعذر تشغيل المصدر المطلوب";
+
+        default:
+
+            if(error.message)
+                return error.message;
+
+            return `خطأ تشغيل (${code || "غير معروف"})`;
+
+    }
+
+}
+
+
+/* =========================================================
+   HEX
+========================================================= */
+
+function normalizeHex(value){
+
+    return String(value)
+        .trim()
+        .toLowerCase()
+        .replace(/^0x/,"")
+        .replace(/[^0-9a-f]/g,"");
+
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+function showLoader(){
+
+    shakaLoading.classList.remove(
+        "hidden"
+    );
+
+}
+
+function hideLoader(){
+
+    shakaLoading.classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function showError(message){
+
+    shakaErrorText.textContent =
+        message || "تعذر تشغيل البث";
+
+    shakaError.classList.add(
+        "show"
+    );
+
+}
+
+function hideError(){
+
+    shakaError.classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   DESTROY SHAKA
+========================================================= */
+
+async function destroyShaka(){
+
+    clearTimeout(controlTimer);
+    clearTimeout(controlTouchTimer);
+
+    closeQualityMenu();
+
+    if(shakaPlayer){
+
+        try{
+
+            shakaVideo.pause();
+
+        }catch(e){}
+
+        try{
+
+            await shakaPlayer.unload();
+
+        }catch(e){}
+
+    }
+
+    /*
+     * لا ندمر Player في كل مرة.
+     * نعيد استخدام نفس instance.
+     */
+
+    shakaVideo.pause();
+
+    shakaVideo.removeAttribute(
+        "src"
+    );
+
+    try{
+
+        shakaVideo.load();
+
+    }catch(e){}
+
+    hideLoader();
+    hideError();
+
+    shakaStage.classList.remove(
+        "controls-hidden"
+    );
+
+}
+
+
+/* =========================================================
+   HIDE SHAKA
+========================================================= */
+
+function hideShaka(){
+
+    shakaStage.classList.remove(
+        "active"
+    );
+
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+function setupShakaControls(){
+
+    const playBtn =
+        document.getElementById(
+            "shakaPlayBtn"
+        );
+
+    const muteBtn =
+        document.getElementById(
+            "shakaMuteBtn"
+        );
+
+    const fullscreenBtn =
+        document.getElementById(
+            "shakaFullscreenBtn"
+        );
+
+    const progressRow =
+        document.getElementById(
+            "progressRow"
+        );
+
+    const qualityBtn =
+        document.getElementById(
+            "qualityBtn"
+        );
+
+
+    playBtn.onclick =
+        event=>{
+
+            event.stopPropagation();
+
+            if(shakaVideo.paused){
+
+                shakaVideo
+                    .play()
+                    .catch(()=>{});
+
+            }else{
+
+                shakaVideo.pause();
+
+            }
+
+            showShakaControls();
+
+        };
+
+
+    muteBtn.onclick =
+        event=>{
+
+            event.stopPropagation();
+
+            shakaVideo.muted =
+                !shakaVideo.muted;
+
+            updateMuteIcon();
+
+            showShakaControls();
+
+        };
+
+
+    fullscreenBtn.onclick =
+        event=>{
+
+            event.stopPropagation();
+
+            toggleShakaFullscreen();
+
+        };
+
+
+    qualityBtn.onclick =
+        event=>{
+
+            event.stopPropagation();
+
+            const menu =
+                document.getElementById(
+                    "qualityMenu"
+                );
+
+            menu.classList.toggle(
+                "open"
+            );
+
+            showShakaControls();
+
+        };
+
+
+    progressRow.onpointerdown =
+        event=>{
+
+            event.stopPropagation();
+
+            seekFromPointer(event);
+
+        };
+
+
+    progressRow.onpointermove =
+        event=>{
+
+            if(
+                event.buttons===1
+            ){
+
+                seekFromPointer(
+                    event
+                );
+
+            }
+
+        };
+
+
+    /*
+     * فيديو events
+     */
+
+    shakaVideo.onplay =
+        updatePlayIcon;
+
+    shakaVideo.onpause =
+        updatePlayIcon;
+
+    shakaVideo.onvolumechange =
+        updateMuteIcon;
+
+    shakaVideo.ontimeupdate =
+        updateShakaProgress;
+
+    shakaVideo.onprogress =
+        updateShakaProgress;
+
+    shakaVideo.onwaiting =
+        showLoader;
+
+    shakaVideo.onstalled =
+        showLoader;
+
+    shakaVideo.onplaying =
+        ()=>{
+
+            hideLoader();
+            updatePlayIcon();
+
+        };
+
+
+    /*
+     * Touch
+     */
+
+    shakaStage.ontouchstart =
+        handleTouchStart;
+
+    shakaStage.ontouchmove =
+        handleTouchMove;
+
+    shakaStage.ontouchend =
+        handleTouchEnd;
+
+
+    /*
+     * Mouse
+     */
+
+    shakaStage.onmousemove =
+        ()=>{
+
+            showShakaControls();
+
+        };
+
+
+    shakaStage.onclick =
+        event=>{
+
+            /*
+             * لا تعتبر الأزرار
+             * ضغطة على الفيديو.
+             */
+
+            if(
+                event.target.closest(
+                    ".custom-controls"
+                )
+            ){
+
+                return;
+
+            }
+
+            toggleControls();
+
+        };
+
+
+    updatePlayIcon();
+    updateMuteIcon();
+    updateShakaProgress();
+
+}
+
+
+/* =========================================================
+   TOUCH CONTROL
+========================================================= */
+
+function handleTouchStart(event){
+
+    if(!event.touches.length)
+        return;
+
+    const touch =
+        event.touches[0];
+
+    touchStartTime =
+        Date.now();
+
+    touchMoved=false;
+
+    touch.startX =
+        touch.clientX;
+
+    touch.startY =
+        touch.clientY;
+
+}
+
+
+function handleTouchMove(event){
+
+    if(!event.touches.length)
+        return;
+
+    const touch =
+        event.touches[0];
+
+    const dx =
+        Math.abs(
+            touch.clientX -
+            (touch.startX || touch.clientX)
+        );
+
+    const dy =
+        Math.abs(
+            touch.clientY -
+            (touch.startY || touch.clientY)
+        );
+
+    if(dx>10 || dy>10)
+        touchMoved=true;
+
+}
+
+
+function handleTouchEnd(event){
+
+    if(
+        touchMoved ||
+        Date.now()-touchStartTime>500
+    ){
+
+        return;
+
+    }
+
+    /*
+     * إذا كانت اللمسة على الكنترول
+     * لا نغير حالة الكنترول.
+     */
+
+    const target =
+        event.target;
+
+    if(
+        target.closest(
+            ".custom-controls"
+        )
+    ){
+
+        return;
+
+    }
+
+    toggleControls();
+
+}
+
+
+/* =========================================================
+   CONTROL VISIBILITY
+========================================================= */
+
+function toggleControls(){
+
+    if(
+        shakaStage.classList.contains(
+            "controls-hidden"
+        )
+    ){
+
+        showShakaControls();
+
+    }else{
+
+        hideShakaControls();
+
+    }
+
+}
+
+
+function showShakaControls(){
+
+    shakaStage.classList.remove(
+        "controls-hidden"
+    );
+
+    clearTimeout(controlTimer);
+    clearTimeout(controlTouchTimer);
+
+    /*
+     * إغلاق القائمة عند بدء
+     * دورة جديدة.
+     */
+
+    controlTimer =
+        setTimeout(()=>{
+
+            const menu =
+                document.getElementById(
+                    "qualityMenu"
+                );
+
+            if(
+                !menu.classList.contains(
+                    "open"
+                )
+            ){
+
+                hideShakaControls();
+
+            }
+
+        },3000);
+
+}
+
+
+function hideShakaControls(){
+
+    const menu =
+        document.getElementById(
+            "qualityMenu"
+        );
+
+    if(
+        menu &&
+        menu.classList.contains(
+            "open"
+        )
+    ){
+
+        return;
+
+    }
+
+    shakaStage.classList.add(
+        "controls-hidden"
+    );
+
+}
+
+
+/* =========================================================
+   PLAY ICON
+========================================================= */
+
+function updatePlayIcon(){
+
+    const btn =
+        document.getElementById(
+            "shakaPlayBtn"
+        );
+
+    if(!btn)
+        return;
+
+    btn.innerHTML =
+        shakaVideo.paused
+
+        ? '<i class="fa-solid fa-play"></i>'
+
+        : '<i class="fa-solid fa-pause"></i>';
+
+}
+
+
+/* =========================================================
+   MUTE
+========================================================= */
+
+function updateMuteIcon(){
+
+    const btn =
+        document.getElementById(
+            "shakaMuteBtn"
+        );
+
+    if(!btn)
+        return;
+
+    if(
+        shakaVideo.muted ||
+        shakaVideo.volume===0
+    ){
+
+        btn.innerHTML =
+            '<i class="fa-solid fa-volume-xmark"></i>';
+
+    }else{
+
+        btn.innerHTML =
+            '<i class="fa-solid fa-volume-high"></i>';
+
+    }
+
+}
+
+
+/* =========================================================
+   SEEK
+========================================================= */
+
+function seekFromPointer(event){
+
+    /*
+     * البث المباشر غالبًا لا نريد
+     * أن نعامل شريطه كفيديو عادي.
+     */
+
+    if(
+        !isFinite(shakaVideo.duration) ||
+        shakaVideo.duration<=0
+    ){
+
+        return;
+
+    }
+
+
+    const rect =
+        document
+            .getElementById(
+                "progressRow"
+            )
+            .getBoundingClientRect();
+
+
+    let percent =
+        (event.clientX-rect.left) /
+        rect.width;
+
+
+    percent =
+        Math.max(
+            0,
+            Math.min(1,percent)
+        );
+
+
+    /*
+     * RTL
+     */
+
+    percent =
+        1-percent;
+
+
+    shakaVideo.currentTime =
+        shakaVideo.duration *
+        percent;
+
+
+    showShakaControls();
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateShakaProgress(){
+
+    const value =
+        document.getElementById(
+            "progressValue"
+        );
+
+    const buffer =
+        document.getElementById(
+            "progressBuffer"
+        );
+
+    const time =
+        document.getElementById(
+            "shakaTime"
+        );
+
+
+    if(!value || !buffer || !time)
+        return;
+
+
+    /*
+     * LIVE
+     */
+
+    if(
+        !isFinite(shakaVideo.duration) ||
+        shakaVideo.duration<=0
+    ){
+
+        value.style.width =
+            "100%";
+
+        buffer.style.width =
+            "100%";
+
+        time.textContent =
+            "LIVE";
+
+        return;
+
+    }
+
+
+    const duration =
+        shakaVideo.duration;
+
+    const current =
+        shakaVideo.currentTime || 0;
+
+
+    const percent =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                current/duration*100
+            )
+        );
+
+
+    value.style.width =
+        percent+"%";
+
+
+    let buffered =
+        0;
+
+
+    try{
+
+        if(
+            shakaVideo.buffered &&
+            shakaVideo.buffered.length
+        ){
+
+            const end =
+                shakaVideo.buffered.end(
+                    shakaVideo.buffered.length-1
+                );
+
+            buffered =
+                end/duration*100;
+
+        }
+
+    }catch(e){}
+
+
+    buffer.style.width =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                buffered
+            )
+        )+"%";
+
+
+    time.textContent =
+        formatTime(current)+
+        " / "+
+        formatTime(duration);
+
+}
+
+
+/* =========================================================
+   TIME
+========================================================= */
+
+function formatTime(seconds){
+
+    if(!isFinite(seconds))
+        return "00:00";
+
+    const h =
+        Math.floor(
+            seconds/3600
+        );
+
+    const m =
+        Math.floor(
+            (seconds%3600)/60
+        );
+
+    const s =
+        Math.floor(
+            seconds%60
+        );
+
+
+    if(h>0){
+
+        return (
+            h+
+            ":"+
+            String(m).padStart(2,"0")+
+            ":"+
+            String(s).padStart(2,"0")
+        );
+
+    }
+
+
+    return (
+        String(m).padStart(2,"0")+
+        ":"+
+        String(s).padStart(2,"0")
+    );
+
+}
+
+
+/* =========================================================
+   QUALITY MENU
+========================================================= */
+
+function buildQualityMenu(){
+
+    const options =
+        document.getElementById(
+            "qualityOptions"
+        );
+
+    if(!options)
+        return;
+
+    options.innerHTML="";
+
+
+    if(!shakaPlayer){
+
+        options.innerHTML =
+            '<div class="quality-title">تلقائي</div>';
+
+        return;
+
+    }
+
+
+    const tracks =
+        shakaPlayer.getVariantTracks();
+
+
+    const unique =
+        new Map();
+
+
+    tracks.forEach(track=>{
+
+        if(
+            !track.height ||
+            !track.videoBandwidth
+        ){
+
+            return;
+
+        }
+
+        if(
+            !unique.has(
+                track.height
+            )
+        ){
+
+            unique.set(
+                track.height,
+                track
+            );
+
+        }
+
+    });
+
+
+    const sorted =
+        Array.from(
+            unique.entries()
+        ).sort(
+            (a,b)=>b[0]-a[0]
+        );
+
+
+    /*
+     * AUTO
+     */
+
+    const auto =
+        document.createElement(
+            "button"
+        );
+
+    auto.className =
+        "quality-option active";
+
+    auto.textContent =
+        "تلقائي";
+
+    auto.onclick =
+        event=>{
+
+            event.stopPropagation();
+
+            shakaPlayer.configure({
+
+                abr:{
+                    enabled:true
+                }
+
+            });
+
+            setActiveQuality(
+                auto
+            );
+
+            closeQualityMenu();
+
+            showShakaControls();
+
+        };
+
+    options.appendChild(auto);
+
+
+    /*
+     * QUALITIES
+     */
+
+    sorted.forEach(
+        ([height])=>{
+
+            const btn =
+                document.createElement(
+                    "button"
+                );
+
+            btn.className =
+                "quality-option";
+
+            btn.textContent =
+                height+"p";
+
+
+            btn.onclick =
+                event=>{
+
+                    event.stopPropagation();
+
+
+                    const track =
+                        shakaPlayer
+                            .getVariantTracks()
+                            .find(
+                                t=>
+                                    t.height===height &&
+                                    t.active
+                            ) ||
+                        shakaPlayer
+                            .getVariantTracks()
+                            .find(
+                                t=>
+                                    t.height===height
+                            );
+
+
+                    if(!track)
+                        return;
+
+
+                    shakaPlayer.configure({
+
+                        abr:{
+                            enabled:false
+                        }
+
+                    });
+
+
+                    shakaPlayer.selectVariantTrack(
+                        track,
+                        true
+                    );
+
+
+                    setActiveQuality(
+                        btn
+                    );
+
+
+                    closeQualityMenu();
+
+                    showShakaControls();
+
+                };
+
+
+            options.appendChild(btn);
+
+        }
+    );
+
+}
+
+
+function setActiveQuality(button){
+
+    document
+        .querySelectorAll(
+            ".quality-option"
+        )
+        .forEach(
+            item=>
+                item.classList.remove(
+                    "active"
+                )
+        );
+
+    button.classList.add(
+        "active"
+    );
+
+}
+
+
+/* =========================================================
+   QUALITY CLOSE
+========================================================= */
+
+function closeQualityMenu(){
+
+    const menu =
+        document.getElementById(
+            "qualityMenu"
+        );
+
+    if(menu)
+        menu.classList.remove(
+            "open"
+        );
+
+}
+
+
+/* =========================================================
+   OUTSIDE QUALITY CLICK
+========================================================= */
+
+document.addEventListener(
+    "click",
+    event=>{
+
+        if(
+            !event.target.closest(
+                ".quality-wrapper"
+            )
+        ){
+
+            closeQualityMenu();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FULLSCREEN
+========================================================= */
+
+async function toggleShakaFullscreen(){
+
+    const modal =
+        document.getElementById(
+            "playerModal"
+        );
+
+
+    const fullscreenElement =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement;
+
+
+    try{
+
+        if(!fullscreenElement){
+
+            if(
+                shakaStage.requestFullscreen
+            ){
+
+                await shakaStage.requestFullscreen();
+
+            }else if(
+                shakaStage.webkitRequestFullscreen
+            ){
+
+                shakaStage.webkitRequestFullscreen();
+
+            }else{
+
+                modal.classList.add(
+                    "fullscreen-mode"
+                );
+
+            }
+
+
+            /*
+             * محاولة Landscape
+             */
+
+            try{
+
+                if(
+                    screen.orientation &&
+                    screen.orientation.lock
+                ){
+
+                    await screen.orientation.lock(
+                        "landscape"
+                    );
+
+                }
+
+            }catch(e){}
+
+        }else{
+
+            if(document.exitFullscreen){
+
+                await document.exitFullscreen();
+
+            }else if(
+                document.webkitExitFullscreen
+            ){
+
+                document.webkitExitFullscreen();
+
+            }else{
+
+                modal.classList.remove(
+                    "fullscreen-mode"
+                );
+
+            }
+
+
+            try{
+
+                if(
+                    screen.orientation &&
+                    screen.orientation.unlock
+                ){
+
+                    screen.orientation.unlock();
+
+                }
+
+            }catch(e){}
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Fullscreen:",
+            error
+        );
+
+        modal.classList.toggle(
+            "fullscreen-mode"
+        );
+
+    }
+
+}
+
+
+function fullscreenChanged(){
+
+    const modal =
+        document.getElementById(
+            "playerModal"
+        );
+
+
+    const fullscreenElement =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement;
+
+
+    if(fullscreenElement){
+
+        modal.classList.add(
+            "fullscreen-mode"
+        );
+
+    }else{
+
+        modal.classList.remove(
+            "fullscreen-mode"
+        );
+
+    }
+
+}
+
+
+document.addEventListener(
+    "fullscreenchange",
+    fullscreenChanged
+);
+
+document.addEventListener(
+    "webkitfullscreenchange",
+    fullscreenChanged
+);
+
+
+/* =========================================================
+   CLOSE PLAYER
+========================================================= */
+
+async function closePlayer(){
+
+    clearTimeout(controlTimer);
+    clearTimeout(controlTouchTimer);
+
+    closeQualityMenu();
+
+    modal.classList.remove(
+        "open"
+    );
+
+    destroyClappr();
+
+    await destroyShaka();
+
+    hideShaka();
+
+    const download =
+        document.getElementById(
+            "starDownloadBtn"
+        );
+
+    download.style.display =
+        "none";
+
+
+    const fullscreenElement =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement;
+
+
+    if(fullscreenElement){
+
+        try{
+
+            if(document.exitFullscreen){
+
+                await document.exitFullscreen();
+
+            }
+
+        }catch(e){}
+
+    }
+
+
+    modal.classList.remove(
+        "fullscreen-mode"
+    );
+
+
+    try{
+
+        if(
+            screen.orientation &&
+            screen.orientation.unlock
+        ){
+
+            screen.orientation.unlock();
+
+        }
+
+    }catch(e){}
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function navigateChannel(direction){
+
+    const visibleCards =
+        channelCards.filter(
+            card=>
+                card.style.display!=="none"
+        );
+
+
+    if(!visibleCards.length)
+        return;
+
+
+    const currentIndex =
+        visibleCards.findIndex(
+            card=>
+                card.dataset.id===
+                currentChannelId
+        );
+
+
+    if(currentIndex===-1)
+        return;
+
 
     let nextIndex;
-    if (direction === "next") {
-        nextIndex = (currentIndex + 1) % visibleCards.length;
-    } else {
-        nextIndex = (currentIndex - 1 + visibleCards.length) % visibleCards.length;
+
+
+    if(direction==="next"){
+
+        nextIndex =
+            (currentIndex+1) %
+            visibleCards.length;
+
+    }else{
+
+        nextIndex =
+            (
+                currentIndex-1+
+                visibleCards.length
+            ) %
+            visibleCards.length;
+
     }
 
-    openPlayer(visibleCards[nextIndex].getAttribute("data-id"));
+
+    openPlayer(
+        visibleCards[
+            nextIndex
+        ].dataset.id
+    );
+
 }
 
-function reloadActiveStream() {
-    if (currentChannelId) {
-        openPlayer(currentChannelId);
+
+/* =========================================================
+   RELOAD
+========================================================= */
+
+function reloadActiveStream(){
+
+    if(
+        currentChannelId
+    ){
+
+        openPlayer(
+            currentChannelId
+        );
+
     }
+
 }
 
-function toggleFavorite(e, channelId) {
-    e.stopPropagation();
-    const index = favorites.indexOf(channelId);
 
-    if (index > -1) {
-        favorites.splice(index, 1);
-    } else {
-        favorites.push(channelId);
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function toggleFavorite(
+    event,
+    channelId
+){
+
+    event.stopPropagation();
+
+    const index =
+        favorites.indexOf(
+            channelId
+        );
+
+
+    if(index>=0){
+
+        favorites.splice(
+            index,
+            1
+        );
+
+    }else{
+
+        favorites.push(
+            channelId
+        );
+
     }
 
-    localStorage.setItem("iq_tv_favs", JSON.stringify(favorites));
+
+    localStorage.setItem(
+        "iq_tv_favs",
+        JSON.stringify(
+            favorites
+        )
+    );
+
+
     updateFavoritesUI();
 
-    if (currentTab === "fav") {
+
+    if(currentTab==="fav"){
+
         renderTabsContent();
+
     }
+
 }
 
-function updateFavoritesUI() {
-    document.querySelectorAll(".channel-card").forEach(card => {
-        const id = card.getAttribute("data-id");
-        const btn = card.querySelector(".fav-btn");
-        const icon = btn.querySelector("i");
 
-        if (favorites.includes(id)) {
-            icon.className = "fa-solid fa-star";
-            btn.classList.add("active");
-        } else {
-            icon.className = "fa-regular fa-star";
-            btn.classList.remove("active");
+function updateFavoritesUI(){
+
+    channelCards.forEach(
+        card=>{
+
+            const id =
+                card.dataset.id;
+
+            const btn =
+                card.querySelector(
+                    ".fav-btn"
+                );
+
+            const icon =
+                btn.querySelector(
+                    "i"
+                );
+
+
+            if(
+                favorites.includes(
+                    id
+                )
+            ){
+
+                icon.className =
+                    "fa-solid fa-star";
+
+                btn.classList.add(
+                    "active"
+                );
+
+            }else{
+
+                icon.className =
+                    "fa-regular fa-star";
+
+                btn.classList.remove(
+                    "active"
+                );
+
+            }
+
         }
-    });
+    );
+
 }
 
-function switchTab(tab, btnEl) {
-    currentTab = tab;
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    btnEl.classList.add("active");
+
+/* =========================================================
+   TABS
+========================================================= */
+
+function switchTab(
+    tab,
+    button
+){
+
+    currentTab =
+        tab;
+
+
+    document
+        .querySelectorAll(
+            ".tab-btn"
+        )
+        .forEach(
+            btn=>
+                btn.classList.remove(
+                    "active"
+                )
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
     renderTabsContent();
+
 }
 
-function renderTabsContent() {
-    channelCards.forEach(card => {
-        const id = card.getAttribute("data-id");
-        if (currentTab === "fav") {
-            card.style.display = favorites.includes(id) ? "flex" : "none";
-        } else {
-            card.style.display = "flex";
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function renderTabsContent(){
+
+    channelCards.forEach(
+        card=>{
+
+            const id =
+                card.dataset.id;
+
+
+            if(
+                currentTab==="fav"
+            ){
+
+                card.style.display =
+                    favorites.includes(id)
+                    ? "flex"
+                    : "none";
+
+            }else{
+
+                card.style.display =
+                    "flex";
+
+            }
+
         }
-    });
+    );
+
+
     filterChannelsQuery();
+
 }
 
-function filterChannelsQuery() {
-    const input = document.getElementById("searchInput");
-    const query = input.value.toLowerCase().trim();
-    let visibleCount = 0;
 
-    channelCards.forEach(card => {
-        const name = (card.getAttribute("data-name") || "").toLowerCase();
-        const matchesSearch = name.includes(query);
-        const matchesTab = currentTab === "all" || favorites.includes(card.getAttribute("data-id"));
-        const isVisible = matchesSearch && matchesTab;
+/* =========================================================
+   SEARCH
+========================================================= */
 
-        card.style.display = isVisible ? "flex" : "none";
-        if (isVisible) visibleCount++;
-    });
+function filterChannelsQuery(){
 
-    const noResultsMsg = document.getElementById("noResultsMsg");
-    if (noResultsMsg) {
-        noResultsMsg.style.display = visibleCount === 0 ? "flex" : "none";
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    const query =
+        input.value
+            .toLowerCase()
+            .trim();
+
+
+    let visibleCount=0;
+
+
+    channelCards.forEach(
+        card=>{
+
+            const name =
+                (
+                    card.dataset.name ||
+                    ""
+                ).toLowerCase();
+
+
+            const matchesSearch =
+                name.includes(
+                    query
+                );
+
+
+            const matchesTab =
+                currentTab==="all" ||
+                favorites.includes(
+                    card.dataset.id
+                );
+
+
+            const visible =
+                matchesSearch &&
+                matchesTab;
+
+
+            card.style.display =
+                visible
+                ? "flex"
+                : "none";
+
+
+            if(visible)
+                visibleCount++;
+
+        }
+    );
+
+
+    const noResults =
+        document.getElementById(
+            "noResultsMsg"
+        );
+
+
+    if(noResults){
+
+        noResults.style.display =
+            visibleCount===0
+            ? "flex"
+            : "none";
+
     }
+
 }
 
-function clearSearchQuery() {
-    const input = document.getElementById("searchInput");
-    if (input) {
-        input.value = "";
-        filterChannelsQuery();
-        input.focus();
-    }
+
+/* =========================================================
+   CLEAR SEARCH
+========================================================= */
+
+function clearSearchQuery(){
+
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    input.value="";
+
+    filterChannelsQuery();
+
+    input.focus();
+
 }
 
-window.openPlayer = openPlayer;
-window.closePlayer = closePlayer;
-window.navigateChannel = navigateChannel;
-window.reloadActiveStream = reloadActiveStream;
-window.toggleFavorite = toggleFavorite;
-window.switchTab = switchTab;
-window.filterChannelsQuery = filterChannelsQuery;
-window.clearSearchQuery = clearSearchQuery;
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+window.openPlayer =
+    openPlayer;
+
+window.closePlayer =
+    closePlayer;
+
+window.navigateChannel =
+    navigateChannel;
+
+window.reloadActiveStream =
+    reloadActiveStream;
+
+window.toggleFavorite =
+    toggleFavorite;
+
+window.switchTab =
+    switchTab;
+
+window.filterChannelsQuery =
+    filterChannelsQuery;
+
+window.clearSearchQuery =
+    clearSearchQuery;
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+updateFavoritesUI();
+
+filterChannelsQuery();
+
 </script>
 
 </body>
