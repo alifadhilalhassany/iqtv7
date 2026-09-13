@@ -75,6 +75,7 @@ body{
 
 body{
     overflow-x:hidden;
+
     background-image:
         radial-gradient(
             circle at 50% 0%,
@@ -105,6 +106,7 @@ button{
     border-radius:20px;
 }
 
+
 /* =========================================================
    HEADER
 ========================================================= */
@@ -122,6 +124,7 @@ header{
     justify-content:space-between;
 
     background:rgba(7,8,11,.88);
+
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
 
@@ -130,8 +133,10 @@ header{
 
 .brand-logo{
     height:100%;
+
     display:flex;
     align-items:center;
+
     text-decoration:none;
 }
 
@@ -139,6 +144,7 @@ header{
     width:auto;
     height:32px;
     max-width:145px;
+
     object-fit:contain;
 }
 
@@ -156,13 +162,17 @@ header{
 
     border-radius:20px;
     white-space:nowrap;
+
     font-weight:700;
 }
 
 .online-counter{
     padding:5px 10px;
+
     font-size:11px;
+
     background:rgba(255,255,255,.055);
+
     border:1px solid var(--border);
 }
 
@@ -173,37 +183,52 @@ header{
 
 #onlineCount{
     min-width:12px;
+
     text-align:center;
+
     transition:transform .15s ease;
 }
 
 .status-pill{
     padding:5px 11px;
+
     font-size:10px;
 
     color:#ff5570;
+
     background:rgba(255,0,51,.09);
+
     border:1px solid rgba(255,0,51,.2);
 }
 
 .pulse-dot{
     width:7px;
     height:7px;
+
     border-radius:50%;
+
     background:var(--primary);
+
     animation:pulse 1.5s infinite;
 }
 
 @keyframes pulse{
+
     0%{
-        box-shadow:0 0 0 0 rgba(255,0,51,.65);
+        box-shadow:
+            0 0 0 0 rgba(255,0,51,.65);
     }
+
     70%{
-        box-shadow:0 0 0 6px rgba(255,0,51,0);
+        box-shadow:
+            0 0 0 6px rgba(255,0,51,0);
     }
+
     100%{
-        box-shadow:0 0 0 0 rgba(255,0,51,0);
+        box-shadow:
+            0 0 0 0 rgba(255,0,51,0);
     }
+
 }
 
 .download-btn-header{
@@ -214,29 +239,40 @@ header{
     padding:7px 13px;
 
     color:#fff;
+
     text-decoration:none;
+
     font-size:11px;
     font-weight:700;
 
-    background:linear-gradient(
-        135deg,
-        var(--primary),
-        #e6002e
-    );
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #e6002e
+        );
 
     border:1px solid rgba(255,255,255,.16);
+
     border-radius:var(--radius-lg);
 
-    box-shadow:0 0 14px var(--primary-glow);
+    box-shadow:
+        0 0 14px var(--primary-glow);
 
-    transition:transform .2s ease,
-                box-shadow .2s ease;
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
 }
 
 .download-btn-header:hover{
+
     transform:translateY(-1px);
-    box-shadow:0 0 20px var(--primary-glow);
+
+    box-shadow:
+        0 0 20px var(--primary-glow);
+
 }
+
 
 /* =========================================================
    CONTAINER
@@ -245,9 +281,12 @@ header{
 .container{
     width:100%;
     max-width:1200px;
+
     margin:auto;
+
     padding:20px 15px;
 }
+
 
 /* =========================================================
    TOOLBAR
@@ -257,22 +296,27 @@ header{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:12px;
 
     margin-bottom:22px;
     padding:8px;
 
     background:var(--glass);
+
     border:1px solid var(--border);
+
     border-radius:var(--radius-xl);
 }
 
 .tabs-group{
     display:flex;
     gap:4px;
+
     padding:4px;
 
     background:rgba(0,0,0,.3);
+
     border-radius:var(--radius-lg);
 }
 
@@ -280,79 +324,111 @@ header{
     display:flex;
     align-items:center;
     justify-content:center;
+
     gap:6px;
 
     padding:8px 16px;
 
     color:var(--muted);
+
     background:transparent;
+
     border:0;
+
     border-radius:var(--radius-md);
 
     font-size:12px;
     font-weight:700;
 
     cursor:pointer;
+
     transition:all .2s ease;
 }
 
 .tab-btn.active{
+
     color:#fff;
+
     background:var(--primary);
-    box-shadow:0 3px 12px var(--primary-glow);
+
+    box-shadow:
+        0 3px 12px var(--primary-glow);
 }
 
 .search-box{
     position:relative;
+
     flex:1;
+
     min-width:200px;
 }
 
 .search-box input{
+
     width:100%;
-    padding:9px 12px 9px 38px;
+
+    padding:
+        9px
+        12px
+        9px
+        38px;
 
     color:#fff;
+
     background:rgba(0,0,0,.35);
 
     border:1px solid var(--border);
+
     border-radius:var(--radius-lg);
 
     outline:none;
+
     font-size:12px;
 
     transition:border .2s ease;
 }
 
 .search-box input:focus{
-    border-color:rgba(255,0,51,.55);
+
+    border-color:
+        rgba(255,0,51,.55);
 }
 
 .search-box i{
+
     position:absolute;
+
     left:13px;
     top:50%;
+
     transform:translateY(-50%);
 
     color:#8c929d;
+
     font-size:12px;
 }
+
 
 /* =========================================================
    CHANNEL GRID
 ========================================================= */
 
 .channels-grid{
+
     display:grid;
+
     grid-template-columns:
         repeat(auto-fill,minmax(180px,1fr));
+
     gap:15px;
 }
 
 .channel-card{
+
     position:relative;
 
     height:140px;
+
     padding:12px;
 
     display:flex;
@@ -361,7 +437,9 @@ header{
     justify-content:space-between;
 
     background:var(--card);
+
     border:1px solid var(--border);
+
     border-radius:var(--radius-xl);
 
     cursor:pointer;
@@ -373,19 +451,26 @@ header{
 }
 
 .channel-card:hover{
+
     transform:translateY(-3px);
+
     background:var(--card-hover);
+
     border-color:var(--border-light);
 }
 
 .channel-card:active{
+
     transform:scale(.98);
 }
 
 .fav-btn{
+
     position:absolute;
+
     left:8px;
     top:8px;
+
     z-index:5;
 
     width:28px;
@@ -396,9 +481,11 @@ header{
     justify-content:center;
 
     color:var(--muted);
+
     background:rgba(0,0,0,.42);
 
     border:1px solid var(--border);
+
     border-radius:50%;
 
     cursor:pointer;
@@ -408,12 +495,16 @@ header{
 
 .fav-btn.active,
 .fav-btn:hover{
+
     color:#ffc107;
+
     background:rgba(0,0,0,.75);
 }
 
 .logo-container{
+
     width:100%;
+
     flex:1;
 
     display:flex;
@@ -424,6 +515,7 @@ header{
 }
 
 .logo-container img{
+
     max-width:90px;
     max-height:45px;
 
@@ -436,6 +528,7 @@ header{
 }
 
 .channel-title{
+
     width:100%;
 
     padding-top:8px;
@@ -443,38 +536,47 @@ header{
     text-align:center;
 
     color:#fff;
+
     font-size:12px;
     font-weight:700;
 
     white-space:nowrap;
+
     overflow:hidden;
+
     text-overflow:ellipsis;
 
     border-top:1px solid var(--border);
 }
 
 .engine-badge{
+
     position:absolute;
+
     right:8px;
     top:8px;
 
     padding:3px 6px;
 
     color:#ff5570;
+
     background:rgba(255,0,51,.1);
 
     border:1px solid rgba(255,0,51,.18);
+
     border-radius:10px;
 
     font-size:8px;
     font-weight:800;
 }
 
+
 /* =========================================================
    NO RESULTS
 ========================================================= */
 
 .no-results-card{
+
     grid-column:1/-1;
 
     display:none;
@@ -488,11 +590,14 @@ header{
     text-align:center;
 
     background:var(--glass);
+
     border:1px dashed var(--border-light);
+
     border-radius:var(--radius-xl);
 }
 
 .no-results-icon-wrapper{
+
     width:70px;
     height:70px;
 
@@ -503,41 +608,55 @@ header{
     margin-bottom:15px;
 
     background:rgba(255,0,51,.08);
+
     border:1px solid rgba(255,0,51,.2);
+
     border-radius:50%;
 }
 
 .no-results-icon-wrapper i{
+
     color:var(--primary);
+
     font-size:28px;
 }
 
 .no-results-title{
+
     margin-bottom:5px;
+
     color:#fff;
+
     font-size:16px;
     font-weight:800;
 }
 
 .no-results-desc{
+
     max-width:360px;
+
     margin-bottom:17px;
 
     color:var(--muted);
+
     font-size:12px;
 }
 
 .reset-search-btn{
+
     display:flex;
     align-items:center;
+
     gap:7px;
 
     padding:8px 17px;
 
     color:#fff;
+
     background:rgba(255,255,255,.06);
 
     border:1px solid var(--border-light);
+
     border-radius:var(--radius-lg);
 
     font-size:11px;
@@ -547,84 +666,110 @@ header{
 }
 
 .reset-search-btn:hover{
+
     background:var(--primary);
 }
+
 
 /* =========================================================
    PLAYER MODAL
 ========================================================= */
 
 .player-modal{
+
     position:fixed;
+
     inset:0;
+
     z-index:2000;
 
     display:none;
+
     flex-direction:column;
 
     background:rgba(3,4,6,.97);
 
     opacity:0;
+
     transition:opacity .2s ease;
 }
 
 .player-modal.open{
+
     display:flex;
+
     opacity:1;
 }
 
 .modal-header{
+
     height:56px;
+
     flex-shrink:0;
 
     padding:10px 4%;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     background:rgba(0,0,0,.45);
+
     border-bottom:1px solid var(--border);
 }
 
 .channel-meta{
+
     display:flex;
+
     align-items:center;
+
     gap:8px;
 
     min-width:0;
 }
 
 .channel-meta i{
+
     color:var(--primary);
 }
 
 .channel-meta h3{
+
     max-width:70vw;
 
     color:#fff;
+
     font-size:13px;
     font-weight:700;
 
     white-space:nowrap;
+
     overflow:hidden;
+
     text-overflow:ellipsis;
 }
 
 .close-player-btn{
+
     width:36px;
     height:36px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     flex-shrink:0;
 
     color:#fff;
+
     background:rgba(255,255,255,.07);
 
     border:1px solid var(--border);
+
     border-radius:50%;
 
     cursor:pointer;
@@ -633,25 +778,33 @@ header{
 }
 
 .close-player-btn:hover{
+
     background:var(--primary);
+
     border-color:var(--primary);
 }
 
 .modal-body{
+
     flex:1;
+
     min-height:0;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     padding:10px;
 }
 
 .video-box{
+
     position:relative;
 
     width:100%;
+
     max-width:1100px;
 
     aspect-ratio:16/9;
@@ -659,26 +812,128 @@ header{
     overflow:hidden;
 
     background:#000;
+
     border:1px solid var(--border);
+
     border-radius:var(--radius-xl);
 
-    box-shadow:0 15px 60px rgba(0,0,0,.4);
+    box-shadow:
+        0 15px 60px rgba(0,0,0,.4);
 }
 
 #player{
+
     position:absolute;
+
     inset:0;
 
     width:100%;
     height:100%;
 }
 
+
+/* =========================================================
+   CLAPPR FULLSCREEN LANDSCAPE
+========================================================= */
+
+/*
+ * عندما يصبح عنصر Clappr أو أحد عناصره
+ * في وضع Fullscreen.
+ */
+
+#player:fullscreen{
+
+    width:100vw !important;
+    height:100vh !important;
+
+    max-width:none !important;
+
+    background:#000 !important;
+
+}
+
+#player:-webkit-full-screen{
+
+    width:100vw !important;
+    height:100vh !important;
+
+    max-width:none !important;
+
+    background:#000 !important;
+
+}
+
+/*
+ * إذا كان Clappr يجعل عنصرًا داخليًا
+ * هو الـ fullscreen element.
+ */
+
+.clappr-player:fullscreen{
+
+    width:100vw !important;
+    height:100vh !important;
+
+    background:#000 !important;
+}
+
+.clappr-player:-webkit-full-screen{
+
+    width:100vw !important;
+    height:100vh !important;
+
+    background:#000 !important;
+}
+
+/*
+ * وضع إضافي نضيفه للمودال أثناء
+ * Fullscreen الخاص بـ Clappr.
+ */
+
+.player-modal.clappr-fullscreen{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100vw;
+    height:100vh;
+
+    background:#000;
+}
+
+.player-modal.clappr-fullscreen
+.video-box{
+
+    width:100vw !important;
+    height:100vh !important;
+
+    max-width:none !important;
+
+    aspect-ratio:auto !important;
+
+    border:0 !important;
+
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+}
+
+.player-modal.clappr-fullscreen
+#player{
+
+    width:100vw !important;
+    height:100vh !important;
+}
+
+
 /* =========================================================
    SHAKA STAGE
 ========================================================= */
 
 .shaka-stage{
+
     position:absolute;
+
     inset:0;
 
     display:none;
@@ -686,15 +941,19 @@ header{
     overflow:hidden;
 
     background:#000;
+
     touch-action:manipulation;
 }
 
 .shaka-stage.active{
+
     display:block;
 }
 
 #shakaVideo{
+
     position:absolute;
+
     inset:0;
 
     width:100%;
@@ -711,22 +970,28 @@ header{
     touch-action:manipulation;
 }
 
+
 /* =========================================================
    SHAKA LOADING
 ========================================================= */
 
 .shaka-loading{
+
     position:absolute;
+
     inset:0;
+
     z-index:80;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     background:rgba(0,0,0,.18);
 
     opacity:1;
+
     visibility:visible;
 
     transition:
@@ -737,12 +1002,16 @@ header{
 }
 
 .shaka-loading.hidden{
+
     opacity:0;
+
     visibility:hidden;
 }
 
 .loader-container{
+
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -752,16 +1021,19 @@ header{
     background:rgba(0,0,0,.48);
 
     border:1px solid rgba(255,255,255,.08);
+
     border-radius:50%;
 
     backdrop-filter:blur(8px);
 }
 
 .loader-ring{
+
     width:35px;
     height:35px;
 
     border:3px solid rgba(255,255,255,.18);
+
     border-top-color:#fff;
 
     border-radius:50%;
@@ -770,23 +1042,30 @@ header{
 }
 
 @keyframes spin{
+
     to{
         transform:rotate(360deg);
     }
+
 }
+
 
 /* =========================================================
    SHAKA ERROR
 ========================================================= */
 
 .shaka-error{
+
     position:absolute;
+
     inset:0;
+
     z-index:100;
 
     display:none;
 
     flex-direction:column;
+
     align-items:center;
     justify-content:center;
 
@@ -800,28 +1079,37 @@ header{
 }
 
 .shaka-error.show{
+
     display:flex;
 }
 
 .shaka-error i{
+
     color:var(--primary);
+
     font-size:30px;
 }
 
 .shaka-error span{
+
     max-width:350px;
 
     color:#fff;
+
     font-size:12px;
+
     line-height:1.7;
 }
+
 
 /* =========================================================
    SHAKA CUSTOM CONTROLS
 ========================================================= */
 
 .custom-controls{
+
     position:absolute;
+
     left:0;
     right:0;
     bottom:0;
@@ -852,21 +1140,29 @@ header{
     pointer-events:auto;
 }
 
-.shaka-stage.controls-hidden .custom-controls{
+.shaka-stage.controls-hidden
+.custom-controls{
+
     opacity:0;
+
     transform:translateY(10px);
+
     pointer-events:none;
 }
+
 
 /* =========================================================
    PROGRESS
 ========================================================= */
 
 .progress-row{
+
     width:100%;
+
     height:22px;
 
     display:flex;
+
     align-items:center;
 
     cursor:pointer;
@@ -875,20 +1171,25 @@ header{
 }
 
 .progress-track{
+
     position:relative;
 
     width:100%;
+
     height:4px;
 
     overflow:hidden;
 
     background:rgba(255,255,255,.25);
+
     border-radius:10px;
 }
 
 .progress-buffer,
 .progress-value{
+
     position:absolute;
+
     top:0;
     right:0;
 
@@ -900,24 +1201,32 @@ header{
 }
 
 .progress-buffer{
+
     width:0;
+
     background:rgba(255,255,255,.35);
 }
 
 .progress-value{
+
     width:0;
+
     background:#fff;
 }
+
 
 /* =========================================================
    CONTROLS LINE
 ========================================================= */
 
 .controls-line{
+
     width:100%;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     gap:8px;
@@ -927,16 +1236,21 @@ header{
 
 .controls-left,
 .controls-right{
+
     display:flex;
+
     align-items:center;
+
     gap:5px;
 }
 
 .custom-btn{
+
     width:36px;
     height:36px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -947,6 +1261,7 @@ header{
     background:rgba(255,255,255,.085);
 
     border:1px solid rgba(255,255,255,.06);
+
     border-radius:50%;
 
     font-size:13px;
@@ -959,28 +1274,34 @@ header{
 }
 
 .custom-btn:hover{
+
     background:rgba(255,255,255,.18);
 }
 
 .custom-btn:active{
+
     transform:scale(.9);
 }
 
 .live-label{
+
     padding:4px 8px;
 
     color:#fff;
+
     background:var(--primary);
 
     border-radius:5px;
 
     font-size:9px;
+
     font-weight:800;
 
     direction:rtl;
 }
 
 .time-label{
+
     min-width:75px;
 
     color:#ddd;
@@ -992,15 +1313,18 @@ header{
     font-size:9px;
 }
 
+
 /* =========================================================
    QUALITY
 ========================================================= */
 
 .quality-wrapper{
+
     position:relative;
 }
 
 .quality-menu{
+
     position:absolute;
 
     right:0;
@@ -1018,9 +1342,11 @@ header{
     background:rgba(11,13,18,.98);
 
     border:1px solid rgba(255,255,255,.12);
+
     border-radius:12px;
 
-    box-shadow:0 15px 40px rgba(0,0,0,.6);
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.6);
 
     backdrop-filter:blur(18px);
 
@@ -1028,33 +1354,40 @@ header{
 }
 
 .quality-menu.open{
+
     display:block;
 }
 
 .quality-title{
+
     padding:6px 8px;
 
     color:#888;
 
-    border-bottom:1px solid rgba(255,255,255,.07);
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
 
     font-size:10px;
 }
 
 .quality-option{
+
     width:100%;
 
     padding:8px;
 
     color:#fff;
+
     background:transparent;
 
     border:0;
+
     border-radius:7px;
 
     text-align:right;
 
     font-size:11px;
+
     font-weight:700;
 
     cursor:pointer;
@@ -1062,19 +1395,25 @@ header{
 
 .quality-option:hover,
 .quality-option.active{
+
     color:#ff5570;
+
     background:rgba(255,0,51,.14);
 }
+
 
 /* =========================================================
    FLOATING CONTROLS
 ========================================================= */
 
 .floating-controls{
+
     flex-shrink:0;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     gap:9px;
@@ -1087,20 +1426,26 @@ header{
 }
 
 .control-btn{
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     gap:6px;
 
     padding:6px 13px;
 
     color:#fff;
+
     background:rgba(255,255,255,.07);
 
     border:1px solid var(--border);
+
     border-radius:20px;
 
     font-size:11px;
+
     font-weight:700;
 
     text-decoration:none;
@@ -1111,20 +1456,26 @@ header{
 }
 
 .control-btn:hover{
+
     background:var(--primary);
+
     border-color:var(--primary);
 }
 
 .star-download{
+
     display:none;
 }
+
 
 /* =========================================================
    FOOTER
 ========================================================= */
 
 footer{
+
     margin-top:40px;
+
     padding:20px;
 
     color:var(--muted);
@@ -1132,8 +1483,10 @@ footer{
     border-top:1px solid var(--border);
 
     text-align:center;
+
     font-size:11px;
 }
+
 
 /* =========================================================
    MOBILE
@@ -1142,132 +1495,181 @@ footer{
 @media(max-width:600px){
 
     header{
+
         height:52px;
+
         padding:8px 12px;
     }
 
     .brand-logo img{
+
         height:24px;
+
         max-width:115px;
     }
 
     .status-pill{
+
         display:none;
     }
 
     .online-counter{
+
         padding:4px 8px;
+
         font-size:9px;
     }
 
     .download-btn-header{
+
         padding:5px 9px;
+
         font-size:10px;
     }
 
     .container{
+
         padding:15px 10px;
     }
 
     .toolbar{
+
         flex-direction:column;
+
         align-items:stretch;
 
         padding:0;
 
         background:transparent;
+
         border:0;
     }
 
     .tabs-group{
+
         width:100%;
     }
 
     .tab-btn{
+
         flex:1;
+
         padding:8px;
     }
 
     .search-box{
+
         width:100%;
     }
 
     .channels-grid{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
         gap:9px;
     }
 
     .channel-card{
+
         height:120px;
+
         padding:9px;
+
         border-radius:13px;
     }
 
     .logo-container img{
+
         max-width:70px;
+
         max-height:34px;
     }
 
     .channel-title{
+
         padding-top:5px;
+
         font-size:10px;
     }
 
     .video-box{
+
         width:100%;
+
         max-width:none;
 
         border:0;
+
         border-radius:0;
 
         box-shadow:none;
     }
 
     .modal-body{
+
         padding:0;
     }
 
     .modal-header{
+
         padding:8px 12px;
     }
 
     .custom-controls{
+
         padding-left:8px;
+
         padding-right:8px;
+
         padding-bottom:
             calc(8px + env(safe-area-inset-bottom));
     }
 
     .custom-btn{
+
         width:34px;
+
         height:34px;
+
         font-size:12px;
     }
 
     .time-label{
+
         min-width:61px;
+
         font-size:8px;
     }
 
     .live-label{
+
         padding:3px 7px;
+
         font-size:8px;
     }
 
     .quality-menu{
+
         width:120px;
+
         bottom:41px;
     }
 
     .floating-controls{
+
         padding:7px;
     }
 
     .control-btn{
+
         padding:6px 9px;
+
         font-size:10px;
     }
+
 }
+
 
 /* =========================================================
    LANDSCAPE MOBILE
@@ -1276,29 +1678,38 @@ footer{
 @media(max-height:600px) and (orientation:landscape){
 
     .player-modal{
+
         background:#000;
     }
 
     .modal-header{
+
         height:42px;
+
         padding:5px 12px;
     }
 
     .modal-header .channel-meta h3{
+
         font-size:10px;
     }
 
     .close-player-btn{
+
         width:30px;
+
         height:30px;
     }
 
     .modal-body{
+
         padding:0;
     }
 
     .video-box{
+
         width:100vw;
+
         height:calc(100vh - 42px);
 
         max-width:none;
@@ -1306,35 +1717,45 @@ footer{
         aspect-ratio:auto;
 
         border:0;
+
         border-radius:0;
     }
 
     .floating-controls{
+
         display:none;
     }
+
 }
+
 
 /* =========================================================
    TRUE FULLSCREEN
 ========================================================= */
 
 .player-modal.fullscreen-mode{
+
     position:fixed;
+
     inset:0;
 
     background:#000;
 }
 
 .player-modal.fullscreen-mode .modal-header{
+
     display:none;
 }
 
 .player-modal.fullscreen-mode .modal-body{
+
     padding:0;
 }
 
 .player-modal.fullscreen-mode .video-box{
+
     width:100vw;
+
     height:100vh;
 
     max-width:none;
@@ -1342,10 +1763,12 @@ footer{
     aspect-ratio:auto;
 
     border:0;
+
     border-radius:0;
 }
 
 .player-modal.fullscreen-mode .floating-controls{
+
     display:none;
 }
 
@@ -1357,21 +1780,29 @@ footer{
 <header>
 
 <a href="#" class="brand-logo">
+
     <img
         src="https://i.ibb.co/NcBY709/iqtv-unified-white.png"
         alt="IQ TV">
+
 </a>
 
 <div class="header-actions">
 
     <div class="online-counter">
+
         <i class="fa-solid fa-eye"></i>
+
         <span id="onlineCount">0</span>
+
     </div>
 
     <div class="status-pill">
+
         <span class="pulse-dot"></span>
+
         بث مباشر
+
     </div>
 
     <a
@@ -1380,6 +1811,7 @@ footer{
         class="download-btn-header">
 
         <i class="fa-solid fa-download"></i>
+
         تحميل التطبيق
 
     </a>
@@ -1400,6 +1832,7 @@ footer{
             onclick="switchTab('all',this)">
 
             <i class="fa-solid fa-border-all"></i>
+
             الكل
 
         </button>
@@ -1409,6 +1842,7 @@ footer{
             onclick="switchTab('fav',this)">
 
             <i class="fa-solid fa-star"></i>
+
             المفضلة
 
         </button>
@@ -1433,6 +1867,7 @@ footer{
 
 <div class="channels-grid" id="channelsContainer">
 
+
 <!-- =====================================================
      BEIN
 ===================================================== -->
@@ -1444,15 +1879,17 @@ footer{
      data-title="beIN SPORTS 1 HD"
      data-engine="clappr">
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'1424')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'1424')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('1424')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('1424')">
 
         <img
             src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS1_DIGITAL_Mono.png"
@@ -1460,8 +1897,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('1424')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('1424')">
 
         beIN SPORTS 1 HD
 
@@ -1477,15 +1915,17 @@ footer{
      data-title="beIN SPORTS 2 HD"
      data-engine="clappr">
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'1425')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'1425')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('1425')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('1425')">
 
         <img
             src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS2_DIGITAL_Mono.png"
@@ -1493,8 +1933,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('1425')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('1425')">
 
         beIN SPORTS 2 HD
 
@@ -1510,15 +1951,17 @@ footer{
      data-title="beIN SPORTS 3 HD"
      data-engine="clappr">
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'1426')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'1426')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('1426')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('1426')">
 
         <img
             src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS3_DIGITAL_Mono.png"
@@ -1526,8 +1969,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('1426')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('1426')">
 
         beIN SPORTS 3 HD
 
@@ -1543,15 +1987,17 @@ footer{
      data-title="beIN SPORTS 4 HD"
      data-engine="clappr">
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'1427')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'1427')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('1427')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('1427')">
 
         <img
             src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS4_DIGITAL_Mono.png"
@@ -1559,8 +2005,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('1427')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('1427')">
 
         beIN SPORTS 4 HD
 
@@ -1576,15 +2023,17 @@ footer{
      data-title="beIN SPORTS 5 HD"
      data-engine="clappr">
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'1428')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'1428')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('1428')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('1428')">
 
         <img
             src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS5_DIGITAL_Mono.png"
@@ -1592,8 +2041,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('1428')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('1428')">
 
         beIN SPORTS 5 HD
 
@@ -1609,15 +2059,17 @@ footer{
      data-title="beIN SPORTS 6 HD"
      data-engine="clappr">
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'1429')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'1429')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('1429')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('1429')">
 
         <img
             src="https://assets.bein.com/mena/sites/4/2021/02/beIN_SPORTS6_DIGITAL_Mono.png"
@@ -1625,8 +2077,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('1429')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('1429')">
 
         beIN SPORTS 6 HD
 
@@ -1642,15 +2095,17 @@ footer{
      data-title="beIN SPORTS 7 HD"
      data-engine="clappr">
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'1430')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'1430')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('1430')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('1430')">
 
         <img
             src="https://assets.bein.com/mena/sites/4/2015/06/beIN_SPORTS7_DIGITAL_Mono.png"
@@ -1658,8 +2113,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('1430')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('1430')">
 
         beIN SPORTS 7 HD
 
@@ -1675,15 +2131,17 @@ footer{
      data-title="beIN SPORTS 8 HD"
      data-engine="clappr">
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'1431')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'1431')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('1431')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('1431')">
 
         <img
             src="https://assets.bein.com/mena/sites/4/2023/09/logos-_beINSPORTS8.png"
@@ -1691,8 +2149,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('1431')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('1431')">
 
         beIN SPORTS 8 HD
 
@@ -1711,17 +2170,21 @@ footer{
      data-title="STARZPLAY 1"
      data-engine="shaka">
 
-    <span class="engine-badge">AUTO</span>
+    <span class="engine-badge">
+        AUTO
+    </span>
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'starzplay1')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'starzplay1')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('starzplay1')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('starzplay1')">
 
         <img
             src="https://i.ibb.co/hJvj0w4W/STARZPLAYSPORTS01-Y2025-M-title-logo-en.png"
@@ -1729,8 +2192,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('starzplay1')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('starzplay1')">
 
         STARZPLAY 1
 
@@ -1745,17 +2209,21 @@ footer{
      data-title="STARZPLAY 2"
      data-engine="shaka">
 
-    <span class="engine-badge">AUTO</span>
+    <span class="engine-badge">
+        AUTO
+    </span>
 
-    <button class="fav-btn"
-            onclick="toggleFavorite(event,'starzplay2')">
+    <button
+        class="fav-btn"
+        onclick="toggleFavorite(event,'starzplay2')">
 
         <i class="fa-regular fa-star"></i>
 
     </button>
 
-    <div class="logo-container"
-         onclick="openPlayer('starzplay2')">
+    <div
+        class="logo-container"
+        onclick="openPlayer('starzplay2')">
 
         <img
             src="https://i.ibb.co/JwfbhDFr/STARZPLAYSPORT02-AVODY2025-M-title-logo-en.png"
@@ -1763,8 +2231,9 @@ footer{
 
     </div>
 
-    <div class="channel-title"
-         onclick="openPlayer('starzplay2')">
+    <div
+        class="channel-title"
+        onclick="openPlayer('starzplay2')">
 
         STARZPLAY 2
 
@@ -1773,18 +2242,26 @@ footer{
 </div>
 
 
-<div class="no-results-card" id="noResultsMsg">
+<div
+    class="no-results-card"
+    id="noResultsMsg">
 
     <div class="no-results-icon-wrapper">
+
         <i class="fa-solid fa-tv"></i>
+
     </div>
 
     <div class="no-results-title">
+
         القناة غير موجودة
+
     </div>
 
     <div class="no-results-desc">
+
         لم نتمكن من العثور على أي قناة تطابق كلمة البحث الحالية.
+
     </div>
 
     <button
@@ -1792,6 +2269,7 @@ footer{
         onclick="clearSearchQuery()">
 
         <i class="fa-solid fa-rotate-left"></i>
+
         عرض جميع القنوات
 
     </button>
@@ -1807,7 +2285,9 @@ footer{
      PLAYER MODAL
 ===================================================== -->
 
-<div class="player-modal" id="playerModal">
+<div
+    class="player-modal"
+    id="playerModal">
 
 <div class="modal-header">
 
@@ -1860,7 +2340,9 @@ footer{
             id="shakaLoading">
 
             <div class="loader-container">
+
                 <div class="loader-ring"></div>
+
             </div>
 
         </div>
@@ -1965,7 +2447,9 @@ footer{
                                 جودة البث
                             </div>
 
-                            <div id="qualityOptions"></div>
+                            <div
+                                id="qualityOptions">
+                            </div>
 
                         </div>
 
@@ -2000,6 +2484,7 @@ footer{
         onclick="navigateChannel('prev')">
 
         <i class="fa-solid fa-chevron-right"></i>
+
         السابقة
 
     </button>
@@ -2010,6 +2495,7 @@ footer{
         onclick="reloadActiveStream()">
 
         <i class="fa-solid fa-rotate-right"></i>
+
         تحديث
 
     </button>
@@ -2022,6 +2508,7 @@ footer{
         download>
 
         <i class="fa-solid fa-download"></i>
+
         تحميل
 
     </a>
@@ -2032,6 +2519,7 @@ footer{
         onclick="navigateChannel('next')">
 
         التالية
+
         <i class="fa-solid fa-chevron-left"></i>
 
     </button>
@@ -2042,7 +2530,9 @@ footer{
 
 
 <footer>
+
     <p>© 2026 IQ TV</p>
+
 </footer>
 
 
@@ -2102,6 +2592,7 @@ const firebaseConfig = {
 
     measurementId:
         "G-82BR15HG15"
+
 };
 
 const app =
@@ -2137,6 +2628,7 @@ function updateOnlineCounter(count){
             "scale(1)";
 
     },150);
+
 }
 
 
@@ -2147,6 +2639,7 @@ onValue(
         if(!snapshot.exists()){
 
             updateOnlineCounter(0);
+
             return;
 
         }
@@ -2275,9 +2768,11 @@ document.addEventListener(
         ){
 
             e.preventDefault();
+
             return false;
 
         }
+
 
         if(e.key==="Escape"){
 
@@ -2291,7 +2786,20 @@ document.addEventListener(
                 modal.classList.contains("open")
             ){
 
-                closePlayer();
+                /*
+                 * إذا كان المتصفح قد خرج من
+                 * fullscreen بنفسه، نغلق المشغل.
+                 */
+
+                const fullscreenElement =
+                    document.fullscreenElement ||
+                    document.webkitFullscreenElement;
+
+                if(!fullscreenElement){
+
+                    closePlayer();
+
+                }
 
             }
 
@@ -2366,10 +2874,10 @@ const STARZPLAY_CONFIG = {
         "https://sps2.starzplayarabia.com/out/v1/15e7d1ffb99746dda03f71dbbbc3c08b/index.mpd",
 
         kid:
-      "ee861edcd99093153a763a94b14c2c5a",
+        "ee861edcd99093153a763a94b14c2c5a",
 
         key:
-   "ab3991f6a7729ba1ea4bcdba0c1ae6c0" ,
+        "ab3991f6a7729ba1ea4bcdba0c1ae6c0",
 
         download:
         "ضع_رابط_التحميل_هنا"
@@ -2471,6 +2979,17 @@ async function openPlayer(channelId){
 
     hideShaka();
 
+    /*
+     * إزالة أي حالة fullscreen
+     * سابقة قبل تشغيل قناة جديدة.
+     */
+
+    modal.classList.remove(
+        "fullscreen-mode",
+        "clappr-fullscreen"
+    );
+
+
     const download =
         document.getElementById(
             "starDownloadBtn"
@@ -2522,12 +3041,15 @@ async function openClappr(card){
             );
 
         if(!response.ok)
+
             throw new Error(
                 "API HTTP "+response.status
             );
 
+
         const data =
             await response.json();
+
 
         if(
             !data ||
@@ -2543,13 +3065,19 @@ async function openClappr(card){
 
         }
 
+
         const rawUrl =
             data.data[0].url;
+
 
         const proxyUrl =
             "https://iqtv-proxy.aaa317198.workers.dev?stream="+
             encodeURIComponent(rawUrl);
 
+
+        /*
+         * إنشاء Clappr
+         */
 
         clapprPlayer =
             new Clappr.Player({
@@ -2597,8 +3125,22 @@ async function openClappr(card){
 
             });
 
+
         modalTitle.textContent =
             title;
+
+
+        /*
+         * مهم:
+         *
+         * Clappr لديه زر Fullscreen خاص به.
+         * لا نعتمد على الضغط على الزر نفسه،
+         * بل نراقب fullscreenchange عالميًا.
+         *
+         * عندما يدخل Clappr fullscreen:
+         * fullscreenChanged()
+         * ستقوم بطلب Landscape.
+         */
 
     }catch(error){
 
@@ -2629,15 +3171,18 @@ function destroyClappr(){
 
         }catch(e){}
 
+
         try{
 
             clapprPlayer.destroy();
 
         }catch(e){}
 
+
         clapprPlayer=null;
 
     }
+
 
     const container =
         document.getElementById(
@@ -2659,7 +3204,9 @@ async function createShaka(){
     if(shakaPlayer)
         return shakaPlayer;
 
+
     shaka.polyfill.installAll();
+
 
     if(
         !shaka.Player.isBrowserSupported()
@@ -2809,6 +3356,7 @@ async function openShaka(
     );
 
     hideError();
+
     showLoader();
 
     modalTitle.textContent =
@@ -2897,12 +3445,6 @@ async function openShaka(
         }
 
 
-        /*
-         * مهم:
-         * مسح إعداد ClearKey القديم
-         * ثم وضع إعداد القناة الحالية.
-         */
-
         player.configure({
 
             drm:{
@@ -2918,20 +3460,12 @@ async function openShaka(
         });
 
 
-        /*
-         * إعادة ضبط الفيديو
-         */
-
         shakaVideo.pause();
 
         shakaVideo.removeAttribute(
             "src"
         );
 
-
-        /*
-         * تحميل MPD
-         */
 
         await player.load(
             config.mpd
@@ -2954,11 +3488,8 @@ async function openShaka(
         buildQualityMenu();
 
 
-        /*
-         * إعداد الصوت
-         */
-
         shakaVideo.muted=false;
+
 
         if(
             shakaVideo.volume<=0
@@ -2969,20 +3500,11 @@ async function openShaka(
         }
 
 
-        /*
-         * التشغيل
-         */
-
         try{
 
             await shakaVideo.play();
 
         }catch(playError){
-
-            /*
-             * بعض الهواتف تمنع autoplay
-             * لذلك لا نعتبره خطأ في البث.
-             */
 
             console.log(
                 "Autoplay blocked:",
@@ -3151,9 +3673,11 @@ function hideError(){
 async function destroyShaka(){
 
     clearTimeout(controlTimer);
+
     clearTimeout(controlTouchTimer);
 
     closeQualityMenu();
+
 
     if(shakaPlayer){
 
@@ -3163,6 +3687,7 @@ async function destroyShaka(){
 
         }catch(e){}
 
+
         try{
 
             await shakaPlayer.unload();
@@ -3171,10 +3696,6 @@ async function destroyShaka(){
 
     }
 
-    /*
-     * لا ندمر Player في كل مرة.
-     * نعيد استخدام نفس instance.
-     */
 
     shakaVideo.pause();
 
@@ -3182,14 +3703,18 @@ async function destroyShaka(){
         "src"
     );
 
+
     try{
 
         shakaVideo.load();
 
     }catch(e){}
 
+
     hideLoader();
+
     hideError();
+
 
     shakaStage.classList.remove(
         "controls-hidden"
@@ -3335,10 +3860,6 @@ function setupShakaControls(){
         };
 
 
-    /*
-     * فيديو events
-     */
-
     shakaVideo.onplay =
         updatePlayIcon;
 
@@ -3364,14 +3885,11 @@ function setupShakaControls(){
         ()=>{
 
             hideLoader();
+
             updatePlayIcon();
 
         };
 
-
-    /*
-     * Touch
-     */
 
     shakaStage.ontouchstart =
         handleTouchStart;
@@ -3383,10 +3901,6 @@ function setupShakaControls(){
         handleTouchEnd;
 
 
-    /*
-     * Mouse
-     */
-
     shakaStage.onmousemove =
         ()=>{
 
@@ -3397,11 +3911,6 @@ function setupShakaControls(){
 
     shakaStage.onclick =
         event=>{
-
-            /*
-             * لا تعتبر الأزرار
-             * ضغطة على الفيديو.
-             */
 
             if(
                 event.target.closest(
@@ -3419,7 +3928,9 @@ function setupShakaControls(){
 
 
     updatePlayIcon();
+
     updateMuteIcon();
+
     updateShakaProgress();
 
 }
@@ -3488,10 +3999,6 @@ function handleTouchEnd(event){
 
     }
 
-    /*
-     * إذا كانت اللمسة على الكنترول
-     * لا نغير حالة الكنترول.
-     */
 
     const target =
         event.target;
@@ -3541,12 +4048,9 @@ function showShakaControls(){
     );
 
     clearTimeout(controlTimer);
+
     clearTimeout(controlTouchTimer);
 
-    /*
-     * إغلاق القائمة عند بدء
-     * دورة جديدة.
-     */
 
     controlTimer =
         setTimeout(()=>{
@@ -3610,6 +4114,7 @@ function updatePlayIcon(){
     if(!btn)
         return;
 
+
     btn.innerHTML =
         shakaVideo.paused
 
@@ -3634,6 +4139,7 @@ function updateMuteIcon(){
     if(!btn)
         return;
 
+
     if(
         shakaVideo.muted ||
         shakaVideo.volume===0
@@ -3657,11 +4163,6 @@ function updateMuteIcon(){
 ========================================================= */
 
 function seekFromPointer(event){
-
-    /*
-     * البث المباشر غالبًا لا نريد
-     * أن نعامل شريطه كفيديو عادي.
-     */
 
     if(
         !isFinite(shakaVideo.duration) ||
@@ -3692,10 +4193,6 @@ function seekFromPointer(event){
             Math.min(1,percent)
         );
 
-
-    /*
-     * RTL
-     */
 
     percent =
         1-percent;
@@ -3736,10 +4233,6 @@ function updateShakaProgress(){
     if(!value || !buffer || !time)
         return;
 
-
-    /*
-     * LIVE
-     */
 
     if(
         !isFinite(shakaVideo.duration) ||
@@ -3832,6 +4325,7 @@ function formatTime(seconds){
     if(!isFinite(seconds))
         return "00:00";
 
+
     const h =
         Math.floor(
             seconds/3600
@@ -3884,6 +4378,7 @@ function buildQualityMenu(){
     if(!options)
         return;
 
+
     options.innerHTML="";
 
 
@@ -3916,6 +4411,7 @@ function buildQualityMenu(){
 
         }
 
+
         if(
             !unique.has(
                 track.height
@@ -3940,14 +4436,11 @@ function buildQualityMenu(){
         );
 
 
-    /*
-     * AUTO
-     */
-
     const auto =
         document.createElement(
             "button"
         );
+
 
     auto.className =
         "quality-option active";
@@ -3955,10 +4448,12 @@ function buildQualityMenu(){
     auto.textContent =
         "تلقائي";
 
+
     auto.onclick =
         event=>{
 
             event.stopPropagation();
+
 
             shakaPlayer.configure({
 
@@ -3968,9 +4463,11 @@ function buildQualityMenu(){
 
             });
 
+
             setActiveQuality(
                 auto
             );
+
 
             closeQualityMenu();
 
@@ -3978,12 +4475,9 @@ function buildQualityMenu(){
 
         };
 
+
     options.appendChild(auto);
 
-
-    /*
-     * QUALITIES
-     */
 
     sorted.forEach(
         ([height])=>{
@@ -4074,6 +4568,7 @@ function setActiveQuality(button){
                 )
         );
 
+
     button.classList.add(
         "active"
     );
@@ -4093,6 +4588,7 @@ function closeQualityMenu(){
         );
 
     if(menu)
+
         menu.classList.remove(
             "open"
         );
@@ -4120,6 +4616,98 @@ document.addEventListener(
 
     }
 );
+
+
+/* =========================================================
+   LANDSCAPE HELPER
+========================================================= */
+
+/*
+ * هذه الدالة تحاول إجبار الشاشة على Landscape
+ * بعد دخول Fullscreen.
+ *
+ * بعض المتصفحات لا تسمح بها إلا بعد Fullscreen،
+ * لذلك يتم استدعاؤها من fullscreenchange.
+ */
+
+async function lockLandscape(){
+
+    try{
+
+        if(
+            screen &&
+            screen.orientation &&
+            screen.orientation.lock
+        ){
+
+            await screen.orientation.lock(
+                "landscape"
+            );
+
+            return true;
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Landscape lock:",
+            error
+        );
+
+    }
+
+    return false;
+
+}
+
+
+/*
+ * فتح وضع fullscreen عبر API إذا احتجناه.
+ */
+
+async function requestFullscreenElement(element){
+
+    if(!element)
+        return false;
+
+
+    try{
+
+        if(
+            element.requestFullscreen
+        ){
+
+            await element.requestFullscreen();
+
+            return true;
+
+        }
+
+
+        if(
+            element.webkitRequestFullscreen
+        ){
+
+            element.webkitRequestFullscreen();
+
+            return true;
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Request fullscreen:",
+            error
+        );
+
+    }
+
+
+    return false;
+
+}
 
 
 /* =========================================================
@@ -4165,23 +4753,15 @@ async function toggleShakaFullscreen(){
 
 
             /*
-             * محاولة Landscape
+             * محاولة Landscape بعد طلب fullscreen.
              */
 
-            try{
-
-                if(
-                    screen.orientation &&
-                    screen.orientation.lock
-                ){
-
-                    await screen.orientation.lock(
-                        "landscape"
-                    );
-
-                }
-
-            }catch(e){}
+            setTimeout(
+                ()=>{
+                    lockLandscape();
+                },
+                100
+            );
 
         }else{
 
@@ -4204,18 +4784,7 @@ async function toggleShakaFullscreen(){
             }
 
 
-            try{
-
-                if(
-                    screen.orientation &&
-                    screen.orientation.unlock
-                ){
-
-                    screen.orientation.unlock();
-
-                }
-
-            }catch(e){}
+            unlockOrientation();
 
         }
 
@@ -4226,8 +4795,54 @@ async function toggleShakaFullscreen(){
             error
         );
 
+
         modal.classList.toggle(
             "fullscreen-mode"
+        );
+
+
+        if(
+            modal.classList.contains(
+                "fullscreen-mode"
+            )
+        ){
+
+            lockLandscape();
+
+        }else{
+
+            unlockOrientation();
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   UNLOCK ORIENTATION
+========================================================= */
+
+function unlockOrientation(){
+
+    try{
+
+        if(
+            screen &&
+            screen.orientation &&
+            screen.orientation.unlock
+        ){
+
+            screen.orientation.unlock();
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Orientation unlock:",
+            error
         );
 
     }
@@ -4235,7 +4850,20 @@ async function toggleShakaFullscreen(){
 }
 
 
-function fullscreenChanged(){
+/* =========================================================
+   FULLSCREEN CHANGED
+========================================================= */
+
+/*
+ * هذه أهم إضافة للـ Clappr.
+ *
+ * Clappr عند الضغط على زر fullscreen
+ * هو الذي يدخل المتصفح في fullscreen.
+ *
+ * لذلك نراقب الحدث هنا.
+ */
+
+async function fullscreenChanged(){
 
     const modal =
         document.getElementById(
@@ -4248,17 +4876,78 @@ function fullscreenChanged(){
         document.webkitFullscreenElement;
 
 
+    /*
+     * هل القناة الحالية Clappr؟
+     */
+
+    const currentCard =
+        currentChannelId
+        ? document.querySelector(
+            `.channel-card[data-id="${currentChannelId}"]`
+        )
+        : null;
+
+
+    const isClappr =
+        currentCard &&
+        currentCard.dataset.engine === "clappr";
+
+
     if(fullscreenElement){
 
         modal.classList.add(
             "fullscreen-mode"
         );
 
+
+        /*
+         * إذا كانت قناة Clappr
+         * اطلب Landscape.
+         */
+
+        if(isClappr){
+
+            modal.classList.add(
+                "clappr-fullscreen"
+            );
+
+
+            /*
+             * ننتظر لحظة قصيرة حتى يصبح
+             * fullscreen فعليًا.
+             */
+
+            setTimeout(
+                ()=>{
+                    lockLandscape();
+                },
+                100
+            );
+
+        }else{
+
+            modal.classList.remove(
+                "clappr-fullscreen"
+            );
+
+        }
+
     }else{
 
         modal.classList.remove(
             "fullscreen-mode"
         );
+
+        modal.classList.remove(
+            "clappr-fullscreen"
+        );
+
+
+        /*
+         * رجوع للوضع الطبيعي.
+         */
+
+        unlockOrientation();
 
     }
 
@@ -4269,6 +4958,7 @@ document.addEventListener(
     "fullscreenchange",
     fullscreenChanged
 );
+
 
 document.addEventListener(
     "webkitfullscreenchange",
@@ -4283,28 +4973,16 @@ document.addEventListener(
 async function closePlayer(){
 
     clearTimeout(controlTimer);
+
     clearTimeout(controlTouchTimer);
 
     closeQualityMenu();
 
-    modal.classList.remove(
-        "open"
-    );
 
-    destroyClappr();
-
-    await destroyShaka();
-
-    hideShaka();
-
-    const download =
-        document.getElementById(
-            "starDownloadBtn"
-        );
-
-    download.style.display =
-        "none";
-
+    /*
+     * أولاً نخرج من fullscreen
+     * إذا كان موجودًا.
+     */
 
     const fullscreenElement =
         document.fullscreenElement ||
@@ -4319,6 +4997,12 @@ async function closePlayer(){
 
                 await document.exitFullscreen();
 
+            }else if(
+                document.webkitExitFullscreen
+            ){
+
+                document.webkitExitFullscreen();
+
             }
 
         }catch(e){}
@@ -4326,23 +5010,35 @@ async function closePlayer(){
     }
 
 
+    unlockOrientation();
+
+
     modal.classList.remove(
-        "fullscreen-mode"
+        "fullscreen-mode",
+        "clappr-fullscreen"
     );
 
 
-    try{
+    modal.classList.remove(
+        "open"
+    );
 
-        if(
-            screen.orientation &&
-            screen.orientation.unlock
-        ){
 
-            screen.orientation.unlock();
+    destroyClappr();
 
-        }
+    await destroyShaka();
 
-    }catch(e){}
+    hideShaka();
+
+
+    const download =
+        document.getElementById(
+            "starDownloadBtn"
+        );
+
+
+    download.style.display =
+        "none";
 
 }
 
@@ -4435,6 +5131,7 @@ function toggleFavorite(
 ){
 
     event.stopPropagation();
+
 
     const index =
         favorites.indexOf(
